@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Имотна точка — Наем & Апартаменти</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --white: #fafaf8;
+    --accent: #c9a96e;
+    --accent-light: #e8d5b0;
+    --mid: #5a5a5a;
+    --line: rgba(0,0,0,0.1);
+    --card-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(250,250,248,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+    animation: fadeDown .6s ease both;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: .02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .85rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; text-decoration: none; color: var(--mid);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--white);
+    padding: .6rem 1.5rem; border-radius: 2px;
+    font-size: .82rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+    animation: fadeUp .8s .2s ease both;
+  }
+  .hero-tag {
+    font-size: .75rem; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--mid); line-height: 1.7;
+    max-width: 440px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--ink); color: var(--white);
+    padding: .85rem 2rem; border-radius: 2px;
+    font-size: .85rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-outline {
+    color: var(--ink); font-size: .85rem; font-weight: 500;
+    text-decoration: none; display: flex; align-items: center; gap: .5rem;
+    transition: gap .2s;
+  }
+  .btn-outline:hover { gap: .85rem; }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--line);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--ink);
+  }
+  .stat-label { font-size: .78rem; color: var(--mid); letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    animation: fadeIn .8s .4s ease both;
+  }
+  .hero-img-wrap {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  }
+  .hero-img-grid {
+    position: absolute; inset: 0;
+    display: grid; grid-template-rows: 1fr 1fr; grid-template-columns: 1fr 1fr;
+    gap: 3px; padding: 3px;
+  }
+  .hero-img-grid .cell {
+    background-size: cover; background-position: center;
+    overflow: hidden; position: relative;
+  }
+  .hero-img-grid .cell::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.4) 100%);
+  }
+  .cell-1 { background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80'); grid-row: 1/3; }
+  .cell-2 { background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=80'); }
+  .cell-3 { background-image: url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=80'); }
+  .hero-badge {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+    padding: 1rem 1.5rem; border-radius: 4px;
+    display: flex; align-items: center; gap: 1rem;
+    white-space: nowrap; z-index: 2;
+    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+  }
+  .badge-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; }
+  .badge-text { font-size: .82rem; font-weight: 600; }
+  .badge-sub { font-size: .72rem; color: var(--mid); }
+
+  /* ── SEARCH BAR ── */
+  .search-section {
+    padding: 0 4rem;
+    margin-top: -1px;
+    animation: fadeUp .8s .5s ease both;
+  }
+  .search-bar {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    display: flex; align-items: center;
+    padding: .75rem 1rem;
+    gap: 1rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  }
+  .search-field {
+    flex: 1; display: flex; flex-direction: column; gap: .2rem;
+    padding: .5rem 1rem;
+    border-right: 1px solid var(--line);
+  }
+  .search-field:last-of-type { border-right: none; }
+  .sf-label { font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .sf-input {
+    border: none; outline: none; font-family: 'DM Sans', sans-serif;
+    font-size: .95rem; color: var(--ink); background: transparent; width: 100%;
+  }
+  .sf-input::placeholder { color: #aaa; }
+  .search-btn {
+    background: var(--accent); color: var(--white);
+    border: none; cursor: pointer;
+    padding: 1rem 2rem; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    transition: background .2s, transform .15s; white-space: nowrap;
+  }
+  .search-btn:hover { background: var(--ink); transform: translateY(-1px); }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: .72rem; font-weight: 600; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: .75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 1rem; color: var(--mid); max-width: 500px; line-height: 1.7; }
+
+  /* ── FEATURED LISTINGS ── */
+  .listings-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .view-all {
+    font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: .4rem;
+    transition: gap .2s;
+  }
+  .view-all:hover { gap: .8rem; }
+  .listings-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .listing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+  }
+  .listing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.1); }
+  .card-img {
+    height: 220px; background-size: cover; background-position: center;
+    position: relative; overflow: hidden;
+  }
+  .card-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.35) 100%);
+    transition: opacity .3s;
+  }
+  .listing-card:hover .card-img::after { opacity: .7; }
+  .card-badge {
+    position: absolute; top: 1rem; left: 1rem; z-index: 1;
+    background: var(--accent); color: var(--white);
+    font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .3rem .75rem; border-radius: 2px;
+  }
+  .card-badge.new { background: #22c55e; }
+  .card-body { padding: 1.5rem; }
+  .card-price {
+    font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--ink);
+    margin-bottom: .25rem;
+  }
+  .card-price span { font-family: 'DM Sans', sans-serif; font-size: .8rem; color: var(--mid); font-weight: 400; }
+  .card-title { font-size: .95rem; font-weight: 500; color: var(--ink); margin-bottom: .35rem; }
+  .card-location { font-size: .82rem; color: var(--mid); margin-bottom: 1.25rem; }
+  .card-features {
+    display: flex; gap: 1.5rem;
+    padding-top: 1rem; border-top: 1px solid var(--line);
+  }
+  .feat { font-size: .78rem; color: var(--mid); display: flex; align-items: center; gap: .35rem; }
+  .feat-icon { font-size: .9rem; }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative; height: 540px;
+  }
+  .about-img-main {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80') center/cover;
+    border-radius: 4px;
+  }
+  .about-img-card {
+    position: absolute; bottom: -2rem; right: -2rem;
+    background: var(--ink); color: var(--white);
+    padding: 1.5rem 2rem; border-radius: 4px;
+    width: 200px;
+  }
+  .about-card-num {
+    font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--accent);
+    line-height: 1;
+  }
+  .about-card-text { font-size: .82rem; color: rgba(255,255,255,.7); margin-top: .5rem; line-height: 1.5; }
+  .about-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+  .about-feat {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .af-icon {
+    width: 44px; height: 44px; border-radius: 2px;
+    background: var(--accent-light); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .af-title { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
+  .af-text { font-size: .82rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--ink); color: var(--white); }
+  .how-section .section-title { color: var(--white); }
+  .how-section .section-sub { color: rgba(255,255,255,.5); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem;
+  }
+  .step {
+    padding: 2rem; border: 1px solid rgba(255,255,255,.1); border-radius: 4px;
+    transition: border-color .2s, transform .2s;
+  }
+  .step:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .step-num {
+    font-family: 'DM Serif Display', serif; font-size: 3rem; color: rgba(255,255,255,.1);
+    line-height: 1; margin-bottom: 1.5rem;
+  }
+  .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .step-title { font-weight: 600; font-size: 1rem; margin-bottom: .5rem; color: var(--white); }
+  .step-text { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.7; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .testi-card {
+    padding: 2rem; border: 1px solid var(--line); border-radius: 4px;
+    transition: box-shadow .2s;
+  }
+  .testi-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.07); }
+  .testi-stars { color: var(--accent); font-size: 1rem; margin-bottom: 1rem; letter-spacing: .1em; }
+  .testi-text { font-size: .9rem; color: var(--mid); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background-size: cover; background-position: center; flex-shrink: 0;
+  }
+  .author-name { font-weight: 600; font-size: .88rem; }
+  .author-loc { font-size: .75rem; color: var(--mid); }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, #c9a96e 0%, #a07840 100%);
+    padding: 6rem 4rem; text-align: center; color: var(--white);
+  }
+  .cta-section .section-title { color: var(--white); font-size: clamp(2.2rem, 4vw, 3.5rem); }
+  .cta-section .section-sub { color: rgba(255,255,255,.8); margin: 0 auto 2.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: var(--white); color: var(--ink);
+    padding: .9rem 2.5rem; border-radius: 2px;
+    font-size: .85rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none; transition: transform .15s, box-shadow .15s;
+    display: inline-block;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+  .btn-ghost {
+    background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.6);
+    padding: .9rem 2.5rem; border-radius: 2px;
+    font-size: .85rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none; transition: border-color .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a; color: rgba(255,255,255,.6);
+    padding: 4rem; 
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+    color: var(--white); margin-bottom: 1rem; display: block; text-decoration: none;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-desc { font-size: .82rem; line-height: 1.7; max-width: 280px; }
+  .footer-heading { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--white); margin-bottom: 1.25rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .footer-links a { font-size: .82rem; color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-bottom {
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .75rem;
+  }
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 50vw; position: relative; }
+    .hero-left { padding: 4rem 2rem; }
+    .search-section { padding: 0 2rem; }
+    .search-bar { flex-wrap: wrap; }
+    .search-field { border-right: none; border-bottom: 1px solid var(--line); }
+    .listings-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-wrap { height: 300px; }
+    .about-img-card { right: 0; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cta-section { padding: 4rem 2rem; }
+  }
+  @media (max-width: 640px) {
+    .listings-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Имотна<span>точка</span></a>
+  <ul class="nav-links">
+    <li><a href="#listings">Обяви</a></li>
+    <li><a href="#about">За нас</a></li>
+    <li><a href="#how">Как работи</a></li>
+    <li><a href="#contact">Контакт</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Свържете се</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-tag">Намерете своя следващ дом</p>
+    <h1 class="hero-title">Наемете<br><em>идеалния</em><br>апартамент</h1>
+    <p class="hero-sub">Над 200 внимателно подбрани апартаменти и жилища под наем в цяла България. Намерете вашия дом с лекота.</p>
+    <div class="hero-actions">
+      <a href="#listings" class="btn-primary">Разгледайте обявите</a>
+      <a href="#about" class="btn-outline">Научете повече →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Активни обяви</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Доволни наематели</div>
+      </div>
+      <div>
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Години опит</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-img-grid">
+        <div class="cell cell-1"></div>
+        <div class="cell cell-2"></div>
+        <div class="cell cell-3"></div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <div>
+        <div class="badge-text">Нова обява</div>
+        <div class="badge-sub">Добавена преди 2 часа</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-bar">
+    <div class="search-field">
+      <span class="sf-label">Местоположение</span>
+      <input class="sf-input" type="text" placeholder="гр. София, Варна...">
+    </div>
+    <div class="search-field">
+      <span class="sf-label">Тип имот</span>
+      <input class="sf-input" type="text" placeholder="Апартамент, студио...">
+    </div>
+    <div class="search-field">
+      <span class="sf-label">Бюджет</span>
+      <input class="sf-input" type="text" placeholder="до 800 лв/месец">
+    </div>
+    <button class="search-btn">🔍 Търсене</button>
+  </div>
+</div>
+
+<!-- LISTINGS -->
+<section id="listings">
+  <div class="listings-header reveal">
+    <div>
+      <p class="section-label">Препоръчани</p>
+      <h2 class="section-title">Последни обяви</h2>
+    </div>
+    <a href="#" class="view-all">Всички обяви →</a>
+  </div>
+  <div class="listings-grid">
+
+    <div class="listing-card reveal">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80')">
+        <span class="card-badge new">Ново</span>
+      </div>
+      <div class="card-body">
+        <div class="card-price">850 лв <span>/ месец</span></div>
+        <div class="card-title">Просторен апартамент с тераса</div>
+        <div class="card-location">📍 Лозенец, София</div>
+        <div class="card-features">
+          <span class="feat"><span class="feat-icon">🛏</span> 2 стаи</span>
+          <span class="feat"><span class="feat-icon">🚿</span> 1 баня</span>
+          <span class="feat"><span class="feat-icon">📐</span> 75 м²</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="listing-card reveal">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=600&q=80')">
+        <span class="card-badge">Топ оферта</span>
+      </div>
+      <div class="card-body">
+        <div class="card-price">620 лв <span>/ месец</span></div>
+        <div class="card-title">Уютно студио в центъра</div>
+        <div class="card-location">📍 Център, Пловдив</div>
+        <div class="card-features">
+          <span class="feat"><span class="feat-icon">🛏</span> Студио</span>
+          <span class="feat"><span class="feat-icon">🚿</span> 1 баня</span>
+          <span class="feat"><span class="feat-icon">📐</span> 42 м²</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="listing-card reveal">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=600&q=80')">
+        <span class="card-badge new">Ново</span>
+      </div>
+      <div class="card-body">
+        <div class="card-price">1 200 лв <span>/ месец</span></div>
+        <div class="card-title">Луксозен тристаен с паркинг</div>
+        <div class="card-location">📍 Морска градина, Варна</div>
+        <div class="card-features">
+          <span class="feat"><span class="feat-icon">🛏</span> 3 стаи</span>
+          <span class="feat"><span class="feat-icon">🚿</span> 2 бани</span>
+          <span class="feat"><span class="feat-icon">📐</span> 110 м²</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#f5f4f0;">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img-main"></div>
+      <div class="about-img-card">
+        <div class="about-card-num">12+</div>
+        <div class="about-card-text">Години опит в имотния пазар</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">За нас</p>
+      <h2 class="section-title">Вашият надежден партньор за наем</h2>
+      <p class="section-sub">Имотна точка е специализирана агенция за апартаменти и жилища под наем. Работим с грижа, прозрачност и внимание към всеки клиент.</p>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="af-icon">🏆</div>
+          <div>
+            <div class="af-title">Проверени обяви</div>
+            <div class="af-text">Всяка обява е лично проверена от нашия екип. Никакви изненади след огледа.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon">🤝</div>
+          <div>
+            <div class="af-title">Персонален подход</div>
+            <div class="af-text">Слушаме вашите нужди и ви намираме имота, който наистина подхожда.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon">⚡</div>
+          <div>
+            <div class="af-title">Бързо и лесно</div>
+            <div class="af-text">От първото обаждане до подписания договор — в рамките на дни.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--accent)">Процес</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+      <h2 class="section-title">Как работи?</h2>
+      <p class="section-sub" style="max-width:320px;">Четири лесни стъпки до вашия нов дом.</p>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">Търсете</div>
+      <div class="step-text">Разгледайте нашите обяви по местоположение, цена и тип жилище.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">📞</div>
+      <div class="step-title">Свържете се</div>
+      <div class="step-text">Обадете ни се или пишете — ще отговорим в рамките на часове.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">🏠</div>
+      <div class="step-title">Огледайте</div>
+      <div class="step-text">Насрочваме оглед в удобно за вас време — без излишен стрес.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-icon">✍️</div>
+      <div class="step-title">Наемете</div>
+      <div class="step-text">Подписваме договор и получавате ключовете за вашия нов дом.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="reveal" style="text-align:center;margin-bottom:1rem;">
+    <p class="section-label">Отзиви</p>
+    <h2 class="section-title">Клиентите споделят</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Намериха ми апартамент в София за по-малко от седмица. Прозрачни, бързи и много любезни. Препоръчвам на всички!</p>
+      <div class="testi-author">
+        <div class="author-avatar" style="background-image:url('https://images.unsplash.com/photo-1494790108755-2616b612b047?w=80&q=80')"></div>
+        <div><div class="author-name">Мария Стоянова</div><div class="author-loc">София</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Страхотна агенция! Помогнаха ми да намеря студио близо до университета. Много внимателни към нуждите ми.</p>
+      <div class="testi-author">
+        <div class="author-avatar" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80')"></div>
+        <div><div class="author-name">Иван Петров</div><div class="author-loc">Пловдив</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Преместих се от чужбина и Имотна точка направиха процеса лесен и приятен. Отлично обслужване от начало до край.</p>
+      <div class="testi-author">
+        <div class="author-avatar" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80')"></div>
+        <div><div class="author-name">Елена Георгиева</div><div class="author-loc">Варна</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-label" style="color:rgba(255,255,255,.7)">Готови ли сте?</p>
+  <h2 class="section-title">Намерете вашия<br>следващ дом днес</h2>
+  <p class="section-sub">Свържете се с нас и ще ви помогнем да намерите идеалния апартамент под наем.</p>
+  <div class="cta-buttons">
+    <a href="#listings" class="btn-white">Разгледайте обявите</a>
+    <a href="#contact" class="btn-ghost">Свържете се с нас</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:#f5f4f0;">
+  <div style="max-width:600px;margin:0 auto;text-align:center;" class="reveal">
+    <p class="section-label">Контакт</p>
+    <h2 class="section-title">Пишете ни</h2>
+    <p class="section-sub" style="margin:0 auto 2.5rem;">Имате въпрос или искате оглед? Ще отговорим в рамките на деня.</p>
+    <div style="background:var(--card-bg);border:1px solid var(--line);border-radius:4px;padding:2.5rem;text-align:left;">
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <label style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;">Вашето име</label>
+          <input type="text" placeholder="Иван Иванов" style="width:100%;padding:.75rem 1rem;border:1px solid var(--line);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='rgba(0,0,0,0.1)'">
+        </div>
+        <div>
+          <label style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;">Телефон / Имейл</label>
+          <input type="text" placeholder="+359 88 888 8888" style="width:100%;padding:.75rem 1rem;border:1px solid var(--line);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='rgba(0,0,0,0.1)'">
+        </div>
+        <div>
+          <label style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem;">Съобщение</label>
+          <textarea rows="4" placeholder="Търся апартамент в..." style="width:100%;padding:.75rem 1rem;border:1px solid var(--line);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;resize:vertical;transition:border-color .2s;" onfocus="this.style.borderColor='#c9a96e'" onblur="this.style.borderColor='rgba(0,0,0,0.1)'"></textarea>
+        </div>
+        <button onclick="this.textContent='✓ Изпратено!';this.style.background='#22c55e';" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;font-size:.9rem;padding:1rem;transition:background .2s,transform .15s;">Изпратете съобщение</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">Имотна<span>точка</span></a>
+      <p class="footer-desc">Вашият доверен партньор за апартаменти и жилища под наем в България. Качество, прозрачност и грижа за всеки клиент.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Навигация</div>
+      <ul class="footer-links">
+        <li><a href="#listings">Обяви</a></li>
+        <li><a href="#about">За нас</a></li>
+        <li><a href="#how">Как работи</a></li>
+        <li><a href="#contact">Контакт</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Градове</div>
+      <ul class="footer-links">
+        <li><a href="#">София</a></li>
+        <li><a href="#">Пловдив</a></li>
+        <li><a href="#">Варна</a></li>
+        <li><a href="#">Бургас</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Контакт</div>
+      <ul class="footer-links">
+        <li><a href="#">📞 +359 88 000 0000</a></li>
+        <li><a href="#">✉️ info@imotnatochka.bg</a></li>
+        <li><a href="#">📍 София, България</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Имотна точка. Всички права запазени.</span>
+    <span>Направено с ❤️ за <a href="#">вашия нов дом</a></span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
