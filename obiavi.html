@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обяви — Имотна точка</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --white: #fafaf8;
+    --accent: #c9a96e;
+    --accent-light: #f0e6d3;
+    --mid: #5a5a5a;
+    --muted: #9a9a9a;
+    --line: rgba(0,0,0,0.09);
+    --card-bg: #ffffff;
+    --bg: #f5f4f0;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem; letter-spacing: .02em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .82rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; text-decoration: none; color: var(--mid);
+    transition: color .2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-links a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+  .nav-cta {
+    background: var(--ink); color: var(--white);
+    padding: .55rem 1.4rem; border-radius: 2px;
+    font-size: .8rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 4rem 4rem 2rem;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    animation: fadeUp .6s ease both;
+  }
+  .page-header-left {}
+  .breadcrumb {
+    font-size: .75rem; color: var(--muted); letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: .75rem;
+  }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1;
+  }
+  .results-count {
+    font-size: .82rem; color: var(--mid);
+    background: var(--card-bg); border: 1px solid var(--line);
+    padding: .5rem 1.2rem; border-radius: 2px;
+  }
+  .results-count strong { color: var(--accent); font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+
+  /* ── LAYOUT ── */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 0 4rem 6rem;
+    align-items: start;
+  }
+
+  /* ── FILTER SIDEBAR ── */
+  .filter-sidebar {
+    position: sticky; top: 76px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .filter-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .filter-title {
+    font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .filter-title::before { content: '⚙'; font-size: .9rem; }
+  .filter-reset {
+    font-size: .72rem; color: var(--accent); cursor: pointer;
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    background: none; border: none; font-family: 'DM Sans', sans-serif;
+    transition: opacity .2s;
+  }
+  .filter-reset:hover { opacity: .6; }
+
+  .filter-group {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .filter-group:last-child { border-bottom: none; }
+  .filter-group-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1rem;
+  }
+
+  /* Toggle chips */
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip {
+    padding: .45rem 1rem; border-radius: 2px;
+    font-size: .8rem; font-weight: 500; cursor: pointer;
+    border: 1.5px solid var(--line);
+    background: transparent; color: var(--mid);
+    font-family: 'DM Sans', sans-serif;
+    transition: all .18s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+  .chip.active {
+    background: var(--ink); color: var(--white);
+    border-color: var(--ink);
+  }
+  .chip.active-accent {
+    background: var(--accent); color: var(--white);
+    border-color: var(--accent);
+  }
+
+  /* Checkboxes */
+  .check-list { display: flex; flex-direction: column; gap: .6rem; }
+  .check-item {
+    display: flex; align-items: center; gap: .65rem; cursor: pointer;
+    font-size: .88rem; color: var(--mid);
+    transition: color .15s;
+  }
+  .check-item:hover { color: var(--ink); }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--line);
+    border-radius: 2px; flex-shrink: 0; position: relative;
+    transition: border-color .15s, background .15s;
+  }
+  .check-item input:checked + .check-box {
+    background: var(--ink); border-color: var(--ink);
+  }
+  .check-item input:checked + .check-box::after {
+    content: '✓'; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: white; font-size: .7rem; font-weight: 700;
+  }
+
+  /* Price range */
+  .price-range { display: flex; flex-direction: column; gap: .75rem; }
+  .price-inputs { display: flex; gap: .75rem; align-items: center; }
+  .price-input-wrap {
+    flex: 1; position: relative;
+  }
+  .price-input-wrap span {
+    position: absolute; right: .75rem; top: 50%; transform: translateY(-50%);
+    font-size: .72rem; color: var(--muted); font-weight: 600;
+  }
+  .price-input {
+    width: 100%; padding: .6rem .75rem; padding-right: 2.2rem;
+    border: 1.5px solid var(--line); border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--ink);
+    background: var(--bg); outline: none;
+    transition: border-color .2s;
+  }
+  .price-input:focus { border-color: var(--accent); }
+  .price-separator { color: var(--muted); font-size: .8rem; flex-shrink: 0; }
+
+  .range-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 3px; border-radius: 2px;
+    background: linear-gradient(to right, var(--ink) 0%, var(--ink) 50%, var(--line) 50%, var(--line) 100%);
+    outline: none; cursor: pointer;
+  }
+  .range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ink); cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    transition: transform .15s;
+  }
+  .range-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+  .apply-btn {
+    width: 100%; padding: .85rem;
+    background: var(--ink); color: var(--white);
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    transition: background .2s;
+    margin-top: .25rem;
+    border-radius: 0 0 2px 2px;
+  }
+  .apply-btn:hover { background: var(--accent); }
+
+  /* ── LISTINGS AREA ── */
+  .listings-area {
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  /* Sort bar */
+  .sort-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: .75rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .sort-left { font-size: .82rem; color: var(--mid); }
+  .sort-left strong { color: var(--ink); }
+  .sort-right { display: flex; align-items: center; gap: 1rem; }
+  .sort-label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .sort-select {
+    border: 1.5px solid var(--line); border-radius: 2px;
+    padding: .4rem .75rem; font-family: 'DM Sans', sans-serif;
+    font-size: .82rem; color: var(--ink); background: var(--bg);
+    cursor: pointer; outline: none; transition: border-color .2s;
+  }
+  .sort-select:focus { border-color: var(--accent); }
+  .view-toggles { display: flex; gap: .25rem; }
+  .view-btn {
+    width: 34px; height: 34px; border: 1.5px solid var(--line);
+    border-radius: 2px; background: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; transition: all .15s;
+  }
+  .view-btn.active, .view-btn:hover { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* Active filter tags */
+  .active-filters {
+    display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem;
+  }
+  .filter-tag {
+    display: flex; align-items: center; gap: .4rem;
+    background: var(--accent-light); color: var(--ink);
+    padding: .3rem .75rem; border-radius: 2px;
+    font-size: .75rem; font-weight: 600;
+  }
+  .filter-tag-x {
+    cursor: pointer; color: var(--mid); font-size: .9rem; line-height: 1;
+    transition: color .15s;
+  }
+  .filter-tag-x:hover { color: var(--ink); }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .listing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+    animation: cardIn .4s ease both;
+  }
+  .listing-card:nth-child(1) { animation-delay: .05s; }
+  .listing-card:nth-child(2) { animation-delay: .1s; }
+  .listing-card:nth-child(3) { animation-delay: .15s; }
+  .listing-card:nth-child(4) { animation-delay: .2s; }
+
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,.1);
+  }
+
+  .card-img {
+    height: 210px; background-size: cover; background-position: center;
+    position: relative; overflow: hidden;
+  }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.45) 100%);
+    transition: opacity .3s;
+  }
+  .listing-card:hover .card-img-overlay { opacity: .7; }
+
+  .card-type-badge {
+    position: absolute; top: 1rem; left: 1rem; z-index: 1;
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border-radius: 2px;
+  }
+  .badge-rent { background: var(--ink); color: var(--white); }
+  .badge-sell { background: var(--accent); color: var(--white); }
+  .badge-new {
+    position: absolute; top: 1rem; right: 1rem; z-index: 1;
+    background: #22c55e; color: white;
+    font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border-radius: 2px;
+  }
+
+  .card-save {
+    position: absolute; bottom: 1rem; right: 1rem; z-index: 1;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.9); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; transition: transform .15s, background .15s;
+    opacity: 0; transition: opacity .2s, transform .15s;
+  }
+  .listing-card:hover .card-save { opacity: 1; }
+  .card-save:hover { transform: scale(1.15); background: white; }
+  .card-save.saved { opacity: 1; background: #fee2e2; }
+
+  .card-body { padding: 1.4rem; }
+
+  .card-top {
+    display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: .5rem;
+  }
+  .card-price {
+    font-family: 'DM Serif Display', serif; font-size: 1.55rem; color: var(--ink); line-height: 1;
+  }
+  .card-price-unit { font-family: 'DM Sans', sans-serif; font-size: .75rem; color: var(--mid); font-weight: 400; }
+  .card-city-tag {
+    background: var(--accent-light); color: var(--accent);
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .25rem .65rem; border-radius: 2px; white-space: nowrap;
+  }
+
+  .card-title { font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; line-height: 1.35; }
+  .card-location { font-size: .8rem; color: var(--muted); margin-bottom: 1.1rem; display: flex; align-items: center; gap: .3rem; }
+
+  .card-features {
+    display: flex; gap: 1.25rem;
+    padding-top: 1rem; border-top: 1px solid var(--line);
+  }
+  .feat { font-size: .78rem; color: var(--mid); display: flex; align-items: center; gap: .3rem; }
+
+  .card-footer {
+    padding: .9rem 1.4rem;
+    border-top: 1px solid var(--line);
+    background: #fafaf8;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-prop-type {
+    font-size: .72rem; color: var(--muted); font-weight: 500; letter-spacing: .05em;
+    display: flex; align-items: center; gap: .3rem;
+  }
+  .card-cta {
+    font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: .3rem;
+    transition: gap .15s, color .15s;
+  }
+  .card-cta:hover { gap: .6rem; color: var(--accent); }
+
+  /* No results */
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center; padding: 4rem 2rem;
+    color: var(--muted);
+    display: none;
+  }
+  .no-results-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .no-results h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--mid); margin-bottom: .5rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .main-layout { grid-template-columns: 260px 1fr; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .page-header { padding: 2.5rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .main-layout { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+    .filter-sidebar { position: static; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .sort-bar { flex-direction: column; gap: .75rem; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Имотна<span>точка</span></a>
+  <ul class="nav-links">
+    <li><a href="obiavi.html" class="active">Обяви</a></li>
+    <li><a href="index.html#about">За нас</a></li>
+    <li><a href="index.html#how">Как работи</a></li>
+    <li><a href="index.html#contact">Контакт</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Свържете се</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="breadcrumb"><a href="index.html">Начало</a> / Обяви</div>
+    <h1 class="page-title">Всички обяви</h1>
+  </div>
+  <div class="results-count">Намерени <strong id="countDisplay">4</strong> имота</div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- FILTER SIDEBAR -->
+  <aside class="filter-sidebar">
+    <div class="filter-header">
+      <span class="filter-title">Филтри</span>
+      <button class="filter-reset" onclick="resetFilters()">Изчисти</button>
+    </div>
+
+    <!-- Rent / Sell -->
+    <div class="filter-group">
+      <div class="filter-group-label">Тип сделка</div>
+      <div class="chips">
+        <button class="chip active" data-filter="deal" data-value="all" onclick="toggleDeal(this, 'all')">Всички</button>
+        <button class="chip" data-filter="deal" data-value="rent" onclick="toggleDeal(this, 'rent')">Под наем</button>
+        <button class="chip" data-filter="deal" data-value="sell" onclick="toggleDeal(this, 'sell')">Продажба</button>
+      </div>
+    </div>
+
+    <!-- City -->
+    <div class="filter-group">
+      <div class="filter-group-label">Град</div>
+      <div class="check-list">
+        <label class="check-item">
+          <input type="checkbox" data-filter="city" data-value="sofia" onchange="applyFilters()">
+          <span class="check-box"></span>
+          София <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">2</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="city" data-value="plovdiv" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Пловдив <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="city" data-value="varna" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Варна <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Property type -->
+    <div class="filter-group">
+      <div class="filter-group-label">Тип имот</div>
+      <div class="check-list">
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="apartment" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Апартамент <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">2</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="studio" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Студио <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="house" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Къща <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="filter-group">
+      <div class="filter-group-label">Цена (лв)</div>
+      <div class="price-range">
+        <div class="price-inputs">
+          <div class="price-input-wrap">
+            <input class="price-input" type="number" id="priceMin" placeholder="От" min="0" max="5000" value="" oninput="updateSlider()">
+            <span>лв</span>
+          </div>
+          <span class="price-separator">—</span>
+          <div class="price-input-wrap">
+            <input class="price-input" type="number" id="priceMax" placeholder="До" min="0" max="5000" value="" oninput="updateSlider()">
+            <span>лв</span>
+          </div>
+        </div>
+        <input type="range" class="range-slider" id="priceSlider" min="0" max="5000" value="5000" oninput="sliderMove(this)">
+        <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);">
+          <span>0 лв</span><span>5 000 лв</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="apply-btn" onclick="applyFilters()">Приложи филтрите</button>
+  </aside>
+
+  <!-- LISTINGS AREA -->
+  <div class="listings-area">
+
+    <!-- Sort bar -->
+    <div class="sort-bar">
+      <div class="sort-left">Показват се <strong id="visibleCount">4</strong> от <strong>4</strong> обяви</div>
+      <div class="sort-right">
+        <span class="sort-label">Сортирай:</span>
+        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+          <option value="default">Препоръчани</option>
+          <option value="price-asc">Цена ↑</option>
+          <option value="price-desc">Цена ↓</option>
+          <option value="newest">Най-нови</option>
+          <option value="size">Площ</option>
+        </select>
+        <div class="view-toggles">
+          <button class="view-btn active" title="Решетка" onclick="setView('grid', this)">⊞</button>
+          <button class="view-btn" title="Списък" onclick="setView('list', this)">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active filter tags -->
+    <div class="active-filters" id="activeTags"></div>
+
+    <!-- Cards -->
+    <div class="cards-grid" id="cardsGrid">
+
+      <!-- CARD 1 -->
+      <div class="listing-card"
+        data-deal="rent" data-city="sofia" data-type="apartment"
+        data-price="850" data-size="75" data-newest="1">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=80')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-rent">Под наем</span>
+          <span class="badge-new">Ново</span>
+          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">850 <span class="card-price-unit">лв / месец</span></div>
+            </div>
+            <span class="card-city-tag">София</span>
+          </div>
+          <div class="card-title">Просторен апартамент с тераса и паркинг</div>
+          <div class="card-location">📍 Лозенец, София</div>
+          <div class="card-features">
+            <span class="feat">🛏 2 стаи</span>
+            <span class="feat">🚿 1 баня</span>
+            <span class="feat">📐 75 м²</span>
+            <span class="feat">🅿️ Паркинг</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏢 Апартамент</span>
+          <a href="#" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="listing-card"
+        data-deal="rent" data-city="plovdiv" data-type="studio"
+        data-price="620" data-size="42" data-newest="3">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=700&q=80')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-rent">Под наем</span>
+          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">620 <span class="card-price-unit">лв / месец</span></div>
+            </div>
+            <span class="card-city-tag">Пловдив</span>
+          </div>
+          <div class="card-title">Уютно студио в самия център</div>
+          <div class="card-location">📍 Център, Пловдив</div>
+          <div class="card-features">
+            <span class="feat">🛏 Студио</span>
+            <span class="feat">🚿 1 баня</span>
+            <span class="feat">📐 42 м²</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏠 Студио</span>
+          <a href="#" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="listing-card"
+        data-deal="sell" data-city="varna" data-type="apartment"
+        data-price="3200" data-size="110" data-newest="2">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=700&q=80')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-sell">Продажба</span>
+          <span class="badge-new">Ново</span>
+          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">3 200 <span class="card-price-unit">лв / м²</span></div>
+            </div>
+            <span class="card-city-tag">Варна</span>
+          </div>
+          <div class="card-title">Луксозен тристаен апартамент с морска гледка</div>
+          <div class="card-location">📍 Морска градина, Варна</div>
+          <div class="card-features">
+            <span class="feat">🛏 3 стаи</span>
+            <span class="feat">🚿 2 бани</span>
+            <span class="feat">📐 110 м²</span>
+            <span class="feat">🌊 Море</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏢 Апартамент</span>
+          <a href="#" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="listing-card"
+        data-deal="sell" data-city="sofia" data-type="house"
+        data-price="1850" data-size="180" data-newest="4">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-sell">Продажба</span>
+          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">1 850 <span class="card-price-unit">лв / м²</span></div>
+            </div>
+            <span class="card-city-tag">София</span>
+          </div>
+          <div class="card-title">Самостоятелна къща с голям двор и гараж</div>
+          <div class="card-location">📍 Бояна, София</div>
+          <div class="card-features">
+            <span class="feat">🛏 4 стаи</span>
+            <span class="feat">🚿 2 бани</span>
+            <span class="feat">📐 180 м²</span>
+            <span class="feat">🌳 Двор</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏡 Къща</span>
+          <a href="#" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" id="noResults">
+        <div class="no-results-icon">🔍</div>
+        <h3>Няма намерени имоти</h3>
+        <p>Опитайте с различни филтри или <button onclick="resetFilters()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">изчистете всички</button></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── State ──
+  let activeDeal = 'all';
+
+  // ── Deal toggle ──
+  function toggleDeal(btn, val) {
+    document.querySelectorAll('[data-filter="deal"]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeDeal = val;
+    applyFilters();
+  }
+
+  // ── Slider ──
+  function sliderMove(el) {
+    document.getElementById('priceMax').value = el.value;
+    const pct = (el.value / el.max) * 100;
+    el.style.background = `linear-gradient(to right, var(--ink) 0%, var(--ink) ${pct}%, var(--line) ${pct}%, var(--line) 100%)`;
+    applyFilters();
+  }
+  function updateSlider() {
+    const max = document.getElementById('priceMax').value;
+    const slider = document.getElementById('priceSlider');
+    if (max) {
+      slider.value = max;
+      const pct = (max / slider.max) * 100;
+      slider.style.background = `linear-gradient(to right, var(--ink) 0%, var(--ink) ${pct}%, var(--line) ${pct}%, var(--line) 100%)`;
+    }
+    applyFilters();
+  }
+
+  // ── Main filter ──
+  function applyFilters() {
+    const cards = document.querySelectorAll('.listing-card[data-deal]');
+    const checkedCities = [...document.querySelectorAll('[data-filter="city"]:checked')].map(el => el.dataset.value);
+    const checkedTypes  = [...document.querySelectorAll('[data-filter="type"]:checked')].map(el => el.dataset.value);
+    const minPrice = parseFloat(document.getElementById('priceMin').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('priceMax').value) || Infinity;
+    const sort = document.getElementById('sortSelect').value;
+
+    let visible = [];
+    cards.forEach(card => {
+      const dealMatch = activeDeal === 'all' || card.dataset.deal === activeDeal;
+      const cityMatch = checkedCities.length === 0 || checkedCities.includes(card.dataset.city);
+      const typeMatch = checkedTypes.length === 0 || checkedTypes.includes(card.dataset.type);
+      const price = parseFloat(card.dataset.price);
+      const priceMatch = price >= minPrice && price <= maxPrice;
+
+      if (dealMatch && cityMatch && typeMatch && priceMatch) {
+        card.style.display = '';
+        visible.push(card);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Sort
+    const grid = document.getElementById('cardsGrid');
+    visible.sort((a, b) => {
+      if (sort === 'price-asc') return a.dataset.price - b.dataset.price;
+      if (sort === 'price-desc') return b.dataset.price - a.dataset.price;
+      if (sort === 'newest') return a.dataset.newest - b.dataset.newest;
+      if (sort === 'size') return b.dataset.size - a.dataset.size;
+      return 0;
+    });
+    visible.forEach(card => grid.appendChild(card));
+
+    // No results
+    const noRes = document.getElementById('noResults');
+    noRes.style.display = visible.length === 0 ? 'block' : 'none';
+
+    // Counts
+    document.getElementById('countDisplay').textContent = visible.length;
+    document.getElementById('visibleCount').textContent = visible.length;
+
+    // Tags
+    renderTags(checkedCities, checkedTypes, minPrice, maxPrice);
+  }
+
+  // ── Active tags ──
+  const cityLabels = { sofia: 'София', plovdiv: 'Пловдив', varna: 'Варна' };
+  const typeLabels = { apartment: 'Апартамент', studio: 'Студио', house: 'Къща' };
+  const dealLabels = { rent: 'Под наем', sell: 'Продажба' };
+
+  function renderTags(cities, types, min, max) {
+    const wrap = document.getElementById('activeTags');
+    wrap.innerHTML = '';
+    if (activeDeal !== 'all') addTag(dealLabels[activeDeal], () => { document.querySelector('[data-value="all"]').click(); });
+    cities.forEach(c => addTag(cityLabels[c], () => { document.querySelector(`[data-value="${c}"]`).click(); applyFilters(); }));
+    types.forEach(t => addTag(typeLabels[t], () => { document.querySelector(`[data-value="${t}"]`).click(); applyFilters(); }));
+    if (min > 0) addTag(`От ${min} лв`, () => { document.getElementById('priceMin').value = ''; applyFilters(); });
+    if (max < Infinity && document.getElementById('priceMax').value) addTag(`До ${max} лв`, () => { document.getElementById('priceMax').value = ''; document.getElementById('priceSlider').value = 5000; sliderMove(document.getElementById('priceSlider')); });
+
+    function addTag(label, onX) {
+      const tag = document.createElement('div');
+      tag.className = 'filter-tag';
+      tag.innerHTML = `${label} <span class="filter-tag-x" title="Премахни">✕</span>`;
+      tag.querySelector('.filter-tag-x').addEventListener('click', onX);
+      wrap.appendChild(tag);
+    }
+  }
+
+  // ── Reset ──
+  function resetFilters() {
+    document.querySelectorAll('[data-filter="deal"]').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-value="all"]').classList.add('active');
+    activeDeal = 'all';
+    document.querySelectorAll('[data-filter="city"], [data-filter="type"]').forEach(el => el.checked = false);
+    document.getElementById('priceMin').value = '';
+    document.getElementById('priceMax').value = '';
+    const slider = document.getElementById('priceSlider');
+    slider.value = 5000;
+    slider.style.background = 'linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)';
+    document.getElementById('sortSelect').value = 'default';
+    applyFilters();
+  }
+
+  // ── Save ──
+  function toggleSave(e, btn) {
+    e.stopPropagation();
+    if (btn.classList.contains('saved')) {
+      btn.classList.remove('saved');
+      btn.textContent = '🤍';
+    } else {
+      btn.classList.add('saved');
+      btn.textContent = '❤️';
+    }
+  }
+
+  // ── View toggle ──
+  function setView(mode, btn) {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const grid = document.getElementById('cardsGrid');
+    if (mode === 'list') {
+      grid.style.gridTemplateColumns = '1fr';
+    } else {
+      grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    }
+  }
+</script>
+</body>
+</html>
