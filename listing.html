@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Детайли — Имотна точка</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --white: #fafaf8;
+    --accent: #c9a96e;
+    --accent-light: #f0e6d3;
+    --mid: #5a5a5a;
+    --muted: #9a9a9a;
+    --line: rgba(0,0,0,0.09);
+    --card-bg: #ffffff;
+    --bg: #f5f4f0;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; letter-spacing: .02em; color: var(--ink); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--mid); transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { background: var(--ink); color: var(--white); padding: .55rem 1.4rem; border-radius: 2px; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background .2s; }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar {
+    padding: 1.25rem 4rem;
+    font-size: .75rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase;
+    display: flex; align-items: center; gap: .5rem;
+    animation: fadeUp .5s ease both;
+  }
+  .breadcrumb-bar a { color: var(--accent); text-decoration: none; }
+  .breadcrumb-bar a:hover { text-decoration: underline; }
+  .breadcrumb-sep { color: var(--line); }
+
+  /* ── HERO GALLERY ── */
+  .gallery {
+    padding: 0 4rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 320px 200px;
+    gap: .75rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .gallery-main {
+    grid-row: 1 / 3;
+    border-radius: 4px; overflow: hidden; position: relative; cursor: pointer;
+  }
+  .gallery-main img, .gallery-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .gallery-main:hover img { transform: scale(1.03); }
+  .gallery-thumb {
+    border-radius: 4px; overflow: hidden; position: relative; cursor: pointer;
+  }
+  .gallery-thumb:hover img { transform: scale(1.05); }
+  .gallery-thumb:last-child { position: relative; }
+  .gallery-more-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,.55);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: white; font-size: 1.5rem; font-weight: 700; cursor: pointer;
+    opacity: 0; transition: opacity .25s;
+  }
+  .gallery-thumb:last-child:hover .gallery-more-overlay { opacity: 1; }
+  .gallery-more-overlay span { font-size: .78rem; font-weight: 500; margin-top: .2rem; letter-spacing: .1em; text-transform: uppercase; }
+  .gallery-badge {
+    position: absolute; top: 1.25rem; left: 1.25rem; z-index: 2;
+    font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: .35rem .9rem; border-radius: 2px;
+  }
+  .badge-rent { background: var(--ink); color: white; }
+  .badge-sell { background: var(--accent); color: white; }
+  .badge-new-pill {
+    position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;
+    background: #22c55e; color: white;
+    font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: .3rem .8rem; border-radius: 2px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    padding: 0 4rem 6rem;
+    align-items: start;
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  /* ── LEFT CONTENT ── */
+  .detail-left {}
+
+  .listing-header {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .listing-top-row {
+    display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;
+  }
+  .listing-city-tag {
+    background: var(--accent-light); color: var(--accent);
+    font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: .3rem .8rem; border-radius: 2px;
+  }
+  .listing-save-btn {
+    background: none; border: 1.5px solid var(--line); border-radius: 2px;
+    padding: .4rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: .78rem; font-weight: 600; cursor: pointer; color: var(--mid);
+    display: flex; align-items: center; gap: .4rem; transition: all .2s;
+  }
+  .listing-save-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .listing-save-btn.saved { border-color: #ef4444; color: #ef4444; background: #fee2e2; }
+
+  .listing-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15;
+    margin-bottom: .6rem;
+  }
+  .listing-location {
+    font-size: .88rem; color: var(--mid);
+    display: flex; align-items: center; gap: .4rem; margin-bottom: 1.5rem;
+  }
+  .listing-price-row {
+    display: flex; align-items: flex-end; gap: 1.5rem;
+    padding-top: 1.25rem; border-top: 1px solid var(--line);
+  }
+  .listing-price {
+    font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--ink); line-height: 1;
+  }
+  .listing-price-unit { font-family: 'DM Sans', sans-serif; font-size: .82rem; color: var(--muted); font-weight: 400; margin-bottom: .2rem; }
+  .listing-price-per-m { font-size: .82rem; color: var(--muted); padding-left: 1.5rem; border-left: 1px solid var(--line); }
+
+  /* Key features strip */
+  .key-features {
+    background: var(--card-bg);
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.5rem 2.25rem;
+    display: flex; gap: 0; margin-bottom: 1.5rem;
+  }
+  .kf-item {
+    flex: 1; text-align: center;
+    padding: .5rem 1rem;
+    border-right: 1px solid var(--line);
+  }
+  .kf-item:last-child { border-right: none; }
+  .kf-icon { font-size: 1.4rem; margin-bottom: .35rem; }
+  .kf-value { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--ink); line-height: 1.2; }
+  .kf-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: .15rem; }
+
+  /* Section blocks */
+  .detail-section {
+    background: var(--card-bg);
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading {
+    font-family: 'DM Serif Display', serif; font-size: 1.25rem;
+    margin-bottom: 1.25rem; padding-bottom: .85rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .section-heading::before { content: attr(data-icon); font-size: 1rem; }
+
+  .description-text {
+    font-size: .92rem; color: var(--mid); line-height: 1.85;
+  }
+  .description-text p + p { margin-top: .75rem; }
+
+  /* Specs grid */
+  .specs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .spec-item {
+    padding: .85rem 0;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .spec-item:nth-last-child(-n+2) { border-bottom: none; }
+  .spec-label { font-size: .8rem; color: var(--muted); }
+  .spec-value { font-size: .88rem; font-weight: 600; color: var(--ink); text-align: right; }
+  .specs-grid .spec-item:nth-child(odd) { padding-right: 2rem; border-right: 1px solid var(--line); }
+  .specs-grid .spec-item:nth-child(even) { padding-left: 2rem; }
+
+  /* Amenities */
+  .amenities-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem;
+  }
+  .amenity {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .82rem; color: var(--mid); padding: .6rem .75rem;
+    background: var(--bg); border-radius: 2px;
+    transition: background .15s;
+  }
+  .amenity:hover { background: var(--accent-light); }
+  .amenity-icon { font-size: 1rem; flex-shrink: 0; }
+  .amenity.unavailable { opacity: .35; }
+  .amenity.unavailable::after { content: ' ✗'; color: #ef4444; font-size: .65rem; }
+
+  /* Map placeholder */
+  .map-placeholder {
+    height: 220px; background: linear-gradient(135deg, #e8e6e0 0%, #d8d4cc 100%);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: .5rem; color: var(--mid); cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: filter .2s;
+  }
+  .map-placeholder:hover { filter: brightness(.97); }
+  .map-pin { font-size: 2.5rem; }
+  .map-label { font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .map-sub { font-size: .75rem; color: var(--muted); }
+  .map-overlay {
+    position: absolute; inset: 0; background: rgba(255,255,255,0);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .2s;
+  }
+  .map-placeholder:hover .map-overlay { opacity: 1; background: rgba(255,255,255,.15); }
+
+  /* ── RIGHT SIDEBAR ── */
+  .detail-right {}
+
+  .contact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line); border-radius: 4px;
+    overflow: hidden; margin-bottom: 1.5rem;
+    position: sticky; top: 80px;
+  }
+  .contact-card-header {
+    background: var(--ink); padding: 1.5rem 1.75rem;
+    color: white;
+  }
+  .contact-card-title {
+    font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: .25rem;
+  }
+  .contact-card-sub { font-size: .78rem; color: rgba(255,255,255,.55); }
+  .agent-row {
+    padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .agent-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80') center/cover;
+    flex-shrink: 0; border: 2px solid var(--accent-light);
+  }
+  .agent-name { font-weight: 600; font-size: .9rem; }
+  .agent-role { font-size: .75rem; color: var(--muted); }
+  .agent-rating { font-size: .72rem; color: var(--accent); margin-top: .1rem; }
+
+  .contact-form { padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: .85rem; }
+  .cf-input {
+    width: 100%; padding: .7rem .9rem;
+    border: 1.5px solid var(--line); border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--ink);
+    background: var(--bg); outline: none; transition: border-color .2s;
+  }
+  .cf-input:focus { border-color: var(--accent); }
+  .cf-input::placeholder { color: var(--muted); }
+  .cf-textarea {
+    resize: vertical; min-height: 80px;
+  }
+  .cf-submit {
+    width: 100%; padding: .9rem;
+    background: var(--accent); color: white; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; border-radius: 2px;
+    transition: background .2s, transform .15s;
+  }
+  .cf-submit:hover { background: var(--ink); transform: translateY(-1px); }
+  .cf-note { font-size: .72rem; color: var(--muted); text-align: center; line-height: 1.5; }
+
+  .quick-actions { display: flex; gap: .75rem; padding: 0 1.75rem 1.5rem; }
+  .qa-btn {
+    flex: 1; padding: .65rem; border: 1.5px solid var(--line); border-radius: 2px;
+    background: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: .78rem; font-weight: 600; color: var(--mid);
+    display: flex; flex-direction: column; align-items: center; gap: .2rem;
+    transition: all .2s;
+  }
+  .qa-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .qa-icon { font-size: 1.1rem; }
+
+  /* Similar listings */
+  .similar-section {
+    background: var(--card-bg);
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+  .similar-title {
+    font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+    margin-bottom: 1.25rem; padding-bottom: .75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .similar-card {
+    display: flex; gap: 1rem; align-items: center;
+    padding: .85rem 0; border-bottom: 1px solid var(--line);
+    cursor: pointer; transition: background .15s; border-radius: 2px;
+    text-decoration: none; color: inherit;
+  }
+  .similar-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .similar-card:hover .similar-img { transform: scale(1.05); }
+  .similar-img-wrap { width: 72px; height: 56px; border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+  .similar-img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .similar-price { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); line-height: 1; }
+  .similar-name { font-size: .78rem; color: var(--mid); margin-top: .2rem; line-height: 1.3; }
+  .similar-loc { font-size: .72rem; color: var(--muted); margin-top: .15rem; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    animation: fadeIn .2s ease;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: 4px; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 1.5rem; right: 2rem;
+    background: none; border: none; color: white; font-size: 2rem; cursor: pointer;
+    line-height: 1; opacity: .7; transition: opacity .15s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,.1); border: none; color: white;
+    width: 48px; height: 48px; border-radius: 50%; font-size: 1.25rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,.25); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+  .lightbox-counter {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.6); font-size: .82rem; letter-spacing: .1em;
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: white; padding: .75rem 1.75rem; border-radius: 2px;
+    font-size: .85rem; font-weight: 500; opacity: 0; z-index: 300;
+    transition: all .3s ease; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .detail-layout { grid-template-columns: 1fr 320px; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .breadcrumb-bar { padding: 1rem 1.5rem; }
+    .gallery { padding: 0 1.5rem 2rem; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px; }
+    .detail-layout { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+    .contact-card { position: static; }
+    .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+    .specs-grid { grid-template-columns: 1fr; }
+    .specs-grid .spec-item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .specs-grid .spec-item:nth-child(even) { padding-left: 0; }
+    .specs-grid .spec-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .specs-grid .spec-item:last-child { border-bottom: none; }
+  }
+  @media (max-width: 600px) {
+    .gallery { grid-template-columns: 1fr; grid-template-rows: 240px 140px 140px; }
+    .gallery-main { grid-row: 1; }
+    .key-features { flex-wrap: wrap; }
+    .kf-item { min-width: 45%; border-right: none; border-bottom: 1px solid var(--line); }
+    .kf-item:last-child { border-bottom: none; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Имотна<span>точка</span></a>
+  <ul class="nav-links">
+    <li><a href="obiavi.html">Обяви</a></li>
+    <li><a href="index.html#about">За нас</a></li>
+    <li><a href="index.html#how">Как работи</a></li>
+    <li><a href="index.html#contact">Контакт</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Свържете се</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar" id="breadcrumb">
+  <a href="index.html">Начало</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="obiavi.html">Обяви</a>
+  <span class="breadcrumb-sep">/</span>
+  <span id="breadcrumbTitle">Детайли</span>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery" id="gallery">
+  <div class="gallery-main" onclick="openLightbox(0)">
+    <img id="img0" src="" alt="Главна снимка">
+    <div class="card-img-overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.3) 100%);"></div>
+    <span class="gallery-badge" id="dealBadge"></span>
+    <span class="badge-new-pill" id="newBadge" style="display:none;">Ново</span>
+  </div>
+  <div class="gallery-thumb" onclick="openLightbox(1)"><img id="img1" src="" alt="Снимка 2"></div>
+  <div class="gallery-thumb" onclick="openLightbox(2)">
+    <img id="img2" src="" alt="Снимка 3">
+    <div class="gallery-more-overlay"><span>+2</span><span>снимки</span></div>
+  </div>
+</div>
+
+<!-- DETAIL LAYOUT -->
+<div class="detail-layout">
+
+  <!-- LEFT -->
+  <div class="detail-left">
+
+    <!-- Header block -->
+    <div class="listing-header">
+      <div class="listing-top-row">
+        <span class="listing-city-tag" id="cityTag"></span>
+        <button class="listing-save-btn" id="saveBtn" onclick="toggleSave()">🤍 Запази</button>
+      </div>
+      <h1 class="listing-title" id="listingTitle"></h1>
+      <div class="listing-location" id="listingLocation">📍</div>
+      <div class="listing-price-row">
+        <div>
+          <div class="listing-price" id="listingPrice"></div>
+          <div class="listing-price-unit" id="listingPriceUnit"></div>
+        </div>
+        <div class="listing-price-per-m" id="pricePerM"></div>
+      </div>
+    </div>
+
+    <!-- Key features -->
+    <div class="key-features" id="keyFeatures">
+      <div class="kf-item">
+        <div class="kf-icon">🛏</div>
+        <div class="kf-value" id="kfRooms">—</div>
+        <div class="kf-label">Стаи</div>
+      </div>
+      <div class="kf-item">
+        <div class="kf-icon">🚿</div>
+        <div class="kf-value" id="kfBaths">—</div>
+        <div class="kf-label">Бани</div>
+      </div>
+      <div class="kf-item">
+        <div class="kf-icon">📐</div>
+        <div class="kf-value" id="kfSize">—</div>
+        <div class="kf-label">Площ м²</div>
+      </div>
+      <div class="kf-item">
+        <div class="kf-icon">🏢</div>
+        <div class="kf-value" id="kfFloor">—</div>
+        <div class="kf-label">Етаж</div>
+      </div>
+      <div class="kf-item">
+        <div class="kf-icon">📅</div>
+        <div class="kf-value" id="kfYear">—</div>
+        <div class="kf-label">Год. строеж</div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="detail-section">
+      <div class="section-heading" data-icon="📝">Описание</div>
+      <div class="description-text" id="descriptionText"></div>
+    </div>
+
+    <!-- Specs -->
+    <div class="detail-section">
+      <div class="section-heading" data-icon="📋">Характеристики</div>
+      <div class="specs-grid" id="specsGrid"></div>
+    </div>
+
+    <!-- Amenities -->
+    <div class="detail-section">
+      <div class="section-heading" data-icon="✨">Удобства</div>
+      <div class="amenities-grid" id="amenitiesGrid"></div>
+    </div>
+
+    <!-- Map -->
+    <div class="detail-section">
+      <div class="section-heading" data-icon="🗺️">Местоположение</div>
+      <div class="map-placeholder" onclick="showToast('Картата ще бъде интегрирана скоро!')">
+        <div class="map-pin">📍</div>
+        <div class="map-label" id="mapLabel">Виж на картата</div>
+        <div class="map-sub" id="mapSub"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="detail-right">
+    <div class="contact-card">
+      <div class="contact-card-header">
+        <div class="contact-card-title">Заявете оглед</div>
+        <div class="contact-card-sub">Отговаряме до 2 часа</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-avatar"></div>
+        <div>
+          <div class="agent-name">Марияна Петрова</div>
+          <div class="agent-role">Брокер, Имотна точка</div>
+          <div class="agent-rating">★★★★★ 4.9 (47 отзива)</div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <input class="cf-input" type="text" placeholder="Вашето име">
+        <input class="cf-input" type="tel" placeholder="Телефон">
+        <input class="cf-input" type="email" placeholder="Имейл">
+        <textarea class="cf-input cf-textarea" placeholder="Искам да запазя час за оглед..."></textarea>
+        <button class="cf-submit" onclick="handleSubmit(this)">Изпратете заявка</button>
+        <div class="cf-note">Без скрити такси. Огледът е безплатен.</div>
+      </div>
+      <div class="quick-actions">
+        <button class="qa-btn" onclick="showToast('Обаждане: +359 88 000 0000')">
+          <span class="qa-icon">📞</span> Обади се
+        </button>
+        <button class="qa-btn" onclick="showToast('Изпратено съобщение в Viber!')">
+          <span class="qa-icon">💬</span> Viber
+        </button>
+        <button class="qa-btn" onclick="shareLink()">
+          <span class="qa-icon">🔗</span> Сподели
+        </button>
+      </div>
+    </div>
+
+    <!-- Similar -->
+    <div class="similar-section">
+      <div class="similar-title">Подобни имоти</div>
+      <div id="similarListings"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════
+//  LISTINGS DATA
+// ══════════════════════════════
+const listings = {
+  1: {
+    id: 1, deal: 'rent', dealLabel: 'Под наем', isNew: true,
+    city: 'София', district: 'Лозенец, София',
+    title: 'Просторен апартамент с тераса и паркинг',
+    price: '850', priceUnit: 'лв / месец',
+    pricePerM: '11.3 лв / м²',
+    type: 'Апартамент',
+    rooms: 2, baths: 1, size: 75, floor: '3-ти / 6', year: 2018,
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=85',
+      'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
+      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+    ],
+    description: `<p>Предлагаме за наем просторен двустаен апартамент в един от най-търсените квартали на София — Лозенец. Имотът е обзаведен с модерна мебел и разполага с голяма тераса с панорамна гледка към града.</p>
+    <p>Апартаментът е с топлоизолация, нова дограма и климатична инсталация. Сградата разполага с асансьор, а имотът включва едно паркомясто в подземния гараж.</p>
+    <p>Наблизо: метро, магазини, ресторанти, паркове. Идеален за двойки или млади семейства.</p>`,
+    specs: [
+      ['Тип имот', 'Апартамент'], ['Тип сделка', 'Под наем'],
+      ['Площ', '75 м²'], ['Стаи', '2 + дневна'],
+      ['Бани', '1'], ['Етаж', '3-ти от 6'],
+      ['Паркинг', 'Подземен гараж'], ['Отопление', 'ТЕЦ'],
+      ['Строителство', '2018 г.'], ['Обзавеждане', 'Напълно обзаведен'],
+    ],
+    amenities: [
+      ['🛋️','Напълно обзаведен',true], ['❄️','Климатик',true], ['🛗','Асансьор',true],
+      ['🅿️','Паркинг',true], ['🌿','Тераса',true], ['📶','Интернет',true],
+      ['🧺','Перална машина',true], ['🍳','Оборудвана кухня',true], ['🔒','Видеонаблюдение',true],
+      ['🏊','Басейн',false], ['🐾','Домашни любимци',false], ['🔥','Камина',false],
+    ],
+    similar: [2, 3, 4]
+  },
+  2: {
+    id: 2, deal: 'rent', dealLabel: 'Под наем', isNew: false,
+    city: 'Пловдив', district: 'Център, Пловдив',
+    title: 'Уютно студио в самия център',
+    price: '620', priceUnit: 'лв / месец',
+    pricePerM: '14.8 лв / м²',
+    type: 'Студио',
+    rooms: 'Студио', baths: 1, size: 42, floor: '2-ри / 5', year: 2015,
+    images: [
+      'https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=1200&q=85',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80',
+    ],
+    description: `<p>Уютно и напълно обзаведено студио в сърцето на Пловдив. Идеалният избор за студенти, млади специалисти или хора, търсещи уютно и достъпно жилище в центъра.</p>
+    <p>Студиото е с отворен план, модерна кухня и оборудвана баня. Наблизо се намират множество кафенета, ресторанти и обществен транспорт.</p>
+    <p>Наемът включва такса за поддръжка на сградата. Свободно веднага.</p>`,
+    specs: [
+      ['Тип имот', 'Студио'], ['Тип сделка', 'Под наем'],
+      ['Площ', '42 м²'], ['Стаи', 'Студио'],
+      ['Бани', '1'], ['Етаж', '2-ри от 5'],
+      ['Паркинг', 'Няма'], ['Отопление', 'Ток / климатик'],
+      ['Строителство', '2015 г.'], ['Обзавеждане', 'Напълно обзаведен'],
+    ],
+    amenities: [
+      ['🛋️','Напълно обзаведен',true], ['❄️','Климатик',true], ['🛗','Асансьор',true],
+      ['🅿️','Паркинг',false], ['🌿','Тераса',false], ['📶','Интернет',true],
+      ['🧺','Перална машина',true], ['🍳','Оборудвана кухня',true], ['🔒','Домофон',true],
+      ['🏊','Басейн',false], ['🐾','Домашни любимци',false], ['🔥','Камина',false],
+    ],
+    similar: [1, 3, 4]
+  },
+  3: {
+    id: 3, deal: 'sell', dealLabel: 'Продажба', isNew: true,
+    city: 'Варна', district: 'Морска градина, Варна',
+    title: 'Луксозен тристаен апартамент с морска гледка',
+    price: '3 200', priceUnit: 'лв / м²',
+    pricePerM: 'Общо ≈ 352 000 лв',
+    type: 'Апартамент',
+    rooms: 3, baths: 2, size: 110, floor: '5-ти / 8', year: 2022,
+    images: [
+      'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=85',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+      'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=800&q=80',
+    ],
+    description: `<p>Изключителен тристаен апартамент в нова луксозна сграда с директна гледка към морето. Разпределението включва голям хол-трапезария, две спални, две бани и просторна тераса.</p>
+    <p>Сградата е новопостроена (2022 г.), с висококачествени материали, подово отопление и интелигентна система за управление. Включени са две паркоместа.</p>
+    <p>Идеален за постоянно живеене или инвестиционен имот с висок наемен потенциал. Варна е сред най-динамичните имотни пазари в България.</p>`,
+    specs: [
+      ['Тип имот', 'Апартамент'], ['Тип сделка', 'Продажба'],
+      ['Площ', '110 м²'], ['Стаи', '3 + дневна'],
+      ['Бани', '2'], ['Етаж', '5-ти от 8'],
+      ['Паркинг', '2 паркоместа'], ['Отопление', 'Подово'],
+      ['Строителство', '2022 г.'], ['Обзавеждане', 'Луксозно обзаведен'],
+    ],
+    amenities: [
+      ['🛋️','Луксозно обзаведен',true], ['❄️','Климатик',true], ['🛗','Асансьор',true],
+      ['🅿️','2 паркоместа',true], ['🌿','Голяма тераса',true], ['📶','Интернет',true],
+      ['🧺','Перална машина',true], ['🍳','Оборудвана кухня',true], ['🔒','Видеонаблюдение',true],
+      ['🏊','Басейн',true], ['🐾','Домашни любимци',true], ['🔥','Камина',false],
+    ],
+    similar: [1, 2, 4]
+  },
+  4: {
+    id: 4, deal: 'sell', dealLabel: 'Продажба', isNew: false,
+    city: 'София', district: 'Бояна, София',
+    title: 'Самостоятелна къща с голям двор и гараж',
+    price: '1 850', priceUnit: 'лв / м²',
+    pricePerM: 'Общо ≈ 333 000 лв',
+    type: 'Къща',
+    rooms: 4, baths: 2, size: 180, floor: '2 етажа', year: 2010,
+    images: [
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=85',
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    ],
+    description: `<p>Самостоятелна двуетажна къща в най-престижния квартал на София — Бояна. Имотът разполага с четири спални, две бани, голяма дневна с камина, трапезария и напълно оборудвана кухня.</p>
+    <p>Дворното място е 400 кв.м с красива градина и лятна кухня. Включен е гараж за два автомобила. Сградата е с газово отопление и напълно обновени инсталации.</p>
+    <p>Тихо и зелено място, само 20 минути от центъра на София. Идеален семеен дом с отлична транспортна връзка.</p>`,
+    specs: [
+      ['Тип имот', 'Самост. къща'], ['Тип сделка', 'Продажба'],
+      ['Площ', '180 м²'], ['Стаи', '4 спални'],
+      ['Бани', '2'], ['Етажи', '2 (+ мазе)'],
+      ['Гараж', '2 автомобила'], ['Отопление', 'Газово'],
+      ['Строителство', '2010 г.'], ['Двор', '400 м²'],
+    ],
+    amenities: [
+      ['🛋️','Обзаведена',true], ['❄️','Климатик',true], ['🏡','Двор 400 м²',true],
+      ['🚗','Гараж за 2 коли',true], ['🌿','Лятна кухня',true], ['📶','Интернет',true],
+      ['🧺','Перална / съдомиялна',true], ['🍳','Оборудвана кухня',true], ['🔒','Охранителна система',true],
+      ['🏊','Басейн',false], ['🐾','Домашни любимци',true], ['🔥','Камина',true],
+    ],
+    similar: [1, 2, 3]
+  }
+};
+
+// ══════════════════════════════
+//  INIT
+// ══════════════════════════════
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id')) || 1;
+const listing = listings[id] || listings[1];
+
+document.title = listing.title + ' — Имотна точка';
+
+// Breadcrumb
+document.getElementById('breadcrumbTitle').textContent = listing.city;
+
+// Gallery
+document.getElementById('img0').src = listing.images[0];
+document.getElementById('img1').src = listing.images[1];
+document.getElementById('img2').src = listing.images[2];
+const dealBadge = document.getElementById('dealBadge');
+dealBadge.textContent = listing.dealLabel;
+dealBadge.className = 'gallery-badge ' + (listing.deal === 'rent' ? 'badge-rent' : 'badge-sell');
+if (listing.isNew) document.getElementById('newBadge').style.display = '';
+
+// Header
+document.getElementById('cityTag').textContent = listing.city;
+document.getElementById('listingTitle').textContent = listing.title;
+document.getElementById('listingLocation').innerHTML = '📍 ' + listing.district;
+document.getElementById('listingPrice').textContent = listing.price;
+document.getElementById('listingPriceUnit').textContent = listing.priceUnit;
+document.getElementById('pricePerM').textContent = listing.pricePerM;
+
+// Key features
+document.getElementById('kfRooms').textContent = listing.rooms;
+document.getElementById('kfBaths').textContent = listing.baths;
+document.getElementById('kfSize').textContent = listing.size;
+document.getElementById('kfFloor').textContent = listing.floor;
+document.getElementById('kfYear').textContent = listing.year;
+
+// Description
+document.getElementById('descriptionText').innerHTML = listing.description;
+
+// Specs
+const specsGrid = document.getElementById('specsGrid');
+listing.specs.forEach(([label, val]) => {
+  specsGrid.innerHTML += `<div class="spec-item"><span class="spec-label">${label}</span><span class="spec-value">${val}</span></div>`;
+});
+
+// Amenities
+const amenGrid = document.getElementById('amenitiesGrid');
+listing.amenities.forEach(([icon, label, avail]) => {
+  amenGrid.innerHTML += `<div class="amenity${avail ? '' : ' unavailable'}"><span class="amenity-icon">${icon}</span>${label}</div>`;
+});
+
+// Map
+document.getElementById('mapLabel').textContent = listing.district;
+document.getElementById('mapSub').textContent = 'Кликнете за Google Maps';
+
+// Similar
+const simDiv = document.getElementById('similarListings');
+listing.similar.forEach(sid => {
+  const s = listings[sid];
+  simDiv.innerHTML += `
+    <a href="listing.html?id=${s.id}" class="similar-card">
+      <div class="similar-img-wrap">
+        <img class="similar-img" src="${s.images[0]}" alt="${s.title}">
+      </div>
+      <div>
+        <div class="similar-price">${s.price} <small style="font-family:'DM Sans',sans-serif;font-size:.65rem;color:var(--muted);font-weight:400;">${s.deal === 'rent' ? 'лв/мес' : 'лв/м²'}</small></div>
+        <div class="similar-name">${s.title}</div>
+        <div class="similar-loc">📍 ${s.district}</div>
+      </div>
+    </a>`;
+});
+
+// ══════════════════════════════
+//  LIGHTBOX
+// ══════════════════════════════
+let currentImg = 0;
+function openLightbox(idx) {
+  currentImg = idx;
+  document.getElementById('lightboxImg').src = listing.images[idx];
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${listing.images.length}`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  currentImg = (currentImg + dir + listing.images.length) % listing.images.length;
+  document.getElementById('lightboxImg').src = listing.images[currentImg];
+  document.getElementById('lightboxCounter').textContent = `${currentImg + 1} / ${listing.images.length}`;
+}
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+// ══════════════════════════════
+//  SAVE
+// ══════════════════════════════
+let saved = false;
+function toggleSave() {
+  saved = !saved;
+  const btn = document.getElementById('saveBtn');
+  btn.textContent = saved ? '❤️ Запазено' : '🤍 Запази';
+  btn.classList.toggle('saved', saved);
+  showToast(saved ? 'Добавено в любими!' : 'Премахнато от любими');
+}
+
+// ══════════════════════════════
+//  TOAST
+// ══════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ══════════════════════════════
+//  SHARE
+// ══════════════════════════════
+function shareLink() {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(window.location.href);
+    showToast('Линкът е копиран в клипборда!');
+  } else {
+    showToast('Копирайте линка от адресната лента');
+  }
+}
+
+// ══════════════════════════════
+//  FORM SUBMIT
+// ══════════════════════════════
+function handleSubmit(btn) {
+  btn.textContent = '✓ Заявката е изпратена!';
+  btn.style.background = '#22c55e';
+  setTimeout(() => {
+    btn.textContent = 'Изпратете заявка';
+    btn.style.background = '';
+  }, 3000);
+  showToast('Ще се свържем с вас скоро!');
+}
+</script>
+</body>
+</html>
