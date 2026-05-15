@@ -990,22 +990,17 @@ function shareLink() {
 
 function openViber() {
   const phone = "359888760288";
+  const message = `Здравейте, интересувам се от имота: "${listing.title}"`;
 
-  const message = encodeURIComponent(
-    `Здравейте, интересувам се от имота: "${listing.title}"`
-  );
+  const url = `viber://chat?number=${phone}`;
 
-  window.location.href = `viber://chat?number=${phone}&text=${message}`;
-}
+  const timeout = setTimeout(() => {
+    showToast("Viber не се отвори. Копирайте съобщението ръчно.");
+  }, 1200);
 
-function openWhatsApp() {
-  const phone = "359888760288";
+  window.location.href = url;
 
-  const message = encodeURIComponent(
-    `Здравейте, интересувам се от имота: "${listing.title}"`
-  );
-
-  window.location.href = `viber://forward?text=${message}`;
+  setTimeout(() => clearTimeout(timeout), 2000);
 }
 
 </script>
