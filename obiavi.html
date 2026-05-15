@@ -562,17 +562,17 @@ footer {
         <label class="check-item">
           <input type="checkbox" data-filter="city" data-value="asenovgrad" onchange="applyFilters()">
           <span class="check-box"></span>
-          Асеновград <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">2</span>
+          Асеновград <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-city-asenovgrad">2</span>
         </label>
         <label class="check-item">
           <input type="checkbox" data-filter="city" data-value="plovdiv" onchange="applyFilters()">
           <span class="check-box"></span>
-          Пловдив <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+          Пловдив <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-city-plovdiv">1</span>
         </label>
         <label class="check-item">
           <input type="checkbox" data-filter="city" data-value="drugi" onchange="applyFilters()">
           <span class="check-box"></span>
-          Други <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+          Други <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-city-drugi">1</span>
         </label>
       </div>
     </div>
@@ -582,19 +582,19 @@ footer {
       <div class="filter-group-label">Тип имот</div>
       <div class="check-list">
         <label class="check-item">
-          <input type="checkbox" data-filter="type" data-value="apartment" onchange="applyFilters()">
-          <span class="check-box"></span>
-          Апартамент <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">2</span>
-        </label>
-        <label class="check-item">
-          <input type="checkbox" data-filter="type" data-value="studio" onchange="applyFilters()">
-          <span class="check-box"></span>
-          Студио <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
-        </label>
-        <label class="check-item">
           <input type="checkbox" data-filter="type" data-value="house" onchange="applyFilters()">
           <span class="check-box"></span>
-          Къща <span style="color:var(--muted);font-size:.75rem;margin-left:auto;">1</span>
+          Къща <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-house">1</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="apartment" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Апартамент <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-apartment">2</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="parcel" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Парцел <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-parcel">0</span>
         </label>
       </div>
     </div>
@@ -629,7 +629,7 @@ footer {
 
     <!-- Sort bar -->
     <div class="sort-bar">
-      <div class="sort-left">Показват се <strong id="visibleCount">4</strong> от <strong>4</strong> обяви</div>
+      <div class="sort-left">Показват се <strong id="visibleCount">4</strong> от <strong id="totalCount">4</strong> обяви</div>
       <div class="sort-right">
         <span class="sort-label">Сортирай:</span>
         <select class="sort-select" id="sortSelect" onchange="applyFilters()">
@@ -936,6 +936,18 @@ footer {
     // Counts
     document.getElementById('countDisplay').textContent = visible.length;
     document.getElementById('visibleCount').textContent = visible.length;
+    document.getElementById('totalCount').textContent = cards.length;
+
+    // Sidebar counts
+    const allCards = [...cards];
+    ['asenovgrad','plovdiv','drugi'].forEach(city => {
+      const el = document.getElementById('count-city-' + city);
+      if (el) el.textContent = allCards.filter(c => c.dataset.city === city).length;
+    });
+    ['house','apartment','parcel'].forEach(type => {
+      const el = document.getElementById('count-type-' + type);
+      if (el) el.textContent = allCards.filter(c => c.dataset.type === type).length;
+    });
 
     // Tags
     renderTags(checkedCities, checkedTypes, minPrice, maxPrice);
@@ -943,7 +955,7 @@ footer {
 
   // ── Active tags ──
   const cityLabels = { asenovgrad: 'Асеновград', plovdiv: 'Пловдив', drugi: 'Други' };
-  const typeLabels = { apartment: 'Апартамент', studio: 'Студио', house: 'Къща' };
+  const typeLabels = { apartment: 'Апартамент', parcel: 'Парцел', house: 'Къща' };
   const dealLabels = { rent: 'Под наем', sell: 'Продажба' };
 
   function renderTags(cities, types, min, max) {
