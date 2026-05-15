@@ -596,17 +596,12 @@
         </div>
       </div>
       <div class="contact-form">
-        <input class="cf-input" type="text" placeholder="Вашето име">
-        <input class="cf-input" type="tel" placeholder="Телефон">
-        <input class="cf-input" type="email" placeholder="Имейл">
-        <textarea class="cf-input cf-textarea" placeholder="Искам да запазя час за оглед..."></textarea>
-        <button class="cf-submit" onclick="handleSubmit(this)">Изпратете заявка</button>
         <div class="cf-note">Без скрити такси. Огледът е безплатен.</div>
       </div>
       <div class="quick-actions">
-        <button class="qa-btn" onclick="showToast('Обаждане: +359 88 000 0000')">
-          <span class="qa-icon">📞</span> Обади се
-        </button>
+<a class="qa-btn" href="tel:+359880000000">
+  <span class="qa-icon">📞</span> Звънни +359 88 876 0288
+</a>
         <button class="qa-btn" onclick="showToast('Изпратено съобщение в Viber!')">
           <span class="qa-icon">💬</span> Viber
         </button>
@@ -960,17 +955,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') navLightbox(1);
 });
 
-// ══════════════════════════════
-//  SAVE
-// ══════════════════════════════
-let saved = false;
-function toggleSave() {
-  saved = !saved;
-  const btn = document.getElementById('saveBtn');
-  btn.textContent = saved ? '❤️ Запазено' : '🤍 Запази';
-  btn.classList.toggle('saved', saved);
-  showToast(saved ? 'Добавено в любими!' : 'Премахнато от любими');
-}
 
 // ══════════════════════════════
 //  TOAST
@@ -996,18 +980,6 @@ function shareLink() {
   }
 }
 
-// ══════════════════════════════
-//  FORM SUBMIT
-// ══════════════════════════════
-function handleSubmit(btn) {
-  btn.textContent = '✓ Заявката е изпратена!';
-  btn.style.background = '#22c55e';
-  setTimeout(() => {
-    btn.textContent = 'Изпратете заявка';
-    btn.style.background = '';
-  }, 3000);
-  showToast('Ще се свържем с вас скоро!');
-}
 </script>
 </body>
 </html>
