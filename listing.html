@@ -124,15 +124,6 @@
     font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
     padding: .3rem .8rem; border-radius: 2px;
   }
-  .listing-save-btn {
-    background: none; border: 1.5px solid var(--line); border-radius: 2px;
-    padding: .4rem 1rem; font-family: 'DM Sans', sans-serif;
-    font-size: .78rem; font-weight: 600; cursor: pointer; color: var(--mid);
-    display: flex; align-items: center; gap: .4rem; transition: all .2s;
-  }
-  .listing-save-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .listing-save-btn.saved { border-color: #ef4444; color: #ef4444; background: #fee2e2; }
-
   .listing-title {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15;
@@ -262,7 +253,7 @@
   }
   .agent-avatar {
     width: 46px; height: 46px; border-radius: 50%;
-    background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80') center/cover;
+    background: url('https://github.com/gericodes/mywebsite/blob/main/photos/sofka.png?raw=true') center/cover;
     flex-shrink: 0; border: 2px solid var(--accent-light);
   }
   .agent-name { font-weight: 600; font-size: .9rem; }
@@ -431,7 +422,7 @@
   <div class="gallery-thumb" onclick="openLightbox(1)"><img id="img1" src="" alt="Снимка 2"></div>
   <div class="gallery-thumb" onclick="openLightbox(2)">
     <img id="img2" src="" alt="Снимка 3">
-    <div class="gallery-more-overlay"><span>+2</span><span>снимки</span></div>
+    <div class="gallery-more-overlay"><span>още</span><span>снимки</span></div>
   </div>
 </div>
 
@@ -445,7 +436,6 @@
     <div class="listing-header">
       <div class="listing-top-row">
         <span class="listing-city-tag" id="cityTag"></span>
-        <button class="listing-save-btn" id="saveBtn" onclick="toggleSave()">🤍 Запази</button>
       </div>
       <h1 class="listing-title" id="listingTitle"></h1>
       <div class="listing-location" id="listingLocation">📍</div>
@@ -522,12 +512,11 @@
     <div class="contact-card">
       <div class="contact-card-header">
         <div class="contact-card-title">Заявете оглед</div>
-        <div class="contact-card-sub">Отговаряме до 2 часа</div>
       </div>
       <div class="agent-row">
         <div class="agent-avatar"></div>
         <div>
-          <div class="agent-name">Марияна Петрова</div>
+          <div class="agent-name">Софка Кръстева</div>
           <div class="agent-role">Брокер, Имотна точка</div>
           <div class="agent-rating">★★★★★ 4.9 (47 отзива)</div>
         </div>
@@ -702,7 +691,56 @@ const listings = {
       ['🏊','Басейн',false], ['🐾','Домашни любимци',true], ['🔥','Камина',true],
     ],
     similar: [1, 2, 3]
-  }
+  },
+ 5: {
+    id: 5, deal: 'sell', dealLabel: 'Продажба', isNew: false,
+    city: 'Други', district: 'с.Нови извор',
+    title: 'Pеновирана селска къща с просторен облагороден двор',
+    price: '149 000', priceUnit: '€',
+    pricePerM: '2069 €/m²',
+    type: 'Къща',
+    rooms: 3, baths: 2, size: 190, floor: '1 етаж', year: 1960,
+    images: [
+      'https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/2.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/3.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/4.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/5.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/6.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/7.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/8.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/9.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/10.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/11.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/12.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/13.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/14.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/15.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/16.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/17.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/18.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/19.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/20.jpg?raw=true',
+      'https://github.com/gericodes/mywebsite/blob/main/5/21.jpg?raw=true',
+    ],
+    description: `<p>Предлагаме за продажба реновирана селска къща с просторен облагороден двор. Имотът се намира в едно китно селце на 20км. от Асеновград. Дворното място е образувано от два имота с обща площ 1800кв.м. Поддържано и с много потенциал.</p>
+    <p>Къщата се състои от антре, три стаи, кухненски бокс, баня и тоалетна. Голяма веранда 40 кв.м.и две избени стаи, които са подходящи за лятна кухня. Изцяло ремонтирана, с подменена дограма, ел. и вик инсталации.</p>
+    <p>Допълнителни - две стопански постройки.Мястото е уникално! Тихо, спокойно и много зареждащо.Възможен е и бартер за ниви в района и доплащане.Имотът също се отдава под наем.За повече информация и оглед свържете се с мен на тел. 0888760288</p>`,
+    specs: [
+      ['Тип имот', 'Селска къща'], ['Тип сделка', 'Продажба'],
+      ['Площ', '190 м²'], ['Стаи', '2 спални'],
+      ['Бани', '1'], ['Етажи', '1'],
+      ['Гараж', '2 автомобила'], ['Отопление', 'Газово'],
+      ['Строителство', '1960 г.'], ['Двор', '400 м²'],
+    ],
+    amenities: [
+      ['🛋️','Обзаведена',true], ['❄️','Климатик',false], ['🏡','Площ земя 1807 м²',true],
+      ['🚗','Гараж за 2 коли',true], ['🌿','Лятна кухня',false], ['📶','Интернет',false],
+      ['🧺','Перална / съдомиялна',true], ['🍳','Оборудвана кухня',true], ['🔒','Охранителна система',true],
+      ['🏊','Басейн',false], ['🐾','Домашни любимци',true], ['🔥','Камина',false],
+    ],
+    similar: [1, 2, 3]
+  },
 };
 
 // ══════════════════════════════

@@ -330,17 +330,6 @@ nav {
     padding: .28rem .7rem; border-radius: 2px;
   }
 
-  .card-save {
-    position: absolute; bottom: 1rem; right: 1rem; z-index: 1;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(255,255,255,.9); border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: .9rem; transition: transform .15s, background .15s;
-    opacity: 0; transition: opacity .2s, transform .15s;
-  }
-  .listing-card:hover .card-save { opacity: 1; }
-  .card-save:hover { transform: scale(1.15); background: white; }
-  .card-save.saved { opacity: 1; background: #fee2e2; }
 
   .card-body { padding: 1.4rem; }
 
@@ -648,7 +637,6 @@ footer {
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-rent">Под наем</span>
           <span class="badge-new">Ново</span>
-          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
         </div>
         <div class="card-body">
           <div class="card-top">
@@ -679,7 +667,6 @@ footer {
         <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=700&q=80')">
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-rent">Под наем</span>
-          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
         </div>
         <div class="card-body">
           <div class="card-top">
@@ -710,7 +697,6 @@ footer {
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-sell">Продажба</span>
           <span class="badge-new">Ново</span>
-          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
         </div>
         <div class="card-body">
           <div class="card-top">
@@ -741,7 +727,6 @@ footer {
         <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80')">
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-sell">Продажба</span>
-          <button class="card-save" title="Запази" onclick="toggleSave(event, this)">🤍</button>
         </div>
         <div class="card-body">
           <div class="card-top">
@@ -753,8 +738,8 @@ footer {
           <div class="card-title">Самостоятелна къща с голям двор и гараж</div>
           <div class="card-location">📍 Център, Асеновград</div>
           <div class="card-features">
-            <span class="feat">🛏 4 стаи</span>
-            <span class="feat">🚿 2 бани</span>
+            <span class="feat"> 4 стаи</span>
+            <span class="feat">🛏 1 спалня</span>
             <span class="feat">📐 180 м²</span>
             <span class="feat">🌳 Двор</span>
           </div>
@@ -762,6 +747,37 @@ footer {
         <div class="card-footer">
           <span class="card-prop-type">🏡 Къща</span>
           <a href="listing.html?id=4" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="listing-card"
+        data-deal="sell" data-city="asenovgrad" data-type="house"
+        data-price="1850" data-size="180" data-newest="4">
+        <div class="card-img" style="background-image:url('https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-sell">Продажба</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">149 000 <span class="card-price-unit"> €</span></div>
+            </div>
+            <span class="card-city-tag">с. Нови извор</span>
+          </div>
+          <div class="card-title">Pеновирана селска къща с просторен облагороден двор</div>
+          <div class="card-location">📍 с.Нови извор, Пловдив</div>
+          <div class="card-features">
+            <span class="feat">🛏 3 стаи</span>
+            <span class="feat">2 спални </span>
+            <span class="feat">🚿 1 баня</span>
+            <span class="feat">📐 190 м²</span>
+            <span class="feat">🌳 Двор</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏡 Къща</span>
+          <a href="listing.html?id=5" class="card-cta">Детайли →</a>
         </div>
       </div>
 
@@ -817,6 +833,16 @@ footer {
 <script>
   // ── State ──
   let activeDeal = 'all';
+
+  // clickable card
+  document.querySelectorAll('.listing-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const link = card.querySelector('.card-cta');
+    if (link) {
+      window.location.href = link.href;
+    }
+  });
+});
 
   // ── Deal toggle ──
   function toggleDeal(btn, val) {
