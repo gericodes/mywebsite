@@ -602,9 +602,12 @@
 <a class="qa-btn" href="tel:+359888760288">
   <span class="qa-icon">📞</span> Звънни +359 88 876 0288
 </a>
-        <button class="qa-btn" onclick="showToast('Изпратено съобщение в Viber!')">
-          <span class="qa-icon">💬</span> Viber
-        </button>
+<a class="qa-btn" href="#" onclick="openWhatsApp()">
+  <span class="qa-icon">🟢</span> WhatsApp
+</a>
+<button class="qa-btn" onclick="openViber()">
+  <span class="qa-icon">💬</span> Viber
+</button>
         <button class="qa-btn" onclick="shareLink()">
           <span class="qa-icon">🔗</span> Сподели
         </button>
@@ -978,6 +981,31 @@ function shareLink() {
   } else {
     showToast('Копирайте линка от адресната лента');
   }
+}
+
+// ══════════════════════════════
+//  VIBER CHAT
+// ══════════════════════════════
+
+
+function openViber() {
+  const phone = "359888760288";
+
+  const message = encodeURIComponent(
+    `Здравейте, интересувам се от имота: "${listing.title}"`
+  );
+
+  window.location.href = `viber://chat?number=${phone}&text=${message}`;
+}
+
+function openWhatsApp() {
+  const phone = "359888760288";
+
+  const message = encodeURIComponent(
+    `Здравейте, интересувам се от имота: "${listing.title}"`
+  );
+
+  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 }
 
 </script>
