@@ -767,58 +767,54 @@ nav {
   const allListings = [
     {
       img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80',
-      badge: 'new', badgeText: 'Ново',
-      price: '850 лв', unit: '/ месец',
-      title: 'Просторен апартамент с тераса',
-      location: '📍 Лозенец, София',
-      feats: [['🛏','2 стаи'],['🚿','1 баня'],['📐','75 м²']],
-      href: 'obiavi.html?id=1'
+      deal: 'rent', isNew: true,
+      price: '850', unit: 'лв / месец',
+      city: 'Асеновград',
+      title: 'Просторен апартамент с тераса и паркинг',
+      location: '📍 Център, Асеновград',
+      feats: [['🛏','2 стаи'],['🚿','1 баня'],['📐','75 м²'],['🅿️','Паркинг']],
+      href: 'listing.html?id=1'
     },
     {
       img: 'https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=600&q=80',
-      badge: '', badgeText: 'Топ оферта',
-      price: '620 лв', unit: '/ месец',
-      title: 'Уютно студио в центъра',
+      deal: 'rent', isNew: false,
+      price: '620', unit: 'лв / месец',
+      city: 'Пловдив',
+      title: 'Уютно студио в самия център',
       location: '📍 Център, Пловдив',
       feats: [['🛏','Студио'],['🚿','1 баня'],['📐','42 м²']],
-      href: 'obiavi.html?id=2'
+      href: 'listing.html?id=2'
     },
     {
       img: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=600&q=80',
-      badge: 'new', badgeText: 'Ново',
-      price: '1 200 лв', unit: '/ месец',
-      title: 'Луксозен тристаен с паркинг',
+      deal: 'sell', isNew: true,
+      price: '3 200', unit: 'лв / м²',
+      city: 'Други',
+      title: 'Луксозен тристаен апартамент с морска гледка',
       location: '📍 Морска градина, Варна',
-      feats: [['🛏','3 стаи'],['🚿','2 бани'],['📐','110 м²']],
-      href: 'obiavi.html?id=3'
+      feats: [['🛏','3 стаи'],['🚿','2 бани'],['📐','110 м²'],['🌊','Море']],
+      href: 'listing.html?id=3'
     },
     {
       img: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80',
-      badge: '', badgeText: 'Продажба',
-      price: '1 850 лв', unit: '/ м²',
-      title: 'Самостоятелна къща с голям двор',
-      location: '📍 Бояна, София',
-      feats: [['🛏','4 стаи'],['🚿','2 бани'],['📐','180 м²']],
-      href: 'obiavi.html?id=4'
+      deal: 'sell', isNew: false,
+      price: '1 850', unit: 'лв / м²',
+      city: 'Асеновград',
+      title: 'Самостоятелна къща с голям двор и гараж',
+      location: '📍 Център, Асеновград',
+      feats: [['🛏','4 стаи'],['🚿','2 бани'],['📐','180 м²'],['🌳','Двор']],
+      href: 'listing.html?id=4'
     },
     {
-      img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80',
-      badge: 'new', badgeText: 'Ново',
-      price: '750 лв', unit: '/ месец',
-      title: 'Светъл двустаен близо до парка',
-      location: '📍 Кършияка, Пловдив',
-      feats: [['🛏','2 стаи'],['🚿','1 баня'],['📐','65 м²']],
-      href: 'obiavi.html'
+      img: 'https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true',
+      deal: 'sell', isNew: false,
+      price: '149 000', unit: '€',
+      city: 'с. Нови извор',
+      title: 'Реновирана селска къща с просторен облагороден двор',
+      location: '📍 с.Нови извор, Пловдив',
+      feats: [['🛏','3 стаи'],['🚿','1 баня'],['📐','190 м²'],['🌳','Двор']],
+      href: 'listing.html?id=5'
     },
-    {
-      img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80',
-      badge: '', badgeText: 'Топ оферта',
-      price: '980 лв', unit: '/ месец',
-      title: 'Модерен апартамент с паркинг',
-      location: '📍 Тракия, Пловдив',
-      feats: [['🛏','3 стаи'],['🚿','1 баня'],['📐','88 м²']],
-      href: 'obiavi.html'
-    }
   ];
 
   // Pick 3 random listings (no repeats)
@@ -828,19 +824,25 @@ nav {
   }
 
   function buildCard(listing) {
-    const badgeHtml = listing.badgeText
-      ? `<span class="card-badge${listing.badge === 'new' ? ' new' : ''}">${listing.badgeText}</span>`
+    const dealLabel = listing.deal === 'rent' ? 'Под наем' : 'Продажба';
+    const dealBg = listing.deal === 'rent' ? '#0d0d0d' : '#c9a96e';
+    const newBadge = listing.isNew
+      ? `<span style="position:absolute;top:1rem;right:1rem;z-index:1;background:#22c55e;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px;">Ново</span>`
       : '';
     const featsHtml = listing.feats.map(f =>
       `<span class="feat"><span class="feat-icon">${f[0]}</span> ${f[1]}</span>`
     ).join('');
     return `
-      <div class="listing-card reveal" onclick="window.location.href='${listing.href}'">
-        <div class="card-img" style="background-image:url('${listing.img}')">
-          ${badgeHtml}
+      <div class="listing-card reveal" onclick="window.location.href='${listing.href}'" style="cursor:pointer;">
+        <div class="card-img" style="background-image:url('${listing.img}');position:relative;">
+          <span style="position:absolute;top:1rem;left:1rem;z-index:1;background:${dealBg};color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px;">${dealLabel}</span>
+          ${newBadge}
         </div>
         <div class="card-body">
-          <div class="card-price">${listing.price} <span>${listing.unit}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;">
+            <div class="card-price">${listing.price} <span>${listing.unit}</span></div>
+            <span style="background:#f0e6d3;color:#c9a96e;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:2px;white-space:nowrap;">${listing.city}</span>
+          </div>
           <div class="card-title">${listing.title}</div>
           <div class="card-location">${listing.location}</div>
           <div class="card-features">${featsHtml}</div>
