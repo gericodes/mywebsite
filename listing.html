@@ -455,6 +455,11 @@
         <div class="kf-value" id="kfRooms">—</div>
         <div class="kf-label">Стаи</div>
       </div>
+            <div class="kf-item">
+        <div class="kf-icon">🚿</div>
+        <div class="kf-value" id="kfBedrooms">—</div>
+        <div class="kf-label">Спални</div>
+      </div>
       <div class="kf-item">
         <div class="kf-icon">🚿</div>
         <div class="kf-value" id="kfBaths">—</div>
@@ -575,7 +580,7 @@ const listings = {
     price: '850', priceUnit: 'лв / месец',
     pricePerM: '11.3 лв / м²',
     type: 'Апартамент',
-    rooms: 2, baths: 1, size: 75, floor: '3-ти / 6', year: 2018,
+    rooms: 2, bedrooms: 1, baths: 1, size: 75, floor: '3-ти / 6', year: 2018,
     images: [
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=85',
       'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
@@ -606,7 +611,7 @@ const listings = {
     price: '620', priceUnit: 'лв / месец',
     pricePerM: '14.8 лв / м²',
     type: 'Студио',
-    rooms: 'Студио', baths: 1, size: 42, floor: '2-ри / 5', year: 2015,
+    rooms: 'Студио', bedrooms: 1, baths: 1, size: 42, floor: '2-ри / 5', year: 2015,
     images: [
       'https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=1200&q=85',
       'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
@@ -637,7 +642,7 @@ const listings = {
     price: '3 200', priceUnit: 'лв / м²',
     pricePerM: 'Общо ≈ 352 000 лв',
     type: 'Апартамент',
-    rooms: 3, baths: 2, size: 110, floor: '5-ти / 8', year: 2022,
+    rooms: 3, bedrooms: 1, baths: 2, size: 110, floor: '5-ти / 8', year: 2022,
     images: [
       'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=85',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
@@ -668,7 +673,7 @@ const listings = {
     price: '1 850', priceUnit: 'лв / м²',
     pricePerM: 'Общо ≈ 333 000 лв',
     type: 'Къща',
-    rooms: 4, baths: 2, size: 180, floor: '2 етажа', year: 2010,
+    rooms: 4, bedrooms: 1, baths: 2, size: 180, floor: '2 етажа', year: 2010,
     images: [
       'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=85',
       'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80',
@@ -699,7 +704,7 @@ const listings = {
     price: '149 000', priceUnit: '€',
     pricePerM: '2069 €/m²',
     type: 'Къща',
-    rooms: 3, baths: 2, size: 190, floor: '1 етаж', year: 1960,
+    rooms: 3, bedrooms: 2, baths: 2, size: 190, floor: '1 етаж', year: 1960,
     images: [
       'https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true',
       'https://github.com/gericodes/mywebsite/blob/main/5/2.jpg?raw=true',
@@ -774,6 +779,7 @@ document.getElementById('pricePerM').textContent = listing.pricePerM;
 
 // Key features
 document.getElementById('kfRooms').textContent = listing.rooms;
+document.getElementById('kfBedrooms').textContent = listing.bedrooms;
 document.getElementById('kfBaths').textContent = listing.baths;
 document.getElementById('kfSize').textContent = listing.size;
 document.getElementById('kfFloor').textContent = listing.floor;

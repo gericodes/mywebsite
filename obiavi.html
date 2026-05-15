@@ -404,6 +404,19 @@ nav {
     .sort-bar { flex-direction: column; gap: .75rem; align-items: flex-start; }
   }
 
+  body {
+  padding-top: 100px;
+}
+
+@media (max-width: 900px) {
+  body { padding-top: 70px; }
+  nav { height: 70px; }
+}
+
+@media (max-width: 480px) {
+  body { padding-top: 60px; }
+  nav { height: 60px; }
+}
   /* ── FOOTER ── */
 footer {
   background: var(--ink);
