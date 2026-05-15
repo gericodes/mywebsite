@@ -1005,7 +1005,7 @@ function openWhatsApp() {
     `Здравейте, интересувам се от имота: "${listing.title}"`
   );
 
-  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+  window.location.href = `viber://forward?text=${message}`;
 }
 
 </script>
