@@ -25,15 +25,17 @@
 
   /* ── NAV ── */
   nav {
-    position: sticky; top: 0; z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 4rem;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(18px);
+    height: 100px;
+    padding: 0 4rem;
+    background: rgba(250,250,248,0.85);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
   }
-  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; letter-spacing: .02em; color: var(--ink); text-decoration: none; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; letter-spacing: .02em; color: var(--ink); text-decoration: none; display: flex; align-items: center; }
   .nav-logo span { color: var(--accent); }
+  .logo { height: 100%; max-height: 100px; width: auto; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--mid); transition: color .2s; }
   .nav-links a:hover { color: var(--ink); }
@@ -229,7 +231,12 @@
     opacity: 0; transition: opacity .2s;
   }
   .map-placeholder:hover .map-overlay { opacity: 1; background: rgba(255,255,255,.15); }
-
+.real-map iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  border-radius: 2px;
+}
   /* ── RIGHT SIDEBAR ── */
   .detail-right {}
 
@@ -386,13 +393,54 @@
     .kf-item:last-child { border-bottom: none; }
     .amenities-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ── BODY OFFSET FOR FIXED NAV ── */
+  body { padding-top: 100px; }
+  @media (max-width: 900px) { body { padding-top: 70px; } nav { height: 70px; } }
+  @media (max-width: 480px) { body { padding-top: 60px; } nav { height: 60px; } }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: var(--white);
+    padding: 4rem 4rem 2rem; margin-top: 4rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem; margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+    color: var(--white); margin-bottom: 1rem;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .footer-desc { color: rgba(255,255,255,.7); font-size: .9rem; line-height: 1.6; max-width: 320px; }
+  .footer-heading { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; color: rgba(255,255,255,.6); }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .footer-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .85rem; transition: color .2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; font-size: .8rem; color: rgba(255,255,255,.5);
+  }
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 1024px) {
+    footer { padding: 3rem 2rem 2rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 640px) {
+    footer { padding: 2.5rem 1.5rem 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">Имотна<span>точка</span></a>
+  <a href="index.html" class="nav-logo">
+    <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" alt="Имотна точка" class="logo">
+  </a>
   <ul class="nav-links">
     <li><a href="obiavi.html">Обяви</a></li>
     <li><a href="index.html#about">За нас</a></li>
@@ -456,7 +504,7 @@
         <div class="kf-label">Стаи</div>
       </div>
             <div class="kf-item">
-        <div class="kf-icon">🚿</div>
+        <div class="kf-icon">😴</div>
         <div class="kf-value" id="kfBedrooms">—</div>
         <div class="kf-label">Спални</div>
       </div>
@@ -503,11 +551,17 @@
     <!-- Map -->
     <div class="detail-section">
       <div class="section-heading" data-icon="🗺️">Местоположение</div>
-      <div class="map-placeholder" onclick="showToast('Картата ще бъде интегрирана скоро!')">
-        <div class="map-pin">📍</div>
-        <div class="map-label" id="mapLabel">Виж на картата</div>
-        <div class="map-sub" id="mapSub"></div>
-      </div>
+<div class="real-map">
+  <iframe
+    id="googleMap"
+    width="100%"
+    height="220"
+    style="border:0;border-radius:2px;"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
     </div>
 
   </div>
@@ -567,6 +621,46 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="footer-logo">
+        <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" alt="Имотна точка" class="logo">
+      </a>
+      <p class="footer-desc">Вашият доверен партньор за апартаменти и жилища в Област Пловдив. Качество, прозрачност и грижа за всеки клиент.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Навигация</div>
+      <ul class="footer-links">
+        <li><a href="obiavi.html">Обяви</a></li>
+        <li><a href="index.html#about">За нас</a></li>
+        <li><a href="index.html#how">Как работи</a></li>
+        <li><a href="index.html#contact">Контакт</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Градове</div>
+      <ul class="footer-links">
+        <li><a href="#">Асеновград</a></li>
+        <li><a href="#">Пловдив</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Контакт</div>
+      <ul class="footer-links">
+        <li><a href="#">📞 +359 88 876 0288</a></li>
+        <li><a href="#">✉️ sof_kr1steva@abv.bg</a></li>
+        <li><a href="#">📍 Асеновград, ул.Крайбрежна 6</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Имотна точка. Всички права запазени.</span>
+    <span>Направено с ❤️ за <a href="#">вашия нов дом</a></span>
+  </div>
+</footer>
 
 <script>
 // ══════════════════════════════
@@ -801,8 +895,10 @@ listing.amenities.forEach(([icon, label, avail]) => {
 });
 
 // Map
-document.getElementById('mapLabel').textContent = listing.district;
-document.getElementById('mapSub').textContent = 'Кликнете за Google Maps';
+
+const mapQuery = encodeURIComponent(listing.district);
+document.getElementById('googleMap').src =
+  `https://www.google.com/maps?q=${mapQuery}&output=embed`;
 
 // Similar
 const simDiv = document.getElementById('similarListings');
