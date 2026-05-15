@@ -426,6 +426,21 @@ nav {
     .footer-grid { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
   }
+    @media (max-width: 1100px) {
+    .main-layout { grid-template-columns: 260px 1fr; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .page-header { padding: 2.5rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .main-layout { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+    .filter-sidebar { position: static; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .sort-bar { flex-direction: column; gap: .75rem; align-items: flex-start; }
+  }
 .logo {
   height: 100%;
   max-height: 100px;
