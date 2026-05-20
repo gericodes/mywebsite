@@ -660,22 +660,20 @@ footer {
 
     <!-- Price -->
     <div class="filter-group">
-      <div class="filter-group-label">Цена (лв)</div>
+      <div class="filter-group-label">Цена (€)</div>
       <div class="price-range">
         <div class="price-inputs">
           <div class="price-input-wrap">
-            <input class="price-input" type="number" id="priceMin" placeholder="От" min="0" max="5000" value="" oninput="updateSlider()">
-            <span>лв</span>
+            <input class="price-input" type="number" id="priceMin" placeholder="От" min="0" value="" oninput="applyFilters()" style="padding-right:.75rem;">
           </div>
           <span class="price-separator">—</span>
           <div class="price-input-wrap">
-            <input class="price-input" type="number" id="priceMax" placeholder="До" min="0" max="5000" value="" oninput="updateSlider()">
-            <span>лв</span>
+            <input class="price-input" type="number" id="priceMax" placeholder="До" min="0" value="" oninput="updateSlider()" style="padding-right:.75rem;">
           </div>
         </div>
-        <input type="range" class="range-slider" id="priceSlider" min="0" max="5000" value="5000" oninput="sliderMove(this)">
+        <input type="range" class="range-slider" id="priceSlider" min="0" max="352000" value="352000" oninput="sliderMove(this)">
         <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);">
-          <span>0 лв</span><span>5 000 лв</span>
+          <span>0 €</span><span id="sliderMaxLabel">352 000 €</span>
         </div>
       </div>
     </div>
@@ -723,7 +721,7 @@ footer {
         <div class="card-body">
           <div class="card-top">
             <div>
-              <div class="card-price">850 <span class="card-price-unit">лв / месец</span></div>
+              <div class="card-price">850 <span class="card-price-unit">€ / месец</span></div>
             </div>
             <span class="card-city-tag">Асеновград</span>
           </div>
@@ -753,7 +751,7 @@ footer {
         <div class="card-body">
           <div class="card-top">
             <div>
-              <div class="card-price">620 <span class="card-price-unit">лв / месец</span></div>
+              <div class="card-price">620 <span class="card-price-unit">€ / месец</span></div>
             </div>
             <span class="card-city-tag">Пловдив</span>
           </div>
@@ -774,7 +772,7 @@ footer {
       <!-- CARD 3 -->
       <div class="listing-card"
         data-deal="sell" data-city="drugi" data-type="apartment"
-        data-price="3200" data-size="110" data-newest="2">
+        data-price="352000" data-size="110" data-newest="2">
         <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=700&q=80')">
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-sell">Продажба</span>
@@ -783,7 +781,7 @@ footer {
         <div class="card-body">
           <div class="card-top">
             <div>
-              <div class="card-price">3 200 <span class="card-price-unit">лв / м²</span></div>
+              <div class="card-price">352 000 <span class="card-price-unit">€</span></div>
             </div>
             <span class="card-city-tag">Други</span>
           </div>
@@ -805,7 +803,7 @@ footer {
       <!-- CARD 4 -->
       <div class="listing-card"
         data-deal="sell" data-city="asenovgrad" data-type="house"
-        data-price="1850" data-size="180" data-newest="4">
+        data-price="333000" data-size="180" data-newest="4">
         <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80')">
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-sell">Продажба</span>
@@ -813,7 +811,7 @@ footer {
         <div class="card-body">
           <div class="card-top">
             <div>
-              <div class="card-price">1 850 <span class="card-price-unit">лв / м²</span></div>
+              <div class="card-price">333 000 <span class="card-price-unit">€</span></div>
             </div>
             <span class="card-city-tag">Асеновград</span>
           </div>
@@ -835,7 +833,7 @@ footer {
       <!-- CARD 5 -->
       <div class="listing-card"
         data-deal="sell" data-city="drugi" data-type="house"
-        data-price="1850" data-size="180" data-newest="4">
+        data-price="149000" data-size="180" data-newest="4">
         <div class="card-img" style="background-image:url('https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true')">
           <div class="card-img-overlay"></div>
           <span class="card-type-badge badge-sell">Продажба</span>
@@ -996,6 +994,19 @@ footer {
   }
 
   // ── Slider ──
+  // Set slider max to the highest price among all cards
+  (function initSlider() {
+    const prices = [...document.querySelectorAll('.listing-card[data-price]')]
+      .map(c => parseFloat(c.dataset.price)).filter(p => !isNaN(p));
+    const maxVal = Math.max(...prices);
+    const slider = document.getElementById('priceSlider');
+    slider.max = maxVal;
+    slider.value = maxVal;
+    // Update the label
+    const label = document.getElementById('sliderMaxLabel');
+    label.textContent = maxVal.toLocaleString('bg-BG') + ' €';
+    slider.style.background = 'linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)';
+  })();
   function sliderMove(el) {
     document.getElementById('priceMax').value = el.value;
     const pct = (el.value / el.max) * 100;
@@ -1003,12 +1014,16 @@ footer {
     applyFilters();
   }
   function updateSlider() {
-    const max = document.getElementById('priceMax').value;
+    const max = parseFloat(document.getElementById('priceMax').value);
     const slider = document.getElementById('priceSlider');
-    if (max) {
-      slider.value = max;
-      const pct = (max / slider.max) * 100;
+    if (!isNaN(max)) {
+      const sliderVal = Math.min(max, slider.max);
+      slider.value = sliderVal;
+      const pct = (sliderVal / slider.max) * 100;
       slider.style.background = `linear-gradient(to right, var(--ink) 0%, var(--ink) ${pct}%, var(--line) ${pct}%, var(--line) 100%)`;
+    } else {
+      slider.value = slider.max;
+      slider.style.background = `linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)`;
     }
     applyFilters();
   }
@@ -1028,7 +1043,12 @@ footer {
       const cityMatch = checkedCities.length === 0 || checkedCities.includes(card.dataset.city);
       const typeMatch = checkedTypes.length === 0 || checkedTypes.includes(card.dataset.type);
       const price = parseFloat(card.dataset.price);
-      const priceMatch = price >= minPrice && price <= maxPrice;
+      const typedMax = parseFloat(document.getElementById('priceMax').value);
+      const priceMatch = (() => {
+        if (price < minPrice) return false;
+        if (isNaN(typedMax)) return true;
+        return price <= typedMax;
+      })();
       const searchMatch = !searchQuery || matchesSearch(getCardText(card), searchQuery);
 
       if (dealMatch && cityMatch && typeMatch && priceMatch && searchMatch) {
@@ -1086,8 +1106,8 @@ footer {
     if (activeDeal !== 'all') addTag(dealLabels[activeDeal], () => { document.querySelector('[data-value="all"]').click(); });
     cities.forEach(c => addTag(cityLabels[c], () => { document.querySelector(`[data-value="${c}"]`).click(); applyFilters(); }));
     types.forEach(t => addTag(typeLabels[t], () => { document.querySelector(`[data-value="${t}"]`).click(); applyFilters(); }));
-    if (min > 0) addTag(`От ${min} лв`, () => { document.getElementById('priceMin').value = ''; applyFilters(); });
-    if (max < Infinity && document.getElementById('priceMax').value) addTag(`До ${max} лв`, () => { document.getElementById('priceMax').value = ''; document.getElementById('priceSlider').value = 5000; sliderMove(document.getElementById('priceSlider')); });
+    if (min > 0) addTag(`От ${min} €`, () => { document.getElementById('priceMin').value = ''; applyFilters(); });
+    if (max < Infinity && document.getElementById('priceMax').value) addTag(`До ${max} €`, () => { document.getElementById('priceMax').value = ''; const sl = document.getElementById('priceSlider'); sl.value = sl.max; sl.style.background = 'linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)'; applyFilters(); });
 
     function addTag(label, onX) {
       const tag = document.createElement('div');
@@ -1107,7 +1127,7 @@ footer {
     document.getElementById('priceMin').value = '';
     document.getElementById('priceMax').value = '';
     const slider = document.getElementById('priceSlider');
-    slider.value = 5000;
+    slider.value = slider.max;
     slider.style.background = 'linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)';
     document.getElementById('sortSelect').value = 'default';
     document.getElementById('searchInput').value = '';
