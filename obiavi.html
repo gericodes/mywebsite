@@ -129,6 +129,51 @@ nav {
   }
   .filter-reset:hover { opacity: .6; }
 
+  /* Search bar */
+  .filter-search-wrap {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .filter-search-input {
+    width: 100%;
+    padding: .6rem .75rem .6rem 2.2rem;
+    border: 1.5px solid var(--line);
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .filter-search-input:focus { border-color: var(--accent); }
+  .filter-search-icon {
+    position: absolute;
+    left: 2.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .85rem;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .filter-search-clear {
+    position: absolute;
+    right: 2.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .8rem;
+    color: var(--muted);
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: 0;
+    display: none;
+    transition: color .15s;
+  }
+  .filter-search-clear:hover { color: var(--ink); }
+
   .filter-group {
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--line);
@@ -513,7 +558,7 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" class="logo">
+    <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" class="logo">
   </a>
 
   <ul class="nav-links">
@@ -543,6 +588,20 @@ footer {
     <div class="filter-header">
       <span class="filter-title">Филтри</span>
       <button class="filter-reset" onclick="resetFilters()">Изчисти</button>
+    </div>
+
+    <!-- Search -->
+    <div class="filter-search-wrap">
+      <span class="filter-search-icon">🔍</span>
+      <input
+        class="filter-search-input"
+        type="text"
+        id="searchInput"
+        placeholder="Търси по ключова дума…"
+        oninput="onSearchInput(this)"
+        autocomplete="off"
+      >
+      <button class="filter-search-clear" id="searchClear" onclick="clearSearch()">✕</button>
     </div>
 
     <!-- Rent / Sell -->
@@ -685,7 +744,7 @@ footer {
 
       <!-- CARD 2 -->
       <div class="listing-card"
-        data-deal="rent" data-city="plovdiv" data-type="studio"
+        data-deal="rent" data-city="plovdiv" data-type="apartment"
         data-price="620" data-size="42" data-newest="3">
         <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=700&q=80')">
           <div class="card-img-overlay"></div>
@@ -709,6 +768,37 @@ footer {
         <div class="card-footer">
           <span class="card-prop-type">🏠 Студио</span>
           <a href="listing.html?id=2" class="card-cta">Детайли →</a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="listing-card"
+        data-deal="sell" data-city="drugi" data-type="apartment"
+        data-price="3200" data-size="110" data-newest="2">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=700&q=80')">
+          <div class="card-img-overlay"></div>
+          <span class="card-type-badge badge-sell">Продажба</span>
+          <span class="badge-new">Ново</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div>
+              <div class="card-price">3 200 <span class="card-price-unit">лв / м²</span></div>
+            </div>
+            <span class="card-city-tag">Други</span>
+          </div>
+          <div class="card-title">Луксозен тристаен апартамент с морска гледка</div>
+          <div class="card-location">📍 Морска градина, Варна</div>
+          <div class="card-features">
+            <span class="feat">🛏 3 стаи</span>
+            <span class="feat">🚿 2 бани</span>
+            <span class="feat">📐 110 м²</span>
+            <span class="feat">🌊 Море</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="card-prop-type">🏢 Апартамент</span>
+          <a href="listing.html?id=3" class="card-cta">Детайли →</a>
         </div>
       </div>
 
@@ -788,7 +878,7 @@ footer {
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="footer-logo"> <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" alt="Имотна точка" class="logo"> </a>
+      <a href="#" class="footer-logo"> <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" alt="Имотна точка" class="logo"> </a>
       <p class="footer-desc">Вашият доверен партньор за апартаменти и жилища в Област Пловдив. Качество, прозрачност и грижа за всеки клиент.</p>
     </div>
     <div>
@@ -811,7 +901,7 @@ footer {
       <div class="footer-heading">Контакт</div>
       <ul class="footer-links">
         <li><a href="#">📞 +359 88 876 0288</a></li>
-        <li><a href="#">✉️ sof_kr1steva@abv.bg</a></li>
+        <li><a href="#">✉️ imotnatochka@gmail.com</a></li>
         <li><a href="#">📍 Асеновград, ул.Крайбрежна 6</a></li>
       </ul>
     </div>
@@ -825,6 +915,67 @@ footer {
 <script>
   // ── State ──
   let activeDeal = 'all';
+  let searchQuery = '';
+
+  // ── Search helpers ──
+  function onSearchInput(input) {
+    searchQuery = input.value;
+    document.getElementById('searchClear').style.display = searchQuery ? 'block' : 'none';
+    applyFilters();
+  }
+  function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    searchQuery = '';
+    document.getElementById('searchClear').style.display = 'none';
+    applyFilters();
+  }
+  function getCardText(card) {
+    return card.innerText || card.textContent || '';
+  }
+
+  // ── Transliteration helpers (Latin ↔ Cyrillic) ──
+  const latinToCyrillic = {
+    'sht':'щ','sh':'ш','ch':'ч','zh':'ж','yu':'ю','ya':'я','ts':'ц',
+    'a':'а','b':'б','v':'в','g':'г','d':'д','e':'е','z':'з','i':'и',
+    'y':'й','k':'к','l':'л','m':'м','n':'н','o':'о','p':'п','r':'р',
+    's':'с','t':'т','u':'у','f':'ф','h':'х','c':'ц','j':'й'
+  };
+  const cyrillicToLatin = {
+    'щ':'sht','ш':'sh','ч':'ch','ж':'zh','ю':'yu','я':'ya','ц':'ts',
+    'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','з':'z','и':'i',
+    'й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r',
+    'с':'s','т':'t','у':'u','ф':'f','х':'h'
+  };
+
+  function transliterate(str, map) {
+    const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+    let result = '';
+    let i = 0;
+    while (i < str.length) {
+      let matched = false;
+      for (const key of keys) {
+        if (str.substr(i, key.length).toLowerCase() === key) {
+          result += map[key];
+          i += key.length;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) { result += str[i]; i++; }
+    }
+    return result;
+  }
+
+  function matchesSearch(cardText, query) {
+    const text = cardText.toLowerCase();
+    const q = query.toLowerCase();
+    if (text.includes(q)) return true;
+    const qAsCyrillic = transliterate(q, latinToCyrillic);
+    if (text.includes(qAsCyrillic)) return true;
+    const qAsLatin = transliterate(q, cyrillicToLatin);
+    if (text.includes(qAsLatin)) return true;
+    return false;
+  }
 
   // clickable card
   document.querySelectorAll('.listing-card').forEach(card => {
@@ -878,8 +1029,9 @@ footer {
       const typeMatch = checkedTypes.length === 0 || checkedTypes.includes(card.dataset.type);
       const price = parseFloat(card.dataset.price);
       const priceMatch = price >= minPrice && price <= maxPrice;
+      const searchMatch = !searchQuery || matchesSearch(getCardText(card), searchQuery);
 
-      if (dealMatch && cityMatch && typeMatch && priceMatch) {
+      if (dealMatch && cityMatch && typeMatch && priceMatch && searchMatch) {
         card.style.display = '';
         visible.push(card);
       } else {
@@ -930,6 +1082,7 @@ footer {
   function renderTags(cities, types, min, max) {
     const wrap = document.getElementById('activeTags');
     wrap.innerHTML = '';
+    if (searchQuery) addTag('"' + searchQuery + '"', () => { clearSearch(); });
     if (activeDeal !== 'all') addTag(dealLabels[activeDeal], () => { document.querySelector('[data-value="all"]').click(); });
     cities.forEach(c => addTag(cityLabels[c], () => { document.querySelector(`[data-value="${c}"]`).click(); applyFilters(); }));
     types.forEach(t => addTag(typeLabels[t], () => { document.querySelector(`[data-value="${t}"]`).click(); applyFilters(); }));
@@ -957,6 +1110,9 @@ footer {
     slider.value = 5000;
     slider.style.background = 'linear-gradient(to right, var(--ink) 0%, var(--ink) 100%, var(--line) 100%, var(--line) 100%)';
     document.getElementById('sortSelect').value = 'default';
+    document.getElementById('searchInput').value = '';
+    searchQuery = '';
+    document.getElementById('searchClear').style.display = 'none';
     applyFilters();
   }
 
@@ -983,6 +1139,18 @@ footer {
       grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
     }
   }
+  // ── Read ?search= URL param on load ──
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('search');
+    if (q) {
+      const input = document.getElementById('searchInput');
+      input.value = q;
+      searchQuery = q;
+      document.getElementById('searchClear').style.display = 'block';
+    }
+  })();
+
   applyFilters();
 </script>
 </body>

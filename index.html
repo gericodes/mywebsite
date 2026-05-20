@@ -142,9 +142,9 @@ nav {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.4) 100%);
   }
-  .cell-1 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/somewhere.jpg?raw=true'); grid-row: 1/3; }
-  .cell-2 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/roses.jpg?raw=true'); }
-  .cell-3 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/cat.jpg?raw=true'); }
+  .cell-1 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/photos/somewhere.jpg?raw=true'); grid-row: 1/3; }
+  .cell-2 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/photos/roses.jpg?raw=true'); }
+  .cell-3 { background-image: url('https://github.com/gericodes/mywebsite/blob/main/photos/cat.jpg?raw=true'); }
   .hero-badge {
     position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
@@ -270,7 +270,7 @@ nav {
   }
   .about-img-main {
     position: absolute; inset: 0;
-    background: url('https://github.com/gericodes/mywebsite/blob/main/house.jpeg?raw=true') center/cover;
+    background: url('https://github.com/gericodes/mywebsite/blob/main/photos/house.jpeg?raw=true') center/cover;
     border-radius: 4px;
   }
   .about-img-card {
@@ -453,7 +453,7 @@ nav {
 <!-- NAV -->
 <nav>
   <a href="#" class="footer-logo">
-  <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" alt="Имотна точка" class="logo"> 
+  <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" alt="Имотна точка" class="logo"> 
 </a>
   <ul class="nav-links">
     <li><a href="obiavi.html">Обяви</a></li>
@@ -502,22 +502,24 @@ nav {
 
 <!-- SEARCH -->
 <div class="search-section">
+  <h2 class="section-title">Търсете в нашите имоти</h2>
   <div class="search-bar">
-    <div class="search-field">
-      <span class="sf-label">Местоположение</span>
-      <input class="sf-input" type="text" placeholder="гр. София, Варна...">
+    <div class="search-field" style="border-right: none;">
+      <input class="sf-input" type="text" id="heroSearchInput" placeholder="Търси по ключова дума" onkeydown="if(event.key==='Enter') heroSearch()">
     </div>
-    <div class="search-field">
-      <span class="sf-label">Тип имот</span>
-      <input class="sf-input" type="text" placeholder="Апартамент, студио...">
-    </div>
-    <div class="search-field">
-      <span class="sf-label">Бюджет</span>
-      <input class="sf-input" type="text" placeholder="до 800 лв/месец">
-    </div>
-    <button class="search-btn" onclick="window.location.href='obiavi.html'">🔍 Търсене</button>
+    <button class="search-btn" onclick="heroSearch()">🔍 Търсене</button>
   </div>
 </div>
+<script>
+  function heroSearch() {
+    const q = document.getElementById('heroSearchInput').value.trim();
+    if (q) {
+      window.location.href = 'obiavi.html?search=' + encodeURIComponent(q);
+    } else {
+      window.location.href = 'obiavi.html';
+    }
+  }
+</script>
 
 <!-- LISTINGS -->
 <section id="listings">
@@ -638,7 +640,7 @@ nav {
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">Преместих се от чужбина и Имотна точка направиха процеса лесен и приятен. Отлично обслужване от начало до край.</p>
       <div class="testi-author">
-        <div class="author-avatar" style="background-image:url('https://github.com/gericodes/mywebsite/blob/main/Image.jpeg?raw=true')"></div>
+        <div class="author-avatar" style="background-image:url('https://github.com/gericodes/mywebsite/blob/main/photos/Image.jpeg?raw=true')"></div>
         <div><div class="author-name">Гергана Георгиева</div><div class="author-loc">Белащица</div></div>
       </div>
     </div>
@@ -728,7 +730,7 @@ nav {
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="footer-logo"> <img src="https://github.com/gericodes/mywebsite/blob/main/logo.png?raw=true" alt="Имотна точка" class="logo"> </a>
+      <a href="#" class="footer-logo"> <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" alt="Имотна точка" class="logo"> </a>
       <p class="footer-desc">Вашият доверен партньор за апартаменти и жилища в Област Пловдив. Качество, прозрачност и грижа за всеки клиент.</p>
     </div>
     <div>
@@ -751,7 +753,7 @@ nav {
       <div class="footer-heading">Контакт</div>
       <ul class="footer-links">
         <li><a href="#">📞 +359 88 876 0288</a></li>
-        <li><a href="#">✉️ sof_kr1steva@abv.bg</a></li>
+        <li><a href="#">✉️ imotnatochka@gmail.com</a></li>
         <li><a href="#">📍 Асеновград, ул.Крайбрежна 6</a></li>
       </ul>
     </div>
