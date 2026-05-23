@@ -261,6 +261,39 @@ nav {
   .feat { font-size: .78rem; color: var(--mid); display: flex; align-items: center; gap: .35rem; }
   .feat-icon { font-size: .9rem; }
 
+  /* ── Card classes shared with obiavi ── */
+  .card-type-badge {
+    position: absolute; top: 1rem; left: 1rem; z-index: 1;
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border-radius: 2px;
+  }
+  .badge-rent { background: var(--ink); color: var(--white); }
+  .badge-sell { background: var(--accent); color: var(--white); }
+  .badge-new {
+    position: absolute; top: 1rem; right: 1rem; z-index: 1;
+    background: #22c55e; color: white;
+    font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border-radius: 2px;
+  }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: .5rem; }
+  .card-price-unit { font-family: 'DM Sans', sans-serif; font-size: .75rem; color: var(--mid); font-weight: 400; }
+  .card-city-tag {
+    background: var(--accent-light); color: var(--accent);
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .25rem .65rem; border-radius: 2px; white-space: nowrap;
+  }
+  .card-footer {
+    padding: .9rem 1.4rem; border-top: 1px solid var(--line);
+    background: #fafaf8; display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-prop-type { font-size: .72rem; color: var(--muted); font-weight: 500; letter-spacing: .05em; display: flex; align-items: center; gap: .3rem; }
+  .card-cta {
+    font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: .3rem;
+    transition: gap .15s, color .15s;
+  }
+  .card-cta:hover { gap: .6rem; color: var(--accent); }
+
   /* ── ABOUT ── */
   .about-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
@@ -447,6 +480,7 @@ nav {
   width: auto;
 }
 </style>
+<script src="listings-data.js"></script>
 </head>
 <body>
 
@@ -765,99 +799,16 @@ nav {
 </footer>
 
 <script>
-  // ── All listings pool ──
-  const allListings = [
-    {
-      img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80',
-      deal: 'rent', isNew: true,
-      price: '850', unit: 'евро / месец',
-      city: 'Асеновград',
-      title: 'Просторен апартамент с тераса и паркинг',
-      location: '📍 Център, Асеновград',
-      feats: [['🛏','2 стаи'],['🚿','1 баня'],['📐','75 м²'],['🅿️','Паркинг']],
-      href: 'listing.html?id=1'
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1560185127-6a9e1c1cfc42?w=600&q=80',
-      deal: 'rent', isNew: false,
-      price: '620', unit: 'евро / месец',
-      city: 'Пловдив',
-      title: 'Уютно студио в самия център',
-      location: '📍 Център, Пловдив',
-      feats: [['🛏','Студио'],['🚿','1 баня'],['📐','42 м²']],
-      href: 'listing.html?id=2'
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=600&q=80',
-      deal: 'sell', isNew: true,
-      price: '3 200', unit: 'евро / м²',
-      city: 'Други',
-      title: 'Луксозен тристаен апартамент с морска гледка',
-      location: '📍 Морска градина, Варна',
-      feats: [['🛏','3 стаи'],['🚿','2 бани'],['📐','110 м²'],['🌊','Море']],
-      href: 'listing.html?id=3'
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80',
-      deal: 'sell', isNew: false,
-      price: '1 850', unit: 'евро / м²',
-      city: 'Асеновград',
-      title: 'Самостоятелна къща с голям двор и гараж',
-      location: '📍 Център, Асеновград',
-      feats: [['🛏','4 стаи'],['🚿','2 бани'],['📐','180 м²'],['🌳','Двор']],
-      href: 'listing.html?id=4'
-    },
-    {
-      img: 'https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true',
-      deal: 'sell', isNew: false,
-      price: '149 000', unit: '€',
-      city: 'с. Нови извор',
-      title: 'Реновирана селска къща с просторен облагороден двор',
-      location: '📍 с.Нови извор, Пловдив',
-      feats: [['🛏','3 стаи'],['🚿','1 баня'],['📐','190 м²'],['🌳','Двор']],
-      href: 'listing.html?id=5'
-    },
-  ];
-
-  // Pick 3 random listings (no repeats)
-  function getRandomListings(pool, count) {
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-  }
-
-  function buildCard(listing) {
-    const dealLabel = listing.deal === 'rent' ? 'Под наем' : 'Продажба';
-    const dealBg = listing.deal === 'rent' ? '#0d0d0d' : '#c9a96e';
-    const newBadge = listing.isNew
-      ? `<span style="position:absolute;top:1rem;right:1rem;z-index:1;background:#22c55e;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px;">Ново</span>`
-      : '';
-    const featsHtml = listing.feats.map(f =>
-      `<span class="feat"><span class="feat-icon">${f[0]}</span> ${f[1]}</span>`
-    ).join('');
-    return `
-      <div class="listing-card reveal" onclick="window.location.href='${listing.href}'" style="cursor:pointer;">
-        <div class="card-img" style="background-image:url('${listing.img}');position:relative;">
-          <span style="position:absolute;top:1rem;left:1rem;z-index:1;background:${dealBg};color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px;">${dealLabel}</span>
-          ${newBadge}
-        </div>
-        <div class="card-body">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;">
-            <div class="card-price">${listing.price} <span>${listing.unit}</span></div>
-            <span style="background:#f0e6d3;color:#c9a96e;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:2px;white-space:nowrap;">${listing.city}</span>
-          </div>
-          <div class="card-title">${listing.title}</div>
-          <div class="card-location">${listing.location}</div>
-          <div class="card-features">${featsHtml}</div>
-        </div>
-      </div>`;
-  }
-
-  // Render random listings
+  // ── Render 3 random listings from shared listings-data.js ──
   const grid = document.getElementById('randomListings');
-  const picked = getRandomListings(allListings, 3);
-  grid.innerHTML = picked.map(buildCard).join('');
+  const shuffled = [...LISTINGS].sort(() => Math.random() - 0.5).slice(0, 3);
+  shuffled.forEach(listing => {
+    const card = buildListingCard(listing, 'index');
+    card.classList.add('reveal');
+    grid.appendChild(card);
+  });
 
-  // Scroll reveal (re-run after dynamic content)
+    // Scroll reveal (re-run after dynamic content)
   function initReveal() {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
