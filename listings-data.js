@@ -236,7 +236,7 @@ const LISTINGS = [
     href: 'listing.html?id=12'
   },
   {
-    id: 15,
+    id: 13,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'с. Катуница',
@@ -250,12 +250,12 @@ const LISTINGS = [
     featured: false,
     title: 'Имот до с.Катуница',
     location: '📍 с. Катуница, Садово',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1762688/00791c274443d9e4d730b8376ce08c1f-170226022052.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/13/1.jpg?raw=true',
     feats: ['🌍 Земя за инвестиция'],
-    href: 'listing.html?id=15'
+    href: 'listing.html?id=13'
   },
   {
-    id: 16,
+    id: 14,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -269,12 +269,12 @@ const LISTINGS = [
     featured: false,
     title: 'Компактен тристаен апартамент',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1686583/b73ed731c3014666603bca8a1032d868-111125022355.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/14/1.jpg?raw=true',
     feats: ['🛏 3 стаи', '📐 80 м²'],
-    href: 'listing.html?id=16'
+    href: 'listing.html?id=14'
   },
   {
-    id: 17,
+    id: 15,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -288,12 +288,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 3-стаен гр. Асеновград 90m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1670542/1670542-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/15/1.jpg?raw=true',
     feats: ['🛏 3 стаи', '📐 90 м²'],
-    href: 'listing.html?id=17'
+    href: 'listing.html?id=15'
   },
   {
-    id: 18,
+    id: 16,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -307,12 +307,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 2-стаен гр. Асеновград 71m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1670527/1670527-0.jpg',
-    feats: ['🛏 2 стаи', '📐 71 м²'],
-    href: 'listing.html?id=18'
+    img: 'https://github.com/gericodes/mywebsite/blob/main/16/1.jpg?raw=true',
+    feats: ['🛏 2 стаи', '📐 71 м²', '🌳 Двор'],
+    href: 'listing.html?id=16'
   },
   {
-    id: 19,
+    id: 17,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -326,12 +326,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Парцел гр. Асеновград 1440m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1670510/1670510-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/17/1.jpg?raw=true',
     feats: ['🌍 Парцел 1440 м²'],
-    href: 'listing.html?id=19'
+    href: 'listing.html?id=17'
   },
   {
-    id: 20,
+    id: 18,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'с. Крушово',
@@ -345,12 +345,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Къща гр. Лъки - с. Крушово 189m²',
     location: '📍 с. Крушово, гр. Лъки',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1504542/efe6fd0d45030e5b2e4dfbd29c89356c-250925093046.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/18/1.jpg?raw=true',
     feats: ['🏡 Къща', '📐 189 м²'],
-    href: 'listing.html?id=20'
+    href: 'listing.html?id=18'
   },
   {
-    id: 21,
+    id: 19,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'с. Павелско',
@@ -364,12 +364,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Къща гр. Чепеларе - с. Павелско 460m²',
     location: '📍 с. Павелско, Чепеларе',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1504016/1aff6781537c26d4c699992f8f3e8bc2-240925031059.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/19/1.jpg?raw=true',
     feats: ['🛏 8 стаи', '📐 460 м²'],
-    href: 'listing.html?id=21'
+    href: 'listing.html?id=19'
   },
   {
-    id: 22,
+    id: 20,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'гр. Куклен',
@@ -383,9 +383,9 @@ const LISTINGS = [
     featured: false,
     title: 'Земя подходяща за производство',
     location: '📍 гр. Куклен, Пловдив',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1494961/8357849d2b196aceb61de77e21e71404-050925024606.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/20/1.jpg?raw=true',
     feats: ['🌍 Земя за производство'],
-    href: 'listing.html?id=22'
+    href: 'listing.html?id=20'
   },
   {
     id: 23,
