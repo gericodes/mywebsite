@@ -378,7 +378,7 @@ const LISTINGS = [
     price: '45 000',
     priceUnit: '€',
     priceRaw: 45000,
-    size: 0,
+    size: 3998,
     isNew: false,
     featured: false,
     title: 'Земя подходяща за производство',
