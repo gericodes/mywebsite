@@ -676,6 +676,11 @@ footer {
           <span class="check-box"></span>
           Парцел <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-parcel">0</span>
         </label>
+        <label class="check-item">
+          <input type="checkbox" data-filter="type" data-value="commercial" onchange="applyFilters()">
+          <span class="check-box"></span>
+          Бизнес имот <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-commercial">0</span>
+        </label>
       </div>
     </div>
 
@@ -967,13 +972,14 @@ footer {
     // Counts — show how many on this page vs total matched
     document.getElementById('visibleCount').textContent = pageCards.length;
     document.getElementById('totalCount').textContent = cards.length;
+    document.getElementById('countDisplay').textContent = visible.length;
 
     // Sidebar counts
     ['asenovgrad','plovdiv','drugi'].forEach(city => {
       const el = document.getElementById('count-city-' + city);
       if (el) el.textContent = LISTINGS.filter(l => l.city === city).length;
     });
-    ['house','apartment','parcel'].forEach(type => {
+    ['house','apartment','parcel','commercial'].forEach(type => {
       const el = document.getElementById('count-type-' + type);
       if (el) el.textContent = LISTINGS.filter(l => l.type === type).length;
     });
@@ -1041,7 +1047,7 @@ footer {
 
   // ── Active tags ──
   const cityLabels = { asenovgrad: 'Асеновград', plovdiv: 'Пловдив', drugi: 'Други' };
-  const typeLabels = { apartment: 'Апартамент', parcel: 'Парцел', house: 'Къща' };
+  const typeLabels = { apartment: 'Апартамент', parcel: 'Парцел', house: 'Къща', commercial: 'Бизнес имот' };
   const dealLabels = { rent: 'Под наем', sell: 'Продажба' };
 
   function renderTags(cities, types, min, max) {
