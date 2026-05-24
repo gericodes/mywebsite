@@ -2229,9 +2229,36 @@ document.title = listing.title + ' — Имотна точка';
 document.getElementById('breadcrumbTitle').textContent = listing.city;
 
 // Gallery
-document.getElementById('img0').src = listing.images[0];
-document.getElementById('img1').src = listing.images[1];
-document.getElementById('img2').src = listing.images[2];
+const imgs = listing.images;
+document.getElementById('img0').src = imgs[0] || '';
+
+const thumb1 = document.getElementById('img1').closest('.gallery-thumb');
+const thumb2 = document.getElementById('img2').closest('.gallery-thumb');
+
+if (imgs.length >= 2) {
+  document.getElementById('img1').src = imgs[1];
+} else {
+  thumb1.style.display = 'none';
+}
+
+if (imgs.length >= 3) {
+  document.getElementById('img2').src = imgs[2];
+} else {
+  thumb2.style.display = 'none';
+}
+
+// If only 1 image, make the main photo span full width
+if (imgs.length === 1) {
+  const gallery = document.getElementById('gallery');
+  gallery.style.gridTemplateColumns = '1fr';
+  gallery.style.gridTemplateRows = '480px';
+}
+
+// If exactly 2 images, make main span full height of both rows
+if (imgs.length === 2) {
+  // thumb2 already hidden; main already spans both rows by default
+}
+
 const dealBadge = document.getElementById('dealBadge');
 dealBadge.textContent = listing.dealLabel;
 dealBadge.className = 'gallery-badge ' + (listing.deal === 'rent' ? 'badge-rent' : 'badge-sell');
