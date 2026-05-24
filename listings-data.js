@@ -122,7 +122,7 @@ const LISTINGS = [
     href: 'listing.html?id=6'
   },
   {
-    id: 9,
+    id: 7,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -136,12 +136,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 2-стаен гр. Асеновград 70m²',
     location: '📍 кв. Запад, Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772044/1772044-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/7/1.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 70 м²', '🏗 В строеж'],
-    href: 'listing.html?id=9'
+    href: 'listing.html?id=7'
   },
   {
-    id: 10,
+    id: 8,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -155,12 +155,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 2-стаен гр. Асеновград 73m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772043/1772043-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/8/1.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 73 м²', '🏗 В строеж'],
-    href: 'listing.html?id=10'
+    href: 'listing.html?id=8'
   },
   {
-    id: 11,
+    id: 9,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -174,12 +174,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 3-стаен гр. Асеновград 111m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772042/1772042-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/9/1.jpg?raw=true',
     feats: ['🛏 3 стаи', '📐 111 м²', '🏗 В строеж'],
-    href: 'listing.html?id=11'
+    href: 'listing.html?id=9'
   },
   {
-    id: 12,
+    id: 10,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -193,12 +193,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 2-стаен гр. Асеновград 66m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772041/1772041-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/10/1.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 66 м²', '🏗 В строеж'],
-    href: 'listing.html?id=12'
+    href: 'listing.html?id=10'
   },
   {
-    id: 13,
+    id: 11,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -212,12 +212,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 3-стаен гр. Асеновград 93m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772040/a9e5d00e6799db8ebb7d8e631f514965-130526120129.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/11/1.jpg?raw=true',
     feats: ['🛏 3 стаи', '📐 93 м²'],
-    href: 'listing.html?id=13'
+    href: 'listing.html?id=11'
   },
   {
-    id: 14,
+    id: 12,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -231,9 +231,9 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба 3-стаен гр. Асеновград 100m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1772039/1772039-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/12/1.jpg?raw=true',
     feats: ['🛏 3 стаи', '📐 100 м²'],
-    href: 'listing.html?id=14'
+    href: 'listing.html?id=12'
   },
   {
     id: 15,
