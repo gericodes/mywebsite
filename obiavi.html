@@ -677,9 +677,9 @@ footer {
           Парцел <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-parcel">0</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" data-filter="type" data-value="commercial" onchange="applyFilters()">
+          <input type="checkbox" data-filter="type" data-value="drugi" onchange="applyFilters()">
           <span class="check-box"></span>
-          Бизнес имот <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-commercial">0</span>
+          Други <span style="color:var(--muted);font-size:.75rem;margin-left:auto;" id="count-type-drugi">0</span>
         </label>
       </div>
     </div>
@@ -979,7 +979,7 @@ footer {
       const el = document.getElementById('count-city-' + city);
       if (el) el.textContent = LISTINGS.filter(l => l.city === city).length;
     });
-    ['house','apartment','parcel','commercial'].forEach(type => {
+    ['house','apartment','parcel','drugi'].forEach(type => {
       const el = document.getElementById('count-type-' + type);
       if (el) el.textContent = LISTINGS.filter(l => l.type === type).length;
     });
@@ -1047,7 +1047,7 @@ footer {
 
   // ── Active tags ──
   const cityLabels = { asenovgrad: 'Асеновград', plovdiv: 'Пловдив', drugi: 'Други' };
-  const typeLabels = { apartment: 'Апартамент', parcel: 'Парцел', house: 'Къща', commercial: 'Бизнес имот' };
+  const typeLabels = { apartment: 'Апартамент', parcel: 'Парцел', house: 'Къща', drugi: 'Други' };
   const dealLabels = { rent: 'Под наем', sell: 'Продажба' };
 
   function renderTags(cities, types, min, max) {
