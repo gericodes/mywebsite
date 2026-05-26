@@ -938,25 +938,6 @@ const LISTINGS = [
     feats: ['🏭 Производствен цех', '📐 927 м²'],
     href: 'listing.html?id=49'
   }
-  {
-    id: 50,
-    deal: 'sell',
-    city: 'asenovgrad',
-    cityLabel: 'Асеновград',
-    type: 'drugi',
-    typeLabel: '🏢 Други',
-    price: '580 000',
-    priceUnit: '€',
-    priceRaw: 580000,
-    size: 927,
-    isNew: false,
-    featured: false,
-    title: 'Цех за мебели в гр. Асеновград',
-    location: '📍 Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/49/1.jpg?raw=true',
-    feats: ['🏭 Производствен цех', '📐 927 м²'],
-    href: 'listing.html?id=50'
-  }
 ];
 
 // Builds a card element from a listing object.
