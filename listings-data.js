@@ -955,7 +955,7 @@ const LISTINGS = [
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/49/1.jpg?raw=true',
     feats: ['🏭 Производствен цех', '📐 927 м²'],
-    href: 'listing.html?id=49'
+    href: 'listing.html?id=50'
   }
 ];
 
