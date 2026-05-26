@@ -251,7 +251,7 @@ const LISTINGS = [
     title: 'Имот до с.Катуница',
     location: '📍 с. Катуница, Садово',
     img: 'https://github.com/gericodes/mywebsite/blob/main/13/1.jpg?raw=true',
-    feats: ['🌍 Земя за инвестиция'],
+    feats: ['🌍 Земя за инвестиция', '📐 4219 м²'],
     href: 'listing.html?id=13'
   },
   {
@@ -327,7 +327,7 @@ const LISTINGS = [
     title: 'Продажба Парцел гр. Асеновград 1440m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/17/1.jpg?raw=true',
-    feats: ['🌍 Парцел 1440 м²'],
+    feats: ['🌍 Парцел', '📐 1440 м²'],
     href: 'listing.html?id=17'
   },
   {
@@ -384,7 +384,7 @@ const LISTINGS = [
     title: 'Земя подходяща за производство',
     location: '📍 гр. Куклен, Пловдив',
     img: 'https://github.com/gericodes/mywebsite/blob/main/20/1.jpg?raw=true',
-    feats: ['🌍 Земя за производство'],
+    feats: ['🌍 Земя за производство', '📐 3998 м²'],
     href: 'listing.html?id=20'
   },
   {
@@ -403,7 +403,7 @@ const LISTINGS = [
     title: 'Земя подходяща за промяна на статут',
     location: '📍 кв. Долни Воден, Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/21/1.jpg?raw=true',
-    feats: ['🌍 Земя за промяна на статут'],
+    feats: ['🌍 Земя за промяна на статут', '📐 6301 м²'],
     href: 'listing.html?id=21'
   },
   {
@@ -422,7 +422,7 @@ const LISTINGS = [
     title: 'Масивна къща в Долнослав',
     location: '📍 с. Долнослав, Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/21/1.jpg?raw=true',
-    feats: ['🛏 5 стаи', '🏡 Масивна къща', '🌳 Двор'],
+    feats: ['🛏 5 стаи', '🏡 Масивна къща', '🌳 Двор', '📐 758 м²'],
     href: 'listing.html?id=22'
   },
   {
@@ -441,7 +441,7 @@ const LISTINGS = [
     title: 'Имот с голям потенциал на брега на река Марица',
     location: '📍 с. Милево, Садово',
     img: 'https://github.com/gericodes/mywebsite/blob/main/23/1.jpg?raw=true',
-    feats: ['🌍 Земя за инвестиция', '💧 Бряг на Марица'],
+    feats: ['🌍 Земя за инвестиция', '💧 Бряг на Марица', '📐 10746 м²'],
     href: 'listing.html?id=23'
   },
   {
@@ -460,7 +460,7 @@ const LISTINGS = [
     title: 'Магазин / Склад',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/24/1.jpg?raw=true',
-    feats: ['🏪 Магазин / Склад'],
+    feats: ['🏪 Магазин / Склад', '📐 300 м²'],
     href: 'listing.html?id=24'
   },
   {
@@ -631,7 +631,7 @@ const LISTINGS = [
     title: 'Продажба Парцел гр. Асеновград 1560m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/33/1.jpg?raw=true',
-    feats: ['🌍 Парцел 1560 м²'],
+    feats: ['🌍 Парцел', '📐 1560 м²'],
     href: 'listing.html?id=33'
   },
   {
@@ -650,7 +650,7 @@ const LISTINGS = [
     title: 'Продажба Парцел гр. Асеновград 2187m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/34/1.jpg?raw=true',
-    feats: ['🌍 Парцел 2187 м²'],
+    feats: ['🌍 Парцел', '📐 2187 м²'],
     href: 'listing.html?id=34'
   },
   {
@@ -669,7 +669,7 @@ const LISTINGS = [
     title: 'Продажба Земеделска земя гр. Асеновград 1152m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/35/1.jpg?raw=true',
-    feats: ['🌍 Земеделска земя 1152 м²'],
+    feats: ['🌍 Земеделска земя', '📐 1152 м²'],
     href: 'listing.html?id=35'
   },
   {
@@ -688,7 +688,7 @@ const LISTINGS = [
     title: 'Продажба Парцел гр. Асеновград 992m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/36/1.jpg?raw=true',
-    feats: ['🌍 Парцел 992 м²'],
+    feats: ['🌍 Парцел', '📐 992 м²'],
     href: 'listing.html?id=36'
   },
   {
@@ -726,7 +726,7 @@ const LISTINGS = [
     title: 'Продажба Парцел община Родопи - с. Нареченски бани 327m²',
     location: '📍 с. Нареченски бани, Родопи',
     img: 'https://github.com/gericodes/mywebsite/blob/main/38/1.jpg?raw=true',
-    feats: ['🌍 Парцел 327 м²'],
+    feats: ['🌍 Парцел', '📐 327 м²'],
     href: 'listing.html?id=38'
   },
   {
@@ -745,7 +745,7 @@ const LISTINGS = [
     title: 'Продажба Парцел гр. Асеновград 1319m²',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/39/1.jpg?raw=true',
-    feats: ['🌍 Парцел 1319 м²'],
+    feats: ['🌍 Парцел', '📐 1319 м²'],
     href: 'listing.html?id=39'
   },
   {
@@ -764,7 +764,7 @@ const LISTINGS = [
     title: 'Продажба Парцел община Родопи с. Милево 4071m²',
     location: '📍 с. Милево, Родопи',
     img: 'https://github.com/gericodes/mywebsite/blob/main/40/1.jpg?raw=true',
-    feats: ['🌍 Парцел 4071 м²'],
+    feats: ['🌍 Парцел', '📐 4071 м²'],
     href: 'listing.html?id=40'
   },
   {
@@ -821,7 +821,7 @@ const LISTINGS = [
     title: 'Продажба Парцел община Родопи с. Руен 760m²',
     location: '📍 с. Руен, Родопи',
     img: 'https://github.com/gericodes/mywebsite/blob/main/43/1.jpg?raw=true',
-    feats: ['🌍 Парцел 760 м²', '🌳 Двор'],
+    feats: ['🌍 Парцел', '📐 760 м²', '🌳 Двор'],
     href: 'listing.html?id=43'
   },
   {
@@ -837,10 +837,10 @@ const LISTINGS = [
     size: 980,
     isNew: false,
     featured: false,
-    title: 'Продажба Парцел с. Конуш 980m²',
+    title: 'Продажба Парцел община Родопи с. Конуш 980m²',
     location: '📍 с. Конуш, Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440026/1440026-0.jpg',
-    feats: ['🌍 Парцел 980 м²'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/44/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 980 м²'],
     href: 'listing.html?id=44'
   },
   {
@@ -856,10 +856,10 @@ const LISTINGS = [
     size: 887,
     isNew: false,
     featured: false,
-    title: 'Продажба Парцел с. Сини връх 887m²',
+    title: 'Продажба Парцел община Родопи с. Сини връх 887m²',
     location: '📍 с. Сини връх, Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440025/1440025-0.jpg',
-    feats: ['🌍 Парцел 887 м²'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/45/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 887 м²'],
     href: 'listing.html?id=45'
   },
   {
@@ -877,8 +877,8 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Парцел гр. Асеновград 1800m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440021/1440021-0.jpg',
-    feats: ['🌍 Парцел 1800 м²'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/46/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 1800 м²'],
     href: 'listing.html?id=46'
   },
   {
@@ -896,8 +896,8 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Парцел гр. Асеновград 3241m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440018/1440018-0.jpg',
-    feats: ['🌍 Парцел 3241 м²'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/47/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 3241 м²'],
     href: 'listing.html?id=47'
   },
   {
@@ -907,16 +907,16 @@ const LISTINGS = [
     cityLabel: 'Асеновград',
     type: 'parcel',
     typeLabel: '🌍 Парцел',
-    price: '69 024',
+    price: '69 025',
     priceUnit: '€',
-    priceRaw: 69024,
+    priceRaw: 69025,
     size: 9000,
     isNew: false,
     featured: false,
     title: 'Продажба Парцел гр. Асеновград 9000m²',
     location: '📍 с. Мулдава, Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440014/1440014-0.jpg',
-    feats: ['🌍 Парцел 9000 м²'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/48/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 9000 м²'],
     href: 'listing.html?id=48'
   },
   {
@@ -929,13 +929,13 @@ const LISTINGS = [
     price: '580 000',
     priceUnit: '€',
     priceRaw: 580000,
-    size: 0,
+    size: 927,
     isNew: false,
     featured: false,
     title: 'Цех за мебели в гр. Асеновград',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1425270/6001f6cab565a5ea071cdeed3cbc6319-030725124227.jpg',
-    feats: ['🏭 Производствен цех'],
+    img: 'https://github.com/gericodes/mywebsite/blob/main/49/1.jpg?raw=true',
+    feats: ['🏭 Производствен цех', '📐 927 м²'],
     href: 'listing.html?id=49'
   }
 ];
