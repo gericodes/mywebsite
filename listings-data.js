@@ -761,14 +761,14 @@ const LISTINGS = [
     size: 4071,
     isNew: false,
     featured: false,
-    title: 'Продажба Парцел с. Милево 4071m²',
+    title: 'Продажба Парцел община Родопи с. Милево 4071m²',
     location: '📍 с. Милево, Родопи',
     img: 'https://github.com/gericodes/mywebsite/blob/main/40/1.jpg?raw=true',
     feats: ['🌍 Парцел 4071 м²'],
     href: 'listing.html?id=40'
   },
   {
-    id: 43,
+    id: 41,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'с. Поройна',
@@ -782,12 +782,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Къща с. Поройна 130m²',
     location: '📍 с. Поройна, Родопи',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1442649/1442649-0.jpg',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/41/1.jpg?raw=true',
     feats: ['🏡 Къща', '📐 130 м²'],
-    href: 'listing.html?id=43'
+    href: 'listing.html?id=41'
   },
   {
-    id: 44,
+    id: 42,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -801,12 +801,12 @@ const LISTINGS = [
     featured: false,
     title: 'Продажба Къща гр. Асеновград 64m²',
     location: '📍 Асеновград',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440032/1440032-0.jpg',
-    feats: ['🏡 Къща', '📐 64 м²'],
-    href: 'listing.html?id=44'
+    img: 'https://github.com/gericodes/mywebsite/blob/main/42/1.jpg?raw=true',
+    feats: ['🏡 Къща', '📐 64 м²', '🌳 Двор'],
+    href: 'listing.html?id=42'
   },
   {
-    id: 45,
+    id: 43,
     deal: 'sell',
     city: 'drugi',
     cityLabel: 'с. Руен',
@@ -818,14 +818,14 @@ const LISTINGS = [
     size: 760,
     isNew: false,
     featured: false,
-    title: 'Продажба Парцел с. Руен 760m²',
+    title: 'Продажба Парцел община Родопи с. Руен 760m²',
     location: '📍 с. Руен, Родопи',
-    img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440031/1440031-0.jpg',
-    feats: ['🌍 Парцел 760 м²'],
-    href: 'listing.html?id=45'
+    img: 'https://github.com/gericodes/mywebsite/blob/main/43/1.jpg?raw=true',
+    feats: ['🌍 Парцел 760 м²', '🌳 Двор'],
+    href: 'listing.html?id=43'
   },
   {
-    id: 46,
+    id: 44,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -841,10 +841,10 @@ const LISTINGS = [
     location: '📍 с. Конуш, Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440026/1440026-0.jpg',
     feats: ['🌍 Парцел 980 м²'],
-    href: 'listing.html?id=46'
+    href: 'listing.html?id=44'
   },
   {
-    id: 47,
+    id: 45,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -860,10 +860,10 @@ const LISTINGS = [
     location: '📍 с. Сини връх, Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440025/1440025-0.jpg',
     feats: ['🌍 Парцел 887 м²'],
-    href: 'listing.html?id=47'
+    href: 'listing.html?id=45'
   },
   {
-    id: 48,
+    id: 46,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -879,10 +879,10 @@ const LISTINGS = [
     location: '📍 Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440021/1440021-0.jpg',
     feats: ['🌍 Парцел 1800 м²'],
-    href: 'listing.html?id=48'
+    href: 'listing.html?id=46'
   },
   {
-    id: 49,
+    id: 47,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -898,10 +898,10 @@ const LISTINGS = [
     location: '📍 Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440018/1440018-0.jpg',
     feats: ['🌍 Парцел 3241 м²'],
-    href: 'listing.html?id=49'
+    href: 'listing.html?id=47'
   },
   {
-    id: 50,
+    id: 48,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -917,10 +917,10 @@ const LISTINGS = [
     location: '📍 с. Мулдава, Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1440014/1440014-0.jpg',
     feats: ['🌍 Парцел 9000 м²'],
-    href: 'listing.html?id=50'
+    href: 'listing.html?id=48'
   },
   {
-    id: 51,
+    id: 49,
     deal: 'sell',
     city: 'asenovgrad',
     cityLabel: 'Асеновград',
@@ -936,7 +936,7 @@ const LISTINGS = [
     location: '📍 Асеновград',
     img: 'https://realestatepoint.estateplus.net/storage/photos/modified/1200x/realestatepoint_298/offers/1425270/6001f6cab565a5ea071cdeed3cbc6319-030725124227.jpg',
     feats: ['🏭 Производствен цех'],
-    href: 'listing.html?id=51'
+    href: 'listing.html?id=49'
   }
 ];
 
