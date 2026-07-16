@@ -959,10 +959,10 @@ const LISTINGS = [
   }
   {
     id: 51,
-    deal: 'sell’,                            
+    deal: 'sell',                            
     city: 'drugi',           
     cityLabel: 'с.Патриарх Евтимово’,
-    type: ' house',                         
+    type: 'house',                         
     typeLabel: ' 🏡 Къща ',    
     price: '125000',                       
     priceUnit: '€',
@@ -971,10 +971,10 @@ const LISTINGS = [
     isNew: true,                         
     featured: true,                 
     title: 'Нова къща в село до Асеновград и Пловдив',
-    location: '📍 Патриарх Евтимово, Пловдив'
+    location: '📍 Патриарх Евтимово, Пловдив',
     img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true'
     feats: ['🏡 Къща', '📐 90 м²', '🏡 Масивна къща', '🌳 Двор', '📐 635 м²'],      
-    href: 'listing.html?id=51'.                                           
+    href: 'listing.html?id=51'                                           
   }
 
 ];
