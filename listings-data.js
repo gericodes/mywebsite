@@ -972,7 +972,7 @@ const LISTINGS = [
     featured: true,                 
     title: 'Нова къща в село до Асеновград и Пловдив',
     location: '📍 Патриарх Евтимово, Пловдив',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true'
+    img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
     feats: ['🏡 Къща', '📐 90 м²', '🏡 Масивна къща', '🌳 Двор', '📐 635 м²'],      
     href: 'listing.html?id=51'                                           
   }
