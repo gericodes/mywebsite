@@ -498,6 +498,12 @@ const LISTINGS = [
     title: 'Ново строителство двустаен апартамент с голяма тераса',
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/26/1.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/2.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/3.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/4.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/5.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/6.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/26/7.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 98 м²', '🌿 Голяма тераса'],
     href: 'listing.html?id=26'
   },
