@@ -421,7 +421,7 @@ const LISTINGS = [
     featured: false,
     title: 'Масивна къща в Долнослав',
     location: '📍 с. Долнослав, Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/22/1.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/22/12.jpg?raw=true',
     feats: ['🛏 5 стаи', '🏡 Масивна къща', '🌳 Двор', '📐 758 м²'],
     href: 'listing.html?id=22'
   },
