@@ -65,25 +65,6 @@ const LISTINGS = [
     href: 'listing.html?id=3'
   },
   {
-    id: 4,
-    deal: 'rent',
-    city: 'asenovgrad',
-    cityLabel: 'Асеновград',
-    type: 'apartment',
-    typeLabel: '🏢 Апартамент',
-    price: '300',
-    priceUnit: '€ / месец',
-    priceRaw: 300,
-    size: 110,
-    isNew: true,
-    featured: false,
-    title: 'Под наем! Обзаведен апартамент!',
-    location: '📍 Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/4/1.jpg?raw=true',
-    feats: ['🛏 4 стаи', '📐 110 м²'],
-    href: 'listing.html?id=4'
-  },
-  {
     id: 5,
     deal: 'sell',
     city: 'asenovgrad',
