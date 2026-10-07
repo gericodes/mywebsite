@@ -844,25 +844,6 @@ const LISTINGS = [
     href: 'listing.html?id=46'
   },
   {
-    id: 47,
-    deal: 'sell',
-    city: 'asenovgrad',
-    cityLabel: 'Асеновград',
-    type: 'parcel',
-    typeLabel: '🌍 Парцел',
-    price: '226 870',
-    priceUnit: '€',
-    priceRaw: 226870,
-    size: 3241,
-    isNew: false,
-    featured: false,
-    title: 'Продажба Парцел гр. Асеновград 3241m²',
-    location: '📍 Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/47/1.jpg?raw=true',
-    feats: ['🌍 Парцел', '📐 3241 м²'],
-    href: 'listing.html?id=47'
-  },
-  {
     id: 48,
     deal: 'sell',
     city: 'asenovgrad',
