@@ -17,13 +17,13 @@ const LISTINGS = [
     price: '450',
     priceUnit: '€ / месец',
     priceRaw: 450,
-    size: 62,
+    size: 58,
     isNew: true,
     featured: false,
     title: 'Под наем! Нов, напълно обзаведен!',
     location: '📍 Гарата, Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/1/1.jpg?raw=true',
-    feats: ['🛏 2 стая', '🚿 1 баня', '📐 62 м²', '🅿️ възможност за наемане'],
+    feats: ['🛏 2 стая', '🚿 1 баня', '📐 58 м²', '🅿️ възможност за наемане'],
     href: 'listing.html?id=1'
   },
   {
