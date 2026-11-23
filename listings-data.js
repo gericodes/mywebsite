@@ -902,22 +902,23 @@ const LISTINGS = [
   },
   {
     id: 51,
-    deal: 'sell',                            
-    city: 'drugi',           
-    cityLabel: 'с.Бачково',
-    type: 'summerhouse',                         
-    typeLabel: ' 🏡 Вила ',    
-    price: '40000',                       
+    deal: 'sell',
+    city: 'asenovgrad',
+    cityLabel: 'Асеновград',
+    type: 'parcel',
+    typeLabel: '🌍 Парцел',
+    price: '48 025',
     priceUnit: '€',
-    priceRaw: 40000,                
-    size: 346,                                 
-    isNew: true,                         
-    featured: true,                 
-    title: 'Лятна Вила в село Бачково',
-    location: '📍 Бачково, Пловдив',
+    priceRaw: 48 025,
+    size: 1921,
+    isNew: true,
+    featured: true,
+    title: 'Продажба Парцел, Шкилово, гр. Асеновград 1925m²',
+    location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
-    feats: ['🏡 Вила', '📐 27 м²', '🏡 Сглобяемакъща', '🌳 Двор', '📐 346 м²'],      
-    href: 'listing.html?id=51'                                           
+    feats: ['🌍 Парцел', '📐 1921 м²'],
+    href: 'listing.html?id=51'
+  },                                      
   }
 
 ];
