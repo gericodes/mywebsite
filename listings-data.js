@@ -900,8 +900,27 @@ const LISTINGS = [
     feats: ['🛏 4 стаи', '📐 118 м²', '🅿️ Гараж'],      
     href: 'listing.html?id=50'                                           
   },
-                    
-  }
+  {
+    id: 51,
+    deal: 'sell',
+    city: 'asenovgrad',
+    cityLabel: 'Асеновград',
+    type: 'parcel',
+    typeLabel: '🌍 Парцел',
+    price: '48 025',
+    priceUnit: '€',
+    priceRaw: 48 025,
+    size: 1921,
+    isNew: true,
+    featured: true,
+    title: 'Продажба Парцел, Шкилово, гр. Асеновград 1925m²',
+    location: '📍 Асеновград',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
+    feats: ['🌍 Парцел', '📐 1921 м²'],
+    href: 'listing.html?id=51'
+  },                   
+                  
+  },
 
 ];
 
