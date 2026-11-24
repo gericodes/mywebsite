@@ -898,7 +898,26 @@ const LISTINGS = [
     location: '📍 Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/50/1.jpg?raw=true',
     feats: ['🛏 4 стаи', '📐 118 м²', '🅿️ Гараж'],      
-    href: 'listing.html?id=50'                                           
+    href: 'listing.html?id=50'
+  },
+  {
+    id: 51,
+    deal: 'sell',
+    city: 'belashtitsa',
+    cityLabel: 'БЕЛАЩИЦА',
+    type: 'apartment',
+    typeLabel: '🏢 Апартамент',
+    price: '92 375',
+    priceUnit: '€',
+    priceRaw: 92375,
+    size: 74,
+    isNew: true,
+    featured: true,
+    title: 'Двустаен апартамент в нова сграда – Акт 14',
+    location: '📍 с. Белащица',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
+    feats: ['🛏 2 стаи', '📐 73,90 м²', '🏢 Етаж 2/3', '🏗 Акт 14'],
+    href: 'listing.html?id=51'                                           
   }                          
   
 
