@@ -2611,7 +2611,7 @@ function showToast(msg) {
 //  SHARE
 // ══════════════════════════════
 function shareLink() {
-  const url = 'https://imotnatochka.com/s/' + listing.id + '.html';
+  const url = 'https://imotnatochka.com/s/' + listing.id;
   if (navigator.share) {
     navigator.share({ title: listing.title, url: url }).catch(() => {});
   } else if (navigator.clipboard) {
