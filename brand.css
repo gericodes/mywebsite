@@ -61,7 +61,11 @@ footer { background: var(--navy-deep); }
 
 /* ── Карти с обяви ── */
 .listing-card { border-radius: 10px; }
-.card-img { position: relative; background: #e9e7e1; overflow: hidden; }
+.card-img {
+  position: relative; overflow: hidden;
+  background-color: #e9e7e1;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat;
+}
 .card-img .card-photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; display: block;
@@ -71,7 +75,9 @@ footer { background: var(--navy-deep); }
 .card-img .card-img-overlay, .card-img::after { z-index: 1; }
 .card-type-badge, .badge-new, .card-badge { z-index: 2; }
 .card-img.no-photo {
-  background: var(--navy) url('/photos/logo-light.png') center / 38% no-repeat;
+  background-color: var(--navy);
+  background-image: url('/photos/logo-light.png');
+  background-size: 38% !important;
 }
 .card-img.no-photo .card-photo { display: none; }
 .badge-rent { background: var(--navy); color: #fff; }
