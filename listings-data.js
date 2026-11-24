@@ -923,13 +923,87 @@ const LISTINGS = [
 
 ];
 
+// ── Помощни функции за визията на картите ──────────────────────────────────
+const GH_RAW = /^https:\/\/github\.com\/gericodes\/mywebsite\/blob\/main\/([^?]+)\?raw=true$/;
+
+// Снимките се зареждат директно от сайта (по-бързо), а за картите се
+// използва компресирана .w.webp версия, ако има такава.
+function localImg(url) {
+  const m = GH_RAW.exec(url || '');
+  return m ? '/' + m[1] : url;
+}
+function cardImg(listing) {
+  if (listing.thumb) return listing.thumb;
+  const m = GH_RAW.exec(listing.img || '');
+  if (!m) return listing.img;
+  return '/' + m[1].replace(/\.(jpe?g|png)$/i, '.w.webp');
+}
+
+const ICONS = {
+  bed:   '<path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2M21 18v2M6 10V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/>',
+  area:  '<path d="M4 4h16v16H4z"/><path d="M4 9h3M4 14h3M9 4v3M14 4v3"/>',
+  bath:  '<path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/>',
+  tree:  '<path d="M12 22v-6M12 2l6 9h-3l4 5H5l4-5H6z"/>',
+  crane: '<path d="M6 21V4l12 3M6 7h14M16 7v5M4 21h6"/>',
+  park:  '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3"/>',
+  floor: '<path d="M4 21V5l8-3 8 3v16M4 21h16M9 9h2M13 9h2M9 13h2M13 13h2M10 21v-4h4v4"/>',
+  land:  '<path d="M3 20l5-9 4 6 3-4 6 7z"/><circle cx="17" cy="6" r="2"/>',
+  house: '<path d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-5h4v5"/>',
+  pin:   '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  shop:  '<path d="M4 9l1.5-5h13L20 9M4 9h16M4 9v11h16V9M9 20v-6h6v6"/>',
+  check: '<path d="M5 12l4 4 10-10"/>'
+};
+function icon(name) {
+  return `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.check}</svg>`;
+}
+const EMOJI_ICON = [
+  [/🛏/, 'bed'], [/📐/, 'area'], [/🚿|🛁|🚻/, 'bath'], [/🌳|🌲|🌿/, 'tree'],
+  [/🏗/, 'crane'], [/🅿/, 'park'], [/🏢|🏬/, 'floor'], [/🌍|🌾/, 'land'],
+  [/🏡|🏠/, 'house'], [/📍/, 'pin'], [/☕|🍰|🥐/, 'shop']
+];
+const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}️‍]/gu;
+// Превръща "🛏 3 стаи" в икона + текст
+function featParts(text) {
+  const t = String(text || '');
+  let name = null;
+  for (const [re, n] of EMOJI_ICON) { if (re.test(t)) { name = n; break; } }
+  const clean = t.replace(EMOJI_RE, '').replace(/\s+/g, ' ').trim();
+  return { name, clean };
+}
+function iconText(text, fallback) {
+  const { name, clean } = featParts(text);
+  if (!clean) return '';
+  return `${icon(name || fallback || 'check')}<span>${clean}</span>`;
+}
+// "130000" -> "130 000"
+function fmtPrice(p) {
+  const s = String(p).replace(/\s/g, '');
+  return /^\d+$/.test(s) ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : p;
+}
+// Заглавия, изписани изцяло с главни букви, се показват нормално
+function niceTitle(t) {
+  t = String(t || '').trim();
+  const letters = t.replace(/[^A-Za-zА-Яа-я]/g, '');
+  if (letters.length > 6 && letters === letters.toUpperCase()) {
+    t = t.toLowerCase();
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+  }
+  return t.replace(/(\d+)\s?m²/g, '$1 м²').replace(/(\d+)m2/g, '$1 м²');
+}
+
 // Builds a card element from a listing object.
 // mode: 'index' (simpler, click whole card) | 'obiavi' (with footer, filters)
 function buildListingCard(listing, mode) {
   const dealLabel = listing.deal === 'rent' ? 'Под наем' : 'Продажба';
   const dealClass = listing.deal === 'rent' ? 'badge-rent' : 'badge-sell';
   const newBadge = listing.isNew ? '<span class="badge-new">Ново</span>' : '';
-  const featsHtml = listing.feats.map(f => `<span class="feat">${f}</span>`).join('');
+  const featsHtml = (listing.feats || []).map(f => {
+    const html = iconText(f);
+    return html ? `<span class="feat">${html}</span>` : '';
+  }).join('');
+  const typeHtml = iconText(listing.typeLabel, 'house');
+  const locHtml = iconText(listing.location, 'pin');
+  const title = niceTitle(listing.title);
 
   const card = document.createElement('div');
   card.id = `listing-card-${listing.id}`;
@@ -942,8 +1016,13 @@ function buildListingCard(listing, mode) {
   card.dataset.newest = listing.id;
   card.dataset.featured = listing.featured ? 'true' : 'false';
 
+  const thumb = cardImg(listing);
+  const full = localImg(listing.img);
+
   card.innerHTML = `
-    <div class="card-img" style="background-image:url('${listing.img}')">
+    <div class="card-img">
+      <img class="card-photo" src="${thumb}" alt="${title.replace(/"/g, '&quot;')}" loading="lazy" decoding="async"
+           onerror="if(this.src.indexOf('.w.webp')>-1){this.src='${full}'}else{this.parentNode.classList.add('no-photo')}">
       <div class="card-img-overlay"></div>
       <span class="card-type-badge ${dealClass}">${dealLabel}</span>
       ${newBadge}
@@ -951,16 +1030,16 @@ function buildListingCard(listing, mode) {
     <div class="card-body">
       <div class="card-top">
         <div>
-          <div class="card-price">${listing.price} <span class="card-price-unit">${listing.priceUnit}</span></div>
+          <div class="card-price">${fmtPrice(listing.price)} <span class="card-price-unit">${listing.priceUnit}</span></div>
         </div>
         <span class="card-city-tag">${listing.cityLabel}</span>
       </div>
-      <div class="card-title">${listing.title}</div>
-      <div class="card-location">${listing.location}</div>
+      <div class="card-title">${title}</div>
+      <div class="card-location">${locHtml}</div>
       <div class="card-features">${featsHtml}</div>
     </div>
     <div class="card-footer">
-      <span class="card-prop-type">${listing.typeLabel}</span>
+      <span class="card-prop-type">${typeHtml}</span>
       <a href="${listing.href}" class="card-cta">Детайли →</a>
     </div>`;
 

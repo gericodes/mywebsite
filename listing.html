@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Детайли — Имотна точка</title>
+<meta name="theme-color" content="#1c2e40">
+<link rel="icon" type="image/png" href="/photos/icon-64.png">
+<link rel="apple-touch-icon" href="/photos/icon-180.png">
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Имотна точка">
 <meta property="og:title" content="Имотна точка — недвижими имоти">
@@ -281,7 +285,7 @@
   }
   .agent-avatar {
     width: 46px; height: 46px; border-radius: 50%;
-    background: url('https://github.com/gericodes/mywebsite/blob/main/photos/sofka.png?raw=true') center/cover;
+    background: url('/photos/sofka.w.webp') center/cover;
     flex-shrink: 0; border: 2px solid var(--accent-light);
   }
   .agent-name { font-weight: 600; font-size: .9rem; }
@@ -461,13 +465,14 @@
     .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
   }
 </style>
+<link rel="stylesheet" href="/brand.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" alt="Имотна точка" class="logo">
+    <img src="/photos/logo-web.png" alt="Имотна точка" class="logo">
   </a>
   <ul class="nav-links">
     <li><a href="obiavi.html">Обяви</a></li>
@@ -605,7 +610,7 @@
         <div>
           <div class="agent-name">Софка Кръстева</div>
           <div class="agent-role">Брокер, Имотна точка</div>
-          <div class="agent-rating">★★★★★ 4.9 (47 отзива)</div>
+          <div class="agent-rating">★★★★★ 5,0 в Google (7 отзива)</div>
         </div>
       </div>
       <div class="contact-form">
@@ -656,9 +661,9 @@
   <div class="footer-grid">
     <div>
       <a href="index.html" class="footer-logo">
-        <img src="https://github.com/gericodes/mywebsite/blob/main/photos/logo.png?raw=true" alt="Имотна точка" class="logo">
+        <img src="/photos/logo-light.png" alt="Имотна точка" class="logo">
       </a>
-      <p class="footer-desc">Вашият доверен партньор за апартаменти и жилища в Област Пловдив. Качество, прозрачност и грижа за всеки клиент.</p>
+      <p class="footer-desc">Вашият доверен партньор за имоти в Асеновград, Пловдив и региона. Качество, прозрачност и грижа за всеки клиент.</p>
     </div>
     <div>
       <div class="footer-heading">Навигация</div>
@@ -672,22 +677,22 @@
     <div>
       <div class="footer-heading">Градове</div>
       <ul class="footer-links">
-        <li><a href="#">Асеновград</a></li>
-        <li><a href="#">Пловдив</a></li>
+        <li><a href="obiavi.html?search=Асеновград">Асеновград</a></li>
+        <li><a href="obiavi.html?search=Пловдив">Пловдив</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-heading">Контакт</div>
       <ul class="footer-links">
-        <li><a href="#">📞 +359 88 876 0288</a></li>
-        <li><a href="#">✉️ imotnatochka@gmail.com</a></li>
-        <li><a href="#">📍 Асеновград, ул.Крайбрежна 6</a></li>
+        <li><a href="tel:+359888760288"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+359 88 876 0288</a></li>
+        <li><a href="mailto:imotnatochka@gmail.com"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>imotnatochka@gmail.com</a></li>
+        <li><a href="https://share.google/d3ULJxz6m41fHI3m4" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Асеновград, ул. Крайбрежна 6</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Имотна точка. Всички права запазени.</span>
-    <span>Направено с ❤️ за <a href="#">вашия нов дом</a></span>
+    <span>Имотна точка — недвижими имоти, Асеновград</span>
   </div>
 </footer>
 
@@ -705,16 +710,16 @@ const listings = {
     type: 'Shop',
     rooms: 2, bedrooms: 0, baths: 1, size: 60, floor: '1/5', year: '2015',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/1/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/1/10.jpg?raw=true',
+      '/1/1.jpg',
+      '/1/2.jpg',
+      '/1/3.jpg',
+      '/1/4.jpg',
+      '/1/5.jpg',
+      '/1/6.jpg',
+      '/1/7.jpg',
+      '/1/8.jpg',
+      '/1/9.jpg',
+      '/1/10.jpg',
     ],
     description: `<p> ДАВА ПОД НАЕМ ЗАВЕДЕНИЕ – 60 кв.м, Асеновград, до стадиона'. 
     <br>  Имотна точка предлага под наем напълно обзаведено търговско помещение с площ 60 кв.м в Асеновград, близо до стадиона. Подходящо е за кафене, бързи закуски, сладкарница и други дейности.
@@ -743,12 +748,12 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 1, baths: 1, size: 72, floor: '1/3', year: 1950,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/2/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/2/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/2/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/2/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/2/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/2/6.jpg?raw=true',
+      '/2/1.jpg',
+      '/2/2.jpg',
+      '/2/3.jpg',
+      '/2/4.jpg',
+      '/2/5.jpg',
+      '/2/6.jpg',
     ],
     description: `<p>Продавам етаж от къща 71.62кв, (реални) старо строителство. 
     Втори етаж (първи жилищен) от четириетажна сграда с източно-западно изложение, като на първия етаж се намира търговски обект, а на последният таванско помещение.
@@ -779,25 +784,25 @@ const listings = {
     type: 'Къща',
     rooms: 3, bedrooms: 2, baths: 2, size: 190, floor: '1 етаж', year: 1960,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/3/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/10.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/11.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/12.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/13.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/14.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/15.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/16.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/17.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/18.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/3/19.jpg?raw=true',
+      '/3/1.jpg',
+      '/3/2.jpg',
+      '/3/3.jpg',
+      '/3/4.jpg',
+      '/3/5.jpg',
+      '/3/6.jpg',
+      '/3/7.jpg',
+      '/3/8.jpg',
+      '/3/9.jpg',
+      '/3/10.jpg',
+      '/3/11.jpg',
+      '/3/12.jpg',
+      '/3/13.jpg',
+      '/3/14.jpg',
+      '/3/15.jpg',
+      '/3/16.jpg',
+      '/3/17.jpg',
+      '/3/18.jpg',
+      '/3/19.jpg',
     ],
     description: `<p>Предлагаме за продажба реновирана селска къща с просторен облагороден двор.
     <br>Имотът се намира в едно китно селце на 20км. от Асеновград.
@@ -832,14 +837,14 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 84, floor: '5-ти / 6', year: 2023,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/5/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/5/8.jpg?raw=true',
+      '/5/1.jpg',
+      '/5/2.jpg',
+      '/5/3.jpg',
+      '/5/4.jpg',
+      '/5/5.jpg',
+      '/5/6.jpg',
+      '/5/7.jpg',
+      '/5/8.jpg',
     ],
     description: `<p>ТРИСТАЕН АПАРТАМЕНТ С Акт 16!
     <br>Тристаен апартамент в новопостроена жилищна сграда, находяща се на комуникативно място, в близост до гара, автогара, пазар.
@@ -869,13 +874,13 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 2, baths: 2, size: 68, floor: '1-ви / 3', year: 2027,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/6/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/6/7.jpg?raw=true',
+      '/6/1.jpg',
+      '/6/2.jpg',
+      '/6/3.jpg',
+      '/6/4.jpg',
+      '/6/5.jpg',
+      '/6/6.jpg',
+      '/6/7.jpg',
   ],
     description: `<p>За продажба!
    <br>ИМОТНА ТОЧКА предлага за продажба!
@@ -907,7 +912,7 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 70, floor: '5-ти / 6', year: 2028,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/7/1.jpg?raw=true',
+      '/7/1.jpg',
     ],
     description: `<p>НОВА ЖИЛИЩНА СГРАДА !!ДИРЕКТНИ ПРОДАЖБИ БЕЗ ДОПЪЛНИТЕЛНА КОМИСИОНА ОТ КУПУВАЧ !
     <br>ВЪЗМОЖНОСТ ЗА РАЗСРОЧЕНО ПЛАЩАНЕ!
@@ -946,8 +951,8 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 73, floor: '3-ти / 6', year: 2028,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/8/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/8/2.jpg?raw=true',
+      '/8/1.jpg',
+      '/8/2.jpg',
     ],
     description: `<p>!! НОВА ЖИЛИЩНА СГРАДА !!
     <p>Стартираме проекта на две нови жилищни сгради с прекрасни жилища!
@@ -982,8 +987,8 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 91, floor: '6-ти / 6', year: 2028,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/9/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/9/2.jpg?raw=true',
+      '/9/1.jpg',
+      '/9/2.jpg',
     ],
     description: `<p>За продажба!
     <br>Двустаен апартамент със застроена площ 80.56кв.м.
@@ -1016,8 +1021,8 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 66, floor: '3-ти / 6', year: 2029,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/10/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/10/2.jpg?raw=true',
+      '/10/1.jpg',
+      '/10/2.jpg',
     ],
     description: `<p>!! НОВА ЖИЛИЩНА СГРАДА !!
     <p>Стартираме проекта нова жилищна сграда с прекрасни жилища!
@@ -1051,14 +1056,14 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 93, floor: '4-ти / 6', year: 2029,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/11/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/11/8.jpg?raw=true',
+      '/11/1.jpg',
+      '/11/2.jpg',
+      '/11/3.jpg',
+      '/11/4.jpg',
+      '/11/5.jpg',
+      '/11/6.jpg',
+      '/11/7.jpg',
+      '/11/8.jpg',
     ],
     description: `<p>ЗА ПРОДАЖБА!
     <br>- ДВУСТАЙНИ АПАРТАМЕНТИ
@@ -1090,7 +1095,7 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 100, floor: '4-ти / 6', year: 2029,
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/12/1.jpg?raw=true',
+      '/12/1.jpg',
     ],
     description: `<p>Предлагаме за продажба тристаен апартамент в новострояща се жилищна сграда с асансьор.
     <p>📍 Локация
@@ -1128,7 +1133,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 4219, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/13/1.jpg?raw=true',
+      '/13/1.jpg',
     ],
     description: `<p>ПРОДАВА СЕ  имот в землището на с. Катуница с голям потенциал за различни дейности. 
     <br>Площ 4219 кв.м.
@@ -1158,8 +1163,8 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 80, floor: '3/6', year: '2028',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/14/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/14/2.jpg?raw=true',
+      '/14/1.jpg',
+      '/14/2.jpg',
     ],
     description: `<p>Предлагаме за продажба тристаен апартамент в новострояща се жилищна сграда с асансьор.
     <p>📍 Локация
@@ -1195,7 +1200,7 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 90, floor: '1/6', year: '2028',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/15/1.jpg?raw=true',
+      '/15/1.jpg',
     ],
     description: `<p>Предлагаме за продажба тристаен апартамент в новострояща се жилищна сграда с асансьор.
     <p>📍 Локация
@@ -1234,7 +1239,7 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 71, floor: '1/4', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/16/1.jpg?raw=true',
+      '/16/1.jpg',
     ],
     description: `<p>БЕЗ КОМИСИОНА! ЗА ПРОДАЖБА!Двустайно жилище със самостоятелен двор.
     <br>ПЛОЩ /без общи части/ 58кв.м.- разпределени в коридор, дневна с кухня, спалня, баня и тоалетна+складово помещение в жилището.
@@ -1269,7 +1274,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 1440, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/17/1.jpg?raw=true',
+      '/17/1.jpg',
     ],
     description: `<p>Предлагаме за продажба имот с площ 1440кв.м, намиращ се в местността Шкилово. 
       Имотът се намира в разрастващ се район, където се променя предназначението на земята за жилищно строителство. 
@@ -1295,15 +1300,15 @@ const listings = {
     type: 'Къща',
     rooms: 0, bedrooms: 0, baths: 0, size: 189, floor: '2/2', year: '1960',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/18/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/18/9.jpg?raw=true',
+      '/18/1.jpg',
+      '/18/2.jpg',
+      '/18/3.jpg',
+      '/18/4.jpg',
+      '/18/5.jpg',
+      '/18/6.jpg',
+      '/18/7.jpg',
+      '/18/8.jpg',
+      '/18/9.jpg',
     ],
     description: `<p>Предлагаме Ви автентична къща, дялан камък в намираща се на уникално красиво място в Родопите.
     <br>Къщата е на два етажа по 52кв.м. с два входа, здрава и стабилна, искаща вътрешен ремонт спрямо желанието на бъдещия собственик.
@@ -1332,28 +1337,28 @@ const listings = {
     type: 'Къща',
     rooms: 8, bedrooms: 5, baths: 3, size: 460, floor: '2/3', year: '2000',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/19/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/10.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/11.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/12.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/13.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/14.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/15.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/16.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/17.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/18.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/19.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/20.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/21.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/19/22.jpg?raw=true',
+      '/19/1.jpg',
+      '/19/2.jpg',
+      '/19/3.jpg',
+      '/19/4.jpg',
+      '/19/5.jpg',
+      '/19/6.jpg',
+      '/19/7.jpg',
+      '/19/8.jpg',
+      '/19/9.jpg',
+      '/19/10.jpg',
+      '/19/11.jpg',
+      '/19/12.jpg',
+      '/19/13.jpg',
+      '/19/14.jpg',
+      '/19/15.jpg',
+      '/19/16.jpg',
+      '/19/17.jpg',
+      '/19/18.jpg',
+      '/19/19.jpg',
+      '/19/20.jpg',
+      '/19/21.jpg',
+      '/19/22.jpg',
     ],
     description: `<p>Предлагаме за продажба двуетажна къща с механа, в живописното с. Павелско!
     <br>Имотът е подходящ за "Къща за гости".
@@ -1396,8 +1401,8 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 3998, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/20/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/20/2.jpg?raw=true',
+      '/20/1.jpg',
+      '/20/2.jpg',
     ],
     description: `<p>✨ Представяме ви земя с площ от 3998 м² 📏, подходяща за разсадник, складова база и други дейности в землището на гр. Куклен, с достъп от Пловдивския път! 🏞️
     <p>Цена 45 000 € 💰 , изключително изгодна, като се има предвид потенциала на имота. Не пропускайте този шанс!
@@ -1424,8 +1429,8 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 0, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/21/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/21/2.jpg?raw=true',
+      '/21/1.jpg',
+      '/21/2.jpg',
     ],
     description: `<p>🏡 Търсите ли имот подходящ за промишлена или търговска дейност ✨
     <p>Представяме Ви невероятна възможност за инвестиция! 6301 m² земеделска земя в кв. Долни Воден, близо до асеновградско шосе! 🏞️☀️,
@@ -1458,17 +1463,17 @@ const listings = {
     type: 'Къща',
     rooms: 5, bedrooms: 3, baths: 1, size: 1092, floor: '2/2', year: '',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/22/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/10.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/22/11.jpg?raw=true',
+      '/22/1.jpg',
+      '/22/2.jpg',
+      '/22/3.jpg',
+      '/22/4.jpg',
+      '/22/5.jpg',
+      '/22/6.jpg',
+      '/22/7.jpg',
+      '/22/8.jpg',
+      '/22/9.jpg',
+      '/22/10.jpg',
+      '/22/11.jpg',
     ],
     description: `<p>ЗА ПРОДАЖБА!!!
     <br>🏡 ПРОДАВА СЕ къща с ъглов парцел в центъра на с. Патриарх Евтимово.
@@ -1510,17 +1515,17 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 10746, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/23/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/10.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/23/11.jpg?raw=true',
+      '/23/1.jpg',
+      '/23/2.jpg',
+      '/23/3.jpg',
+      '/23/4.jpg',
+      '/23/5.jpg',
+      '/23/6.jpg',
+      '/23/7.jpg',
+      '/23/8.jpg',
+      '/23/9.jpg',
+      '/23/10.jpg',
+      '/23/11.jpg',
     ],
     description: `<p>Предлагаме за продажба!
     <br>Изключително рядък имот с голям потенциал!
@@ -1551,13 +1556,13 @@ const listings = {
     type: 'Други',
     rooms: 0, bedrooms: 0, baths: 0, size: 300, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/24/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/24/7.jpg?raw=true',
+      '/24/1.jpg',
+      '/24/2.jpg',
+      '/24/3.jpg',
+      '/24/4.jpg',
+      '/24/5.jpg',
+      '/24/6.jpg',
+      '/24/7.jpg',
     ],
     description: `<p>✨Търсите перфектното място ✨
     <p>🎉Представяме ви невероятна възможност за наем на търговски имот, идеален за търговия на едро и дребно! 🎉
@@ -1588,12 +1593,12 @@ const listings = {
     type: 'Къща',
     rooms: 4, bedrooms: 3, baths: 3, size: 500, floor: '2/2', year: '2028',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/25/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/25/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/25/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/25/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/25/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/25/6.jpg?raw=true',
+      '/25/1.jpg',
+      '/25/2.jpg',
+      '/25/3.jpg',
+      '/25/4.jpg',
+      '/25/5.jpg',
+      '/25/6.jpg',
     ],
     description: `<p>🏡✨ Мечтаете за уютен дом в Пловдив? 
     <p>✨🏡Самостоятелни къщи в затворен комплекс в гр. Пловдив.
@@ -1628,13 +1633,13 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 98, floor: '4/4', year: '2026',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/26/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/26/7.jpg?raw=true',
+      '/26/1.jpg',
+      '/26/2.jpg',
+      '/26/3.jpg',
+      '/26/4.jpg',
+      '/26/5.jpg',
+      '/26/6.jpg',
+      '/26/7.jpg',
     ],
     description: `<p>БЕЗ КОМИСИОНА!
     <br>Двустаен апартамент, състоящ се от коридор, дневна с кухня, една спалня, баня и тоалетна, склад, голяма тераса, с гледка към Стара планина. Площта на апартамента без общи части е 83.63 кв.м.
@@ -1684,13 +1689,13 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 2, size: 117.67, floor: '2/3', year: '2027',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/27/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/27/7.jpg?raw=true',
+      '/27/1.jpg',
+      '/27/2.jpg',
+      '/27/3.jpg',
+      '/27/4.jpg',
+      '/27/5.jpg',
+      '/27/6.jpg',
+      '/27/7.jpg',
     ],
     description: `<p>Апартаментът се състои от антре, дневна с кухненски бокс, две спални, баня с тоалетна, тоалетна, две тераси складово помещение в апартамента.
     <br>Застроената площ е 99,92кв.м.
@@ -1725,8 +1730,8 @@ const listings = {
     type: 'Гараж',
     rooms: 0, bedrooms: 0, baths: 0, size: 20, floor: '1/5', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/28/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/28/2.jpg?raw=true',
+      '/28/1.jpg',
+      '/28/2.jpg',
     ],
     description: `<p>Предлагаме за наемане на подземно паркомясто. Контрол на достъпа. До новия Лидъл</p>`,
     specs: [
@@ -1751,9 +1756,9 @@ const listings = {
     type: 'Гараж',
     rooms: 0, bedrooms: 0, baths: 0, size: 20, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/29/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/29/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/29/3.jpg?raw=true',
+      '/29/1.jpg',
+      '/29/2.jpg',
+      '/29/3.jpg',
     ],
     description: `<p>Предлагат се под наем две покрити паркоместа с по площ 20кв.м.
     <br>Контрол на достъпа с бариера.
@@ -1780,13 +1785,13 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 120, floor: '4/4', year: '2027',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/30/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/30/7.jpg?raw=true',
+      '/30/1.jpg',
+      '/30/2.jpg',
+      '/30/3.jpg',
+      '/30/4.jpg',
+      '/30/5.jpg',
+      '/30/6.jpg',
+      '/30/7.jpg',
     ],
     description: `<p>БЕЗ КОМИСИОНА!!
     <br>Тристаен апартамент в нова луксозна жилищна сграда. Жилището се състои от просторна дневна с кухненска част и трапезария с площ 26кв.м., две спални по около 13кв.м., баня с тоалетна, тоалетна и една панорамни тераса- веранда с площ от 24кв.м..
@@ -1837,12 +1842,12 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 73.9, floor: '2/3', year: '2027',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/31/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/31/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/31/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/31/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/31/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/31/6.jpg?raw=true',
+      '/31/1.jpg',
+      '/31/2.jpg',
+      '/31/3.jpg',
+      '/31/4.jpg',
+      '/31/5.jpg',
+      '/31/6.jpg',
     ],
     description: `<p>За продажба!
     <br>ИМОТНА ТОЧКА предлага за продажба!
@@ -1910,7 +1915,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 1560, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/33/1.jpg?raw=true',
+      '/33/1.jpg',
     ],
     description: `<p>Предлагаме за продажба имот с площ 1560кв.м, намиращ се в местността Шкилово. Имотът се намира в разрастващ се район, 
       където се променя предназначението на земята за жилищно строителство.</p>`,
@@ -1936,7 +1941,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 1152, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/35/1.jpg?raw=true',
+      '/35/1.jpg',
     ],
     description: `<p>Нива в местността 'Динкарасъ' с площ 1.152дка, трета категория</p>`,
     specs: [
@@ -1961,7 +1966,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 992, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/36/1.jpg?raw=true',
+      '/36/1.jpg',
     ],
     description: `<p>ПРЕДЛАГАМЕ ЗА ПРОДАЖБА
     <br>Парцел в ПЗ Север с площ 982кв.м, подходящ за промишлена дейност.</p>`,
@@ -1987,17 +1992,17 @@ const listings = {
     type: 'Апартамент',
     rooms: 3, bedrooms: 2, baths: 1, size: 56, floor: '6/7', year: '1986',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/37/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/8.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/9.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/10.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/37/11.jpg?raw=true',
+      '/37/1.jpg',
+      '/37/2.jpg',
+      '/37/3.jpg',
+      '/37/4.jpg',
+      '/37/5.jpg',
+      '/37/6.jpg',
+      '/37/7.jpg',
+      '/37/8.jpg',
+      '/37/9.jpg',
+      '/37/10.jpg',
+      '/37/11.jpg',
       
     ],
     description: `<p>ЗА ПРОДАЖБА!!!
@@ -2034,11 +2039,11 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 327, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/38/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/38/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/38/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/38/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/38/5.jpg?raw=true',
+      '/38/1.jpg',
+      '/38/2.jpg',
+      '/38/3.jpg',
+      '/38/4.jpg',
+      '/38/5.jpg',
 
     ],
     description: `<p>Много хубав, панорамен парцел с площ 327кв.м. в горната част на с.Наречен. Достъп по асфалтов път. 
@@ -2065,13 +2070,13 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 1319, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/39/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/39/7.jpg?raw=true',
+      '/39/1.jpg',
+      '/39/2.jpg',
+      '/39/3.jpg',
+      '/39/4.jpg',
+      '/39/5.jpg',
+      '/39/6.jpg',
+      '/39/7.jpg',
     ],
     description: `<p>Предлагаме!
       <br>Парцел за строителство, в района на язовир '40-те извора'. Имотът е с площ 1319кв.м. 
@@ -2100,13 +2105,13 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 4071, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/40/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/40/7.jpg?raw=true',
+      '/40/1.jpg',
+      '/40/2.jpg',
+      '/40/3.jpg',
+      '/40/4.jpg',
+      '/40/5.jpg',
+      '/40/6.jpg',
+      '/40/7.jpg',
     ],
     description: `<p>Предлагаме за продажба ИМОТ с голяма площ от 4071кв.м в село Милево, даващ възможност да се развие в различни насоки: За Жилищен, За земеделски,За производство и складове, За фотоволтаици. Срещу имота има изграден соларен парк.
     <br>Имотът се състои от три парцела в регулация с площи: 900кв.м, 840кв.м и 760кв.м и един зем. земя с площ 1571кв.м. В момента се използва за зеленчукова градина, има действаща сонда, ток на границата към улицата.</p>`,
@@ -2132,13 +2137,13 @@ const listings = {
     type: 'Къща',
     rooms: 4, bedrooms: 2, baths: 1, size: 130, floor: '1/1', year: '1970',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/41/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/41/7.jpg?raw=true',
+      '/41/1.jpg',
+      '/41/2.jpg',
+      '/41/3.jpg',
+      '/41/4.jpg',
+      '/41/5.jpg',
+      '/41/6.jpg',
+      '/41/7.jpg',
     ],
     description: `<p>Предлага се за продажба имот/бивша ферма/ в с. Поройна.
     <br>Имотът е с площ 1280кв.м в регулация. В него са разположени 4 сгради
@@ -2172,11 +2177,11 @@ const listings = {
     type: 'Къща',
     rooms: 4, bedrooms: 2, baths: 1, size: 64, floor: '2/2', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/42/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/42/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/42/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/42/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/42/5.jpg?raw=true',
+      '/42/1.jpg',
+      '/42/2.jpg',
+      '/42/3.jpg',
+      '/42/4.jpg',
+      '/42/5.jpg',
     ],
     description: `<p>ЗА ПРОДАЖБА!
     <br>Самостоятелна, малка, двуетажна къща с голямо дворно място.
@@ -2207,12 +2212,12 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 760, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/43/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/43/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/43/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/43/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/43/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/43/6.jpg?raw=true',
+      '/43/1.jpg',
+      '/43/2.jpg',
+      '/43/3.jpg',
+      '/43/4.jpg',
+      '/43/5.jpg',
+      '/43/6.jpg',
     ],
     description: `<p>ЗА ПРОДАЖБА: Имот със статут на овощна градина, близост до регулацията на село Руен,
     подходящ за промяна на предназначението и построяване на извън градска къща/вила с хубав голям двор.
@@ -2240,7 +2245,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 980, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/44/1.jpg?raw=true',
+      '/44/1.jpg',
     ],
     description: `<p>Имотна точка предлага за продажба парцел с площ 980кв.м. С ток и вода със сонда в имота.</p>`,
     specs: [
@@ -2267,13 +2272,13 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 887, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/45/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/6.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/45/7.jpg?raw=true',
+      '/45/1.jpg',
+      '/45/2.jpg',
+      '/45/3.jpg',
+      '/45/4.jpg',
+      '/45/5.jpg',
+      '/45/6.jpg',
+      '/45/7.jpg',
     ],
     description: `<p>Предлагаме за продажба:
     <br>Парцел за строителство, в района на с.Сини връх. Имотът е с площ 887кв.м. 
@@ -2301,7 +2306,7 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 1800, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/46/1.jpg?raw=true',
+      '/46/1.jpg',
     ],
     description: `<p>За продажба:
     <br>Имот с площ 1800кв.м. в местността Шкилово</p>`,
@@ -2327,8 +2332,8 @@ const listings = {
     type: 'Парцел',
     rooms: 0, bedrooms: 0, baths: 0, size: 9000, floor: '—', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/48/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/48/2.jpg?raw=true',
+      '/48/1.jpg',
+      '/48/2.jpg',
     ],
     description: `<p>За продажба!
     <br>Много панорамен имот 9дка с гледка към язовир '40-те Извора'. Достъп на асфалтов път.</p>`,
@@ -2354,14 +2359,14 @@ const listings = {
     type: 'Други',
     rooms: 0, bedrooms: 0, baths: 0, size: 927, floor: '2/2', year: '—',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/49/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/4.png?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/5.png?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/6.png?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/7.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/49/8.jpg?raw=true',
+      '/49/1.jpg',
+      '/49/2.jpg',
+      '/49/3.jpg',
+      '/49/4.png',
+      '/49/5.png',
+      '/49/6.png',
+      '/49/7.jpg',
+      '/49/8.jpg',
     ],
     description: `<p>Агенция за недвижими имоти ИМОТНА ТОЧКА, предлага за продажба Напълно оборудван цех за производство МЕБЕЛИ в гр. Асеновград
     <br>Предлагаме на вашето внимание напълно оборудван цех за производство на мебели, разположен в източна индустриална зона на гр.Асеновград.
@@ -2405,12 +2410,12 @@ const listings = {
     type: 'Апартамент',
     rooms: 2, bedrooms: 1, baths: 1, size: 73.9, floor: '2', year: '2026',
     images: [
-      'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/51/2.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/51/3.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/51/4.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/51/5.jpg?raw=true',
-      'https://github.com/gericodes/mywebsite/blob/main/51/6.jpg?raw=true',
+      '/51/1.jpg',
+      '/51/2.jpg',
+      '/51/3.jpg',
+      '/51/4.jpg',
+      '/51/5.jpg',
+      '/51/6.jpg',
     ],
     description: `<p>!!! ПРОДАВА СЕ ДВУСТАЕН АПАРТАМЕНТ В НОВА ЖИЛИЩНА СГРАДА С АКТ 14 !!!
 <br>Жилището се намира в с. Белащица – изключително атрактивно село в Родопската яка, в непосредствена близост до Пловдив.

@@ -1,0 +1,140 @@
+/* ───────────────────────────────────────────────────────────────
+   ИМОТНА ТОЧКА — фирмена визия
+   Зарежда се СЛЕД стиловете на всяка страница и ги уеднаквява
+   с логото: червено (#DC4240) + тъмносиньо (#212E3F).
+   За да смените цвят на целия сайт — променете го само тук.
+   ─────────────────────────────────────────────────────────────── */
+
+:root {
+  --ink: #1b2533;          /* текст */
+  --navy: #1c2e40;         /* тъмните секции и бутони (от логото) */
+  --navy-deep: #161f2b;    /* футър */
+  --accent: #ee2d36;       /* червено от логото */
+  --accent-dark: #c41f28;  /* за малък текст и hover */
+  --accent-light: #fcebea;
+  --mid: #55606e;
+  --muted: #8a93a0;
+  --line: rgba(27, 37, 51, 0.10);
+  --white: #fafaf8;
+  --star: #f2b01e;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ── Бутони ── */
+.nav-cta, .btn-primary { background: var(--navy); }
+.nav-cta:hover, .btn-primary:hover { background: var(--accent); }
+.search-btn { background: var(--accent); }
+.search-btn:hover { background: var(--navy); }
+
+/* ── Малки надписи в червено (по-тъмен нюанс за четимост) ── */
+.hero-tag, .section-label, .sf-label, .card-city-tag { color: var(--accent-dark); }
+.how-section .section-label { color: #ff8a86 !important; }
+.hero-title em { color: var(--accent); }
+.card-city-tag { background: var(--accent-light); }
+
+/* ── Навигация и лого ── */
+nav { background: rgba(250, 250, 248, 0.92); }
+nav .logo { height: 64px; max-height: 64px; width: auto; display: block; }
+nav .footer-logo, nav .nav-logo { margin: 0; }
+footer .logo { height: 72px; max-height: 72px; width: auto; }
+footer { background: var(--navy-deep); }
+.footer-links a:hover, .footer-bottom a { color: #ff8a86; }
+.footer-links a { display: inline-flex; align-items: center; gap: .5rem; }
+.footer-links .ico { width: 16px; height: 16px; opacity: .8; }
+
+/* ── Икони (вместо емоджи) ── */
+.ico { width: 15px; height: 15px; flex-shrink: 0; vertical-align: -2px; }
+.feat { gap: .35rem; }
+.feat .ico, .card-location .ico, .card-prop-type .ico { color: var(--accent); }
+.card-location { display: flex; align-items: center; gap: .35rem; }
+.card-prop-type { display: inline-flex; align-items: center; gap: .35rem; color: var(--mid); }
+.card-features { flex-wrap: wrap; row-gap: .5rem; column-gap: 1.1rem; }
+
+.af-icon {
+  background: var(--accent-light); color: var(--accent);
+  border-radius: 10px;
+}
+.af-icon .ico { width: 22px; height: 22px; }
+.step-icon { color: var(--accent); }
+.step-icon .ico { width: 30px; height: 30px; }
+
+/* ── Карти с обяви ── */
+.listing-card { border-radius: 10px; }
+.card-img { position: relative; background: #e9e7e1; overflow: hidden; }
+.card-img .card-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.listing-card:hover .card-photo { transform: scale(1.04); }
+.card-img .card-img-overlay, .card-img::after { z-index: 1; }
+.card-type-badge, .badge-new, .card-badge { z-index: 2; }
+.card-img.no-photo {
+  background: var(--navy) url('/photos/logo-light.png') center / 38% no-repeat;
+}
+.card-img.no-photo .card-photo { display: none; }
+.badge-rent { background: var(--navy); color: #fff; }
+.badge-sell { background: var(--accent); color: #fff; }
+.card-type-badge, .badge-new { border-radius: 4px; }
+.badge-new { background: #fff; color: var(--accent-dark); }
+.card-cta:hover { color: var(--accent); }
+.card-price { color: var(--ink); }
+
+/* ── Секции ── */
+.how-section { background: var(--navy); }
+.step:hover { border-color: var(--accent); }
+.cta-section { background: linear-gradient(135deg, #ee2d36 0%, #b31c24 100%); }
+.btn-white { color: var(--navy); }
+.testi-stars { color: var(--star); }
+.testi-card, .step, .search-bar, .about-img-main { border-radius: 10px; }
+.about-img-card { background: var(--navy); border-radius: 10px; }
+.about-card-num { color: #ff8a86; }
+.google-rating {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.5rem; padding: .6rem 1.1rem;
+  border: 1px solid var(--line); border-radius: 999px; background: #fff;
+  font-size: .85rem; color: var(--ink); text-decoration: none;
+  transition: box-shadow .2s, transform .15s;
+}
+.google-rating:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); transform: translateY(-1px); }
+.google-rating .stars { color: var(--star); letter-spacing: .08em; }
+.stat-num .star { color: var(--star); font-size: .8em; }
+
+/* Формата за контакт */
+#contactForm input:focus, #contactForm textarea:focus {
+  outline: none; border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+#contactForm { border-radius: 10px !important; }
+
+/* ── Анимации: по-бързи и без големи празни зони ── */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .45s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* ── Телефон ── */
+@media (max-width: 1024px) {
+  nav { height: 72px; padding: 0 1.25rem; }
+  nav .logo { height: 50px; max-height: 50px; }
+  .hero { padding-top: 72px; min-height: auto; }
+  .hero-right { order: -1; height: 64vw; max-height: 420px; }
+  .hero-left { padding: 2.5rem 1.5rem 3rem; }
+  .hero-stats { margin-top: 2.5rem; }
+  .search-section { padding: 0 1.5rem; }
+  section { padding: 3.5rem 1.5rem; }
+}
+@media (max-width: 640px) {
+  .nav-cta { padding: .55rem 1rem; font-size: .75rem; }
+  .hero-title { font-size: 2.7rem; }
+  .hero-actions { flex-wrap: wrap; }
+  .listings-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .how-section .reveal > div { flex-direction: column; align-items: flex-start !important; gap: .25rem; }
+  .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
+}
+
+/* Полетата във формите ползват шрифта на сайта */
+input, textarea, select, button { font-family: inherit; }
