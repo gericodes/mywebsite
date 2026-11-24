@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Детайли — Имотна точка</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Имотна точка">
+<meta property="og:title" content="Имотна точка — недвижими имоти">
+<meta property="og:description" content="Покупка, продажба и наем на имоти в област Пловдив">
+<meta property="og:image" content="https://imotnatochka.com/photos/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2606,11 +2611,14 @@ function showToast(msg) {
 //  SHARE
 // ══════════════════════════════
 function shareLink() {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(window.location.href);
+  const url = 'https://imotnatochka.com/s/' + listing.id + '.html';
+  if (navigator.share) {
+    navigator.share({ title: listing.title, url: url }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url);
     showToast('Линкът е копиран в клипборда!');
   } else {
-    showToast('Копирайте линка от адресната лента');
+    showToast('Копирайте линка: ' + url);
   }
 }
 
