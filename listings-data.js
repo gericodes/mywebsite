@@ -402,7 +402,7 @@ const LISTINGS = [
     featured: false,
     title: 'Къща с голям двор',
     location: '📍 с. Патриарх Евтимово, Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/22/12.jpg?raw=true',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/22/1.jpg?raw=true',
     feats: ['🛏 5 стаи', '🏡 Къща', '🌳 Двор', '📐 1092 м²'],
     href: 'listing.html?id=22'
   },
