@@ -882,25 +882,6 @@ const LISTINGS = [
     href: 'listing.html?id=49'
   },  
   {
-    id: 50,
-    deal: 'sell',                            
-    city: 'asenovgrad',           
-    cityLabel: 'Асеновград',
-    type: 'apartment',                         
-    typeLabel: 'Апартамент',    
-    price: '130000',                       
-    priceUnit: '€',
-    priceRaw: 130000,                
-    size: 118,                                 
-    isNew: true,                         
-    featured: true,                 
-    title: 'ТРИСТАЕН АПАРТАМЕНТ С ГАРАЖ',
-    location: '📍 Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/50/1.jpg?raw=true',
-    feats: ['🛏 4 стаи', '📐 118 м²', '🅿️ Гараж'],      
-    href: 'listing.html?id=50'
-  },
-  {
     id: 51,
     deal: 'sell',
     city: 'belashtitsa',
