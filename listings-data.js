@@ -898,7 +898,26 @@ const LISTINGS = [
     location: '📍 с. Белащица',
     img: 'https://github.com/gericodes/mywebsite/blob/main/51/1.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 73,90 м²', '🏢 Етаж 2/3', '🏗 Акт 14'],
-    href: 'listing.html?id=51'                                           
+    href: 'listing.html?id=51'
+  },
+  {
+    id: 52,
+    deal: 'sell',
+    city: 'borovo',
+    cityLabel: 'БОРОВО',
+    type: 'house',
+    typeLabel: '🏡 Къща',
+    price: '45 000',
+    priceUnit: '€',
+    priceRaw: 45000,
+    size: 130,
+    isNew: true,
+    featured: false,
+    title: 'Двуетажна къща в с. Борово до Кръстова гора',
+    location: '📍 с. Борово, Асеновград',
+    img: 'https://imotstatic4.focus.bg/imot/photosimotbg/1/247//big1/1j179544668354247_Ii.jpg',
+    feats: ['🏡 Къща', '📐 130 м²', '🌳 Двор 200 м²', '🌲 До Кръстова гора'],
+    href: 'listing.html?id=52'                                           
   }                          
   
 
