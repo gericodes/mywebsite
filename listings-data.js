@@ -918,6 +918,25 @@ const LISTINGS = [
     img: 'https://imotstatic4.focus.bg/imot/photosimotbg/1/247//big1/1j179544668354247_Ii.jpg',
     feats: ['🏡 Къща', '📐 130 м²', '🌳 Двор 200 м²', '🌲 До Кръстова гора'],
     href: 'listing.html?id=52'                                           
+  },
+  {
+    id: 53,
+    deal: 'sell',
+    city: 'laki',
+    cityLabel: 'ЛЪКИ',
+    type: 'apartment',
+    typeLabel: '🏢 Апартамент',
+    price: '36 000',
+    priceUnit: '€',
+    priceRaw: 36000,
+    size: 52,
+    isNew: true,
+    featured: false,
+    title: 'Двустаен апартамент в центъра на гр. Лъки',
+    location: '📍 гр. Лъки',
+    img: 'https://github.com/gericodes/mywebsite/blob/main/53/1.jpg?raw=true',
+    feats: ['🛏 2 стаи', '📐 52 м²', '🏢 Етаж 5/5', '☀️ Южно изложение'],
+    href: 'listing.html?id=53'
   }                          
   
 
