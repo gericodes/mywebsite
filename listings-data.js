@@ -666,10 +666,10 @@ const LISTINGS = [
     size: 56,
     isNew: true,
     featured: true,
-    title: 'Продажба 2-стаен вкв. Изток, гр. Асеновград',
-    location: '📍 Асеновград',
+    title: 'Продажба 2-стаен в кв. Изток, гр. Асеновград',
+    location: '📍 кв. Изток, Асеновград',
     img: 'https://github.com/gericodes/mywebsite/blob/main/37/1.jpg?raw=true',
-    feats: ['🛏 3 стаи', '📐 56 м²', '🏢 Таван и изба'],
+    feats: ['🛏 2 стаи', '📐 56 м²', '🏢 Етаж 6/6', '🧱 Монолит', '🏠 Таван и изба'],
     href: 'listing.html?id=37'
   },
   {
