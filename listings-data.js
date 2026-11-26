@@ -942,6 +942,15 @@ const LISTINGS = [
 
 ];
 
+// Групи за филтрите и броячите: всичко извън Асеновград/Пловдив е „Други“
+function filterCity(l) {
+  const c = String(l.city || '').toLowerCase();
+  return (c === 'asenovgrad' || c === 'plovdiv') ? c : 'drugi';
+}
+function filterType(l) {
+  return ['house', 'apartment', 'parcel'].includes(l.type) ? l.type : 'drugi';
+}
+
 // ── Помощни функции за визията на картите ──────────────────────────────────
 const GH_RAW = /^https:\/\/github\.com\/gericodes\/mywebsite\/blob\/main\/([^?]+)\?raw=true$/;
 
@@ -1028,8 +1037,8 @@ function buildListingCard(listing, mode) {
   card.id = `listing-card-${listing.id}`;
   card.className = 'listing-card';
   card.dataset.deal = listing.deal;
-  card.dataset.city = listing.city;
-  card.dataset.type = listing.type;
+  card.dataset.city = filterCity(listing);
+  card.dataset.type = filterType(listing);
   card.dataset.price = listing.priceRaw;
   card.dataset.size = listing.size;
   card.dataset.newest = listing.id;
