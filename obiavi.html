@@ -976,17 +976,17 @@ footer {
 
     // Counts — show how many on this page vs total matched
     document.getElementById('visibleCount').textContent = pageCards.length;
-    document.getElementById('totalCount').textContent = cards.length;
+    document.getElementById('totalCount').textContent = visible.length;
     document.getElementById('countDisplay').textContent = visible.length;
 
     // Sidebar counts
     ['asenovgrad','plovdiv','drugi'].forEach(city => {
       const el = document.getElementById('count-city-' + city);
-      if (el) el.textContent = LISTINGS.filter(l => l.city === city).length;
+      if (el) el.textContent = LISTINGS.filter(l => filterCity(l) === city).length;
     });
     ['house','apartment','parcel','drugi'].forEach(type => {
       const el = document.getElementById('count-type-' + type);
-      if (el) el.textContent = LISTINGS.filter(l => l.type === type).length;
+      if (el) el.textContent = LISTINGS.filter(l => filterType(l) === type).length;
     });
 
     // Tags
