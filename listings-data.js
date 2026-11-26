@@ -540,25 +540,6 @@ const LISTINGS = [
     href: 'listing.html?id=29'
   },
   {
-    id: 30,
-    deal: 'sell',
-    city: 'asenovgrad',
-    cityLabel: 'Асеновград',
-    type: 'apartment',
-    typeLabel: '🏢 Апартамент',
-    price: '114 000',
-    priceUnit: '€',
-    priceRaw: 114000,
-    size: 120,
-    isNew: false,
-    featured: false,
-    title: 'Продажба 3-стаен гр. Асеновград 110m²',
-    location: '📍 Асеновград',
-    img: 'https://github.com/gericodes/mywebsite/blob/main/30/1.jpg?raw=true',
-    feats: ['🛏 3 стаи', '📐 120 м²'],
-    href: 'listing.html?id=30'
-  },
-  {
     id: 31,
     deal: 'sell',
     city: 'drugi',
