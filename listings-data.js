@@ -937,6 +937,44 @@ const LISTINGS = [
     img: 'https://github.com/gericodes/mywebsite/blob/main/53/1.jpg?raw=true',
     feats: ['🛏 2 стаи', '📐 52 м²', '🏢 Етаж 5/5', '☀️ Южно изложение'],
     href: 'listing.html?id=53'
+  },
+  {
+    id: 54,
+    deal: 'rent',
+    city: 'asenovgrad',
+    cityLabel: 'Асеновград',
+    type: 'apartment',
+    typeLabel: '🏢 Апартамент',
+    price: '300',
+    priceUnit: '€ / месец',
+    priceRaw: 300,
+    size: 120,
+    isNew: true,
+    featured: false,
+    title: 'Под наем 4-стайно жилище 120 м², Асеновград',
+    location: '📍 Асеновград',
+    img: 'https://imotstatic4.focus.bg/imot/photosimotbg/2/222//big/2e178108157773222_t7.jpg',
+    feats: ['🛏 4 стаи', '📐 120 м²', '🏢 Етаж 1/3', '🔑 Дългосрочен наем'],
+    href: 'listing.html?id=54'
+  },
+  {
+    id: 55,
+    deal: 'rent',
+    city: 'asenovgrad',
+    cityLabel: 'Асеновград',
+    type: 'apartment',
+    typeLabel: '🏢 Апартамент',
+    price: '280',
+    priceUnit: '€ / месец',
+    priceRaw: 280,
+    size: 60,
+    isNew: true,
+    featured: false,
+    title: 'Под наем частично обзаведен 2-стаен, Асеновград',
+    location: '📍 Асеновград',
+    img: 'https://imotstatic2.focus.bg/imot/photosimotbg/2/418//big1/2c177928415423418_M.jpg',
+    feats: ['🛏 2 стаи', '📐 60 м²', '🏢 Етаж 4/5', '🛋 Частично обзаведен'],
+    href: 'listing.html?id=55'
   }                          
   
 
