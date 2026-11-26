@@ -540,6 +540,25 @@ const LISTINGS = [
     href: 'listing.html?id=29'
   },
   {
+    id: 30,
+    deal: 'sell',
+    city: 'gornoslav',
+    cityLabel: 'ГОРНОСЛАВ',
+    type: 'house',
+    typeLabel: '🏡 Къща',
+    price: '55 000',
+    priceUnit: '€',
+    priceRaw: 55000,
+    size: 75,
+    isNew: true,
+    featured: false,
+    title: 'Къща с голям двор и панорамна гледка в с. Горнослав',
+    location: '📍 с. Горнослав, Асеновград',
+    img: 'https://static.realistimo.com/images/ce8eaec23275db7807e52b5fb03feadc86d51f5f.jpg',
+    feats: ['🏡 2 етажа', '📐 75 м²', '🌳 Двор 556 м²', '🌄 Панорамна гледка'],
+    href: 'listing.html?id=30'
+  },
+  {
     id: 31,
     deal: 'sell',
     city: 'drugi',
