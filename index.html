@@ -516,7 +516,7 @@ nav {
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num" id="statListings">40+</div>
+        <div class="stat-num" id="statListings">49</div>
         <div class="stat-label">Активни обяви</div>
       </div>
       <div>
@@ -820,7 +820,7 @@ nav {
 
   // Броят обяви се смята автоматично
   const statEl = document.getElementById('statListings');
-  if (statEl) statEl.textContent = LISTINGS.length >= 10 ? (Math.floor(LISTINGS.length / 10) * 10) + '+' : LISTINGS.length;
+  if (statEl) statEl.textContent = LISTINGS.length;
 
   // Плавно появяване при превъртане (бързо, без празни зони)
   function initReveal() {
